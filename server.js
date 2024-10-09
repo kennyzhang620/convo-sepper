@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/webcontent'));
 var privateKey = fs.readFileSync( privateKeyPath );
 var certificate = fs.readFileSync( certificatePath );
 
-var server = https.createServer(app).listen(SSLPORT);
+var server = https.createServer(app).listen();
 
 var io  = require('socket.io').listen(server, { log: true });
 
@@ -25,7 +25,7 @@ var http = require('http');
 http.createServer(function (req, res) {
     res.writeHead(301, { "Location": "https://" + req.headers['host'] + ":"+ SSLPORT + "" + req.url });
     res.end();
-}).listen(HTTPPORT);
+}).listen();
 
 console.log("Webserver & Socketserver running on port: "+SSLPORT+ " and "+ HTTPPORT);
 
