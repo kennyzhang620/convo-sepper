@@ -18,7 +18,7 @@ var certificate = fs.readFileSync( certificatePath );
 
 var server = https.createServer(app).listen(SSLPORT);
 
-var io  = require('socket.io').listen(server, { log: false });
+var io  = require('socket.io').listen(server, { log: true });
 
 // Redirect from http to https
 var http = require('http');
