@@ -1,6 +1,6 @@
 /* CONFIG */
-var SSLPORT = 443; //Default 443
-var HTTPPORT = process.env.PORT; //Default 80 (Only used to redirect to SSL port)
+var SSLPORT = 443 | process.env.PORT; //Default 443
+var HTTPPORT = 80; //Default 80 (Only used to redirect to SSL port)
 var privateKeyPath = "./cert/key.pem"; //Default "./cert/key.pem"
 var certificatePath = "./cert/cert.pem"; //Default "./cert/cert.pem"
 
@@ -16,9 +16,12 @@ app.use(express.static(__dirname + '/webcontent'));
 var privateKey = fs.readFileSync( privateKeyPath );
 var certificate = fs.readFileSync( certificatePath );
 
-var server = https.createServer(app).listen();
+var server = https.createServer({
+    key: privateKey,
+    cert: certificate
+}, app).listen(SSLPORT);
 
-var io  = require('socket.io').listen(server, { log: true });
+var io  = require('socket.io').listen(server, { log: false });
 
 // Redirect from http to https
 var http = require('http');
