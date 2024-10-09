@@ -1,6 +1,6 @@
 /* CONFIG */
 var SSLPORT = 443; //Default 443
-var HTTPPORT = 80; //Default 80 (Only used to redirect to SSL port)
+var HTTPPORT = process.env.PORT; //Default 80 (Only used to redirect to SSL port)
 var privateKeyPath = "./cert/key.pem"; //Default "./cert/key.pem"
 var certificatePath = "./cert/cert.pem"; //Default "./cert/cert.pem"
 
@@ -25,7 +25,7 @@ var http = require('http');
 http.createServer(function (req, res) {
     res.writeHead(301, { "Location": "https://" + req.headers['host'] + ":"+ SSLPORT + "" + req.url });
     res.end();
-}).listen();
+}).listen(HTTPPORT);
 
 console.log("Webserver & Socketserver running on port: "+SSLPORT+ " and "+ HTTPPORT);
 
