@@ -1,28 +1,18 @@
 {
-  "name": "nodejsvoip",
-  "version": "1.0.0",
-  "description": "voip without webrtc",
-  "main": "server.js",
+  "name": "MicStreamToWav",
+  "version": "0.0.0",
+  "description": "Stream microphone pcm data to server and save on wav file.",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cracker0dks/nodeJsVoip.git"
-  },
-  "keywords": [
-    "voip"
-  ],
-  "author": "cracker0dks",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cracker0dks/nodeJsVoip/issues"
-  },
-  "homepage": "https://github.com/cracker0dks/nodeJsVoip#readme",
   "dependencies": {
-    "express": "4.x",
-    "socket.io": "^2.3.0"
+    "binaryjs": "latest",
+    "ejs": "^2.5.9",
+    "express": "latest",
+    "jade": "latest",
+    "socket.io": "^2.1.0",
+    "socket.io-stream": "^0.9.1",
+    "wav": "latest"
   },
-  "preferGlobal": true,
-  "private": true
+  "author": "gabrielpoca"
 }
