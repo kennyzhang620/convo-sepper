@@ -1,5 +1,5 @@
 (function (window) {
-    var server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com"
+    var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
     var client = new BinaryClient(`wss://${server}:9001`);
 
     client.on('open', function() {
