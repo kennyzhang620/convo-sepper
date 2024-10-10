@@ -3,6 +3,8 @@
     var client = new BinaryClient(`wss://${server}:9001`);
     var testA = new WebSocket(`wss://${server}:9002`)
 
+    testA.send("Hello world!\n");
+
     console.log("Test1");
     client.on('open', function() {
         console.log("connect")
