@@ -3,7 +3,7 @@ var BinaryServer = require('binaryjs').BinaryServer;
 var fs = require('fs');
 var wav = require('wav');
 
-var port = 3700;
+var port = process.env.PORT;
 var outFile = '-demo.wav';
 
 var pipeM = null;
