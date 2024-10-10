@@ -14,7 +14,7 @@ app.set('view engine', 'jade');
 app.engine('jade', require('jade').__express);
 app.use(express.static(__dirname + '/public'))
 
-binaryServer = BinaryServer({ host: `wss://0.0.0.0`, port: 9001});
+binaryServer = BinaryServer({ host: `wss://localhost`, port: 9001});
 
 binaryServer.on('connection', function (client) {
     console.log('new connection');
