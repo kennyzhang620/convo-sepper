@@ -2,6 +2,7 @@
     var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
     var client = new BinaryClient(`wss://${server}:9001`);
 
+    console.log("Test1");
     client.on('open', function() {
         //create stream when client connect to server by websocket
         window.Stream = client.createStream();
