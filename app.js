@@ -19,20 +19,11 @@ binaryServer = BinaryServer({ port: 9001 });
 binaryServer.on('connection', function (client) {
     console.log('new connection');
     try {
-        var file_name = Date.now() + outFile
-        var fileWriter = new wav.FileWriter(file_name, {
-            channels: 1,
-            sampleRate: 48000,
-            bitDepth: 16
-        });
-
         client.on('stream', function (stream, meta) {
             console.log('new stream');
             pipeM = stream;
 
             stream.on('end', function () {
-                //     fileWriter.end();
-                console.log('wrote to file ' + file_name);
             });
         });
     }
