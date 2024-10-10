@@ -1,9 +1,6 @@
 (function (window) {
-    var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
-    var client = new BinaryClient(`wss://${server}:9001`);
-    var testA = new WebSocket(`wss://${server}:9002`)
-
-    testA.send("Hello world!\n");
+    var server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com"
+    var client = new BinaryClient(`ws://${server}:9001`);
 
     console.log("Test1");
     client.on('open', function() {
