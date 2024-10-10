@@ -4,6 +4,7 @@
 
     console.log("Test1");
     client.on('open', function() {
+        console.log("connect")
         //create stream when client connect to server by websocket
         window.Stream = client.createStream();
 
