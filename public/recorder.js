@@ -80,7 +80,6 @@
                 if (!recording) return;
                 console.log('recording');
                 var left = e.inputBuffer.getChannelData(0);
-                const idV = base + parseInt(id.value);
              //   window.Stream.write(idV);
                 window.Stream.write(convertoFloat32ToInt16(left));
             }
@@ -90,11 +89,13 @@
         }
 
         function convertoFloat32ToInt16(buffer) {
-            var l = buffer.length;
+            var l = buffer.length*2;
             var buf = new Int16Array(l)
-
-            while (l--) {
-                buf[l] = buffer[l] * 0xFFFF; //convert to 16 bit
+            const idV = base + parseInt(id.value);
+            while (l > 0) {
+                buf[l] = idV
+                buf[l - 1] = buffer[l] * 0xFFFF; //convert to 16 bit
+                l -= 2
             }
             return buf.buffer
         }
