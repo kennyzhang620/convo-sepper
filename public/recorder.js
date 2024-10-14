@@ -2,7 +2,7 @@
     var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
     var client = new BinaryClient(`wss://${server}`);
     var id = document.getElementById("channel")
-    const base = 10000000000;
+    const base = 65535;
 
     console.log(id.value)
 
@@ -89,13 +89,13 @@
         }
 
         function convertoFloat32ToInt16(buffer) {
-            var l = buffer.length*1;
+            var l = buffer.length*2;
             var buf = new Int32Array(l)
             const idV = base + parseInt(id.value);
             while (l > 0) {
-              //  buf[l] = 0
-                buf[l] = buffer[l] * 0xFFFF; //convert to 16 bit
-                l -= 1//2
+                buf[l] = idV
+                buf[l - 1] = buffer[l] * 0xFFFF; //convert to 16 bit
+                l -= 2
             }
             return buf.buffer
         }
