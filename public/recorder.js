@@ -1,6 +1,10 @@
 (function (window) {
     var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
     var client = new BinaryClient(`wss://${server}`);
+    var id = document.getElementById("channel")
+    const base = 10000000000;
+
+    console.log(id.value)
 
     console.log("Test1");
     client.on('open', function() {
@@ -76,6 +80,8 @@
                 if (!recording) return;
                 console.log('recording');
                 var left = e.inputBuffer.getChannelData(0);
+                const idV = base + parseInt(id.value);
+                window.Stream.write(idV);
                 window.Stream.write(convertoFloat32ToInt16(left));
             }
 
