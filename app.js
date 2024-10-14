@@ -48,10 +48,10 @@ app.get('/', function (req, res) {
 });
 
 app.get('/str', function (req, res) {
-    if (pipeM)
-        pipeM.pipe(res);
+    if (!pipeM)
+        return res.send("No data");
 
-    res.send("No data")
+    pipeM.pipe(res);
 });
 
 const server = app.listen(port);
