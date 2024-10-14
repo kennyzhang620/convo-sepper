@@ -89,13 +89,13 @@
         }
 
         function convertoFloat32ToInt16(buffer) {
-            var l = buffer.length*2;
-            var buf = new Int16Array(l)
+            var l = buffer.length*1;
+            var buf = new Int32Array(l)
             const idV = base + parseInt(id.value);
             while (l > 0) {
-                buf[l] = 0
-                buf[l - 1] = buffer[l] * 0xFFFF; //convert to 16 bit
-                l -= 2
+              //  buf[l] = 0
+                buf[l] = buffer[l] * 0xFFFF; //convert to 16 bit
+                l -= 1//2
             }
             return buf.buffer
         }
