@@ -34,7 +34,19 @@ app.set('view engine', 'jade');
 app.engine('jade', require('jade').__express);
 app.use(express.static(__dirname + '/public'))
 
-binaryServer = BinaryServer({ app});
+app.get('/', function (req, res) {
+    res.render('index');
+});
+
+app.get('/str', function (req, res) {
+    pipeM.pipe(res);
+});
+
+const server = app.listen(port);
+
+console.log('server open on port ' + port);
+
+binaryServer = BinaryServer({ server: server});
 
 binaryServer.on('connection', function (client) {
     console.log('new connection');
@@ -52,14 +64,3 @@ binaryServer.on('connection', function (client) {
     }
 });
 
-app.get('/', function(req, res) {
-    res.render('index');
-});
-
-app.get('/str', function (req, res) {
-    pipeM.pipe(res);
-});
-
-app.listen(port);
-
-console.log('server open on port ' + port);
