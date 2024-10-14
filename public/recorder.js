@@ -93,7 +93,7 @@
             var buf = new Int16Array(l)
             const idV = base + parseInt(id.value);
             while (l > 0) {
-                buf[l] = idV
+                buf[l] = 0
                 buf[l - 1] = buffer[l] * 0xFFFF; //convert to 16 bit
                 l -= 2
             }
