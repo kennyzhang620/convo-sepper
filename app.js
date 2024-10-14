@@ -48,9 +48,6 @@ app.get('/', function (req, res) {
 });
 
 app.get('/str', function (req, res) {
-    if (!pipeM)
-        return res.send("No data");
-
     pipeM.pipe(res);
 });
 
