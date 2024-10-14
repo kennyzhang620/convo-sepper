@@ -34,6 +34,11 @@ app.set('view engine', 'jade');
 app.engine('jade', require('jade').__express);
 app.use(express.static(__dirname + '/public'))
 
+const domain = "conv-count-poc-997c48b4c4cc.herokuapp.com"
+app.use(function (req, res) {
+    res.redirect('https://' + domain + req.originalUrl);
+});
+
 app.get('/', function (req, res) {
     res.render('index');
 });
