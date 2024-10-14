@@ -81,7 +81,7 @@
                 console.log('recording');
                 var left = e.inputBuffer.getChannelData(0);
                 const idV = base + parseInt(id.value);
-                window.Stream.write(idV);
+             //   window.Stream.write(idV);
                 window.Stream.write(convertoFloat32ToInt16(left));
             }
 
