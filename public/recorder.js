@@ -87,10 +87,11 @@
             }, 300);
         }
 
-        var handv = setInterval(startR, bufferT)
+        var handv = null;
 
         window.startRecording = function() {
             recording = true;
+            handv = setInterval(startR, bufferT)
         }
 
         window.pauseRecording = function() {
