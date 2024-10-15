@@ -5,7 +5,10 @@
     const base = 65535;
     const bufferT = 2000;
 
-    console.log(id.value)
+    const idVA = window.location.href.split("=");
+
+    if (idVA.length == 2)
+        id.value = idVA[1]
 
     console.log("Test1");
     client.on('open', function() {
