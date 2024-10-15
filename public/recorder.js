@@ -3,7 +3,7 @@
     var client = new BinaryClient(`wss://${server}`);
     var id = document.getElementById("channel")
     const base = 65535;
-    const bufferT = 3000;
+    const bufferT = 300;
 
     console.log(id.value)
 
@@ -57,7 +57,7 @@
             //  clearInterval(handv);
             setTimeout(function () {
                 location.reload();
-            }, 300);
+            }, 30);
         }
 
         var handv = setInterval(startR, bufferT)
