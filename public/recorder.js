@@ -56,7 +56,6 @@
 
             setTimeout(function restart() {
                 recording = true;
-                window.Stream.start();
             }, 200)
         }
 
