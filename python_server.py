@@ -1,7 +1,16 @@
 import requests
 import numpy as np
 
-import simpleaudio as sa
+import pyaudio
+
+p = pyaudio.PyAudio()
+stream = p.open(format=pyaudio.paFloat32,
+                channels=1,
+                rate=44100,
+                frames_per_buffer=1024,
+                output=True,
+                )
+
 
 while (True):
     url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/str'
@@ -12,7 +21,7 @@ while (True):
     try:
       data = np.frombuffer(r.content, dtype=int)
       print(data)
-      play_obj = sa.play_buffer(data, 1, 2, 44000)
+      stream.write(data.tobytes())
     except:
       err = True
 
