@@ -68,29 +68,6 @@
             });
         } else alert('getUserMedia not supported in this browser.');
 
-        //When recording, if after specific time our browser doesn't recognize any voice from user, it stops and generate wav file
-        if (recording) {
-            if ('webkitSpeechRecognition' in window) {
-                var speechRecognizer = new webkitSpeechRecognition();
-                speechRecognizer.continuous = true;
-                speechRecognizer.interimResults = true;
-                speechRecognizer.lang = 'en-US';
-                speechRecognizer.start();
-                speechRecognizer.onspeechend = function () {
-                    window.Stream.end();
-                    recording = false;
-                    alert('You were quiet for a while so it automatically generated your voice memo.');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 3000);
-                }
-
-                //handle when error occurs when recognizing voice
-                speechRecognizer.onerror = function (event) { };
-            } else {
-                // alert('Your browser is not supported. If google chrome, please upgrade!');
-            }
-        }
     }
 
     client.on('open', function() {
