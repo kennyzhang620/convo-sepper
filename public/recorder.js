@@ -82,8 +82,8 @@
 
             //  clearInterval(handv);
             setTimeout(function () {
-                setup();
                 recording = true;
+                setup();
             }, 300);
         }
 
