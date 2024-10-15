@@ -4,6 +4,7 @@
     var id = document.getElementById("channel")
     const base = 65535;
     const bufferT = 2000;
+    var recording = false;
 
     console.log("Test1");
 
@@ -44,8 +45,6 @@
                 alert('Error capturing audio.');
             });
         } else alert('getUserMedia not supported in this browser.');
-
-        var recording = false;
 
         //When recording, if after specific time our browser doesn't recognize any voice from user, it stops and generate wav file
         if (recording) {
