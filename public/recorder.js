@@ -114,7 +114,7 @@
                 buf[l - 1] = idV
                 buf[l - 2] = buffer[l] * 0xFFFF; //convert to 16 bit
                 buf[l - 3] = 0; //convert to 16 bit
-                l -= 2
+                l -= 4
             }
             return buf.buffer
         }
