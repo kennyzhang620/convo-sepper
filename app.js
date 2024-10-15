@@ -68,7 +68,7 @@ binaryServer.on('connection', function (client) {
             pipeM = stream;
 
             stream.on('end', function () {
-                pipeM = null;
+             //   pipeM = null;
             });
         });
     }
