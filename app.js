@@ -43,7 +43,7 @@ app.use(function (request, response, next) {
     next();
 })
 
-app.get('/mid', function (req, res) {
+app.get('/mid=', function (req, res) {
     res.render('index');
 });
 
