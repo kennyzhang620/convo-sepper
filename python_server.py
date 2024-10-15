@@ -19,10 +19,6 @@ while (True):
     r = requests.get(url, stream=True)
     err = False;
 
-    for line in r.iter_lines(chunk_size=4):
-        try:
-            if line:
-                y = np.frombuffer(line, dtype=np.int32)
-                print(y)
-        except:
-            err = True
+    for line in r.iter_lines():
+        len(line)
+
