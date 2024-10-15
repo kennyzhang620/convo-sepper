@@ -3,7 +3,7 @@
     var client = new BinaryClient(`wss://${server}`);
     var id = document.getElementById("channel")
     const base = 65535;
-    const bufferT = 1000;
+    const bufferT = 2000;
 
     console.log(id.value)
 
