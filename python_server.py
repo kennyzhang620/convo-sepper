@@ -11,8 +11,11 @@ def play_data(filename, first_sec, second_sec):
 
 
 import urllib.request
+import numpy as np
 url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/str'
 with urllib.request.urlopen(url) as f:
     html = f.read()
 
-print(html)
+y = np.frombuffer(html, dtype=int)
+
+print(y)

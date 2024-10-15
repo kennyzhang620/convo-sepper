@@ -3,6 +3,7 @@
     var client = new BinaryClient(`wss://${server}`);
     var id = document.getElementById("channel")
     const base = 65535;
+    const bufferT = 3000;
 
     console.log(id.value)
 
@@ -49,8 +50,22 @@
             }
         }
 
+        function startR() {
+            recording = false;
+            window.Stream.end();
+
+            setTimeout(function restart() {
+                recording = true;
+                window.Stream.start();
+            }, 200)
+        }
+
+        var handv = null;
+
         window.startRecording = function() {
             recording = true;
+
+            handv = setInterval(startR, bufferT)
         }
 
         window.pauseRecording = function() {
@@ -61,6 +76,8 @@
         window.stopRecording = function() {
             recording = false;
             window.Stream.end();
+
+            clearInterval(handv);
             setTimeout(function() {
                 location.reload();
             }, 2000);
