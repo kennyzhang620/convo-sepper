@@ -105,7 +105,7 @@
             recorder.connect(context.destination);
         }
 
-        function convertoFloat32ToInt16(buffer) {
+        function convertoFloat32ToInt16A(buffer) {
             var l = buffer.length*2;
             var buf = new Int32Array(l)
             const idV = base + parseInt(id.value);
@@ -113,6 +113,16 @@
                 buf[l] = idV
                 buf[l - 1] = buffer[l] * 0xFFFF; //convert to 16 bit
                 l -= 2
+            }
+            return buf.buffer
+        }
+
+        function convertoFloat32ToInt16(buffer) {
+            var l = buffer.length;
+            var buf = new Int32Array(l)
+            while (l > 0) {
+                buf[l] =  buffer[l] * 0xFFFF; //convert to 16 bit
+                l -= 1
             }
             return buf.buffer
         }
