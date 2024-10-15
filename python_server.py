@@ -10,17 +10,14 @@ def play_data(filename, first_sec, second_sec):
   f.close()
 
 
-import urllib.request
+import requests
 import numpy as np
 
 while (True):
-    try:
-        url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/str'
-        with urllib.request.urlopen(url) as f:
-            html = f.read()
+    url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/str'
 
-        y = np.frombuffer(html, dtype=int)
+    r = requests.get(url, stream=True)
 
-        print(y)
-    except:
-        print("no data")
+    for line in r.iter_lines():
+        if line:
+            print(line)

@@ -65,7 +65,7 @@
         window.startRecording = function() {
             recording = true;
 
-            handv = setInterval(startR, bufferT)
+          //  handv = setInterval(startR, bufferT)
         }
 
         window.pauseRecording = function() {
@@ -77,7 +77,7 @@
             recording = false;
             window.Stream.end();
 
-            clearInterval(handv);
+          //  clearInterval(handv);
             setTimeout(function() {
                 location.reload();
             }, 2000);
