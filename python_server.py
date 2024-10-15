@@ -17,7 +17,12 @@ while (True):
     url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/str'
 
     r = requests.get(url, stream=True)
+    err = False;
 
-    for line in r.iter_lines():
-        if line:
-            print(line)
+    for line in r.iter_lines(chunk_size=32):
+        try:
+            if line:
+                y = np.frombuffer(line, dtype=int)
+                print(y)
+        except:
+            err = True
