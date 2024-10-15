@@ -12,6 +12,7 @@ stream = p.open(format=pyaudio.paFloat32,
                 )
 
 
+base = 65535
 while (True):
     url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/str'
 
@@ -19,8 +20,10 @@ while (True):
     err = False;
 
     try:
-      data = np.frombuffer(r.content, dtype=int)
-      print(data)
+      data = np.frombuffer(r.content, dtype=np.int32)
+      print(data, data.shape)
+      print("a1", np.where(data == base+ 0))
+      print("a2", np.where(data == base+ 1))
      # stream.write((data.astype(np.float32, order='C') / 32768.0).tobytes())
     except:
       err = True
