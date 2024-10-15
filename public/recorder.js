@@ -5,13 +5,9 @@
     const base = 65535;
     const bufferT = 2000;
 
-    const idVA = window.location.href.split("=");
-
-    if (idVA.length == 2)
-        id.value = idVA[1]
-
     console.log("Test1");
-    client.on('open', function() {
+
+    function setup() {
         console.log("connect")
         //create stream when client connect to server by websocket
         window.Stream = client.createStream();
@@ -19,15 +15,15 @@
         //get Media from user, this time the media is audio, and call function 'success' continuously during the time we record
         if (!navigator.getUserMedia)
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia || navigator.msGetUserMedia;
+                navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
         if (navigator.getUserMedia) {
-            navigator.getUserMedia({ audio: true }, success, function(e) {
+            navigator.getUserMedia({ audio: true }, success, function (e) {
                 alert('Error capturing audio.');
             });
         } else alert('getUserMedia not supported in this browser.');
 
-        var recording = !false;
+        var recording = false;
 
         //When recording, if after specific time our browser doesn't recognize any voice from user, it stops and generate wav file
         if (recording) {
@@ -37,21 +33,26 @@
                 speechRecognizer.interimResults = true;
                 speechRecognizer.lang = 'en-US';
                 speechRecognizer.start();
-                speechRecognizer.onspeechend = function() {
+                speechRecognizer.onspeechend = function () {
                     window.Stream.end();
                     recording = false;
                     alert('You were quiet for a while so it automatically generated your voice memo.');
-                    setTimeout(function() {
+                    setTimeout(function () {
                         location.reload();
                     }, 3000);
                 }
 
                 //handle when error occurs when recognizing voice
-                speechRecognizer.onerror = function(event) {};
+                speechRecognizer.onerror = function (event) { };
             } else {
-               // alert('Your browser is not supported. If google chrome, please upgrade!');
+                // alert('Your browser is not supported. If google chrome, please upgrade!');
             }
         }
+    }
+
+    client.on('open', function() {
+        
+        setup();
 
         function startR() {
             recording = false;
@@ -59,7 +60,8 @@
 
             //  clearInterval(handv);
             setTimeout(function () {
-                location.reload();
+                setup();
+                recording = true;
             }, 300);
         }
 
@@ -78,7 +80,7 @@
             recording = false;
             window.Stream.end();
 
-          //  clearInterval(handv);
+            clearInterval(handv);
             setTimeout(function() {
                 location.reload();
             }, 2000);
