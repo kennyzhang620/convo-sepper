@@ -21,7 +21,7 @@ while (True):
     try:
       data = np.frombuffer(r.content, dtype=int)
       print(data)
-      stream.write((data.astype(np.float32, order='C') / 32768.0).tobytes())
+     # stream.write((data.astype(np.float32, order='C') / 32768.0).tobytes())
     except:
       err = True
 
