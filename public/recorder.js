@@ -46,7 +46,7 @@
                 //handle when error occurs when recognizing voice
                 speechRecognizer.onerror = function(event) {};
             } else {
-                alert('Your browser is not supported. If google chrome, please upgrade!');
+               // alert('Your browser is not supported. If google chrome, please upgrade!');
             }
         }
 
