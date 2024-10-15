@@ -52,7 +52,7 @@
 
         function startR() {
             recording = false;
-            window.Stream.end();
+            window.Stream.pause();
 
             setTimeout(function restart() {
                 recording = true;
