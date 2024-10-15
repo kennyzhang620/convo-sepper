@@ -8,10 +8,34 @@
 
     console.log("Test1");
 
+
+    function convertoFloat32ToInt16A(buffer) {
+        var l = buffer.length * 2;
+        var buf = new Int32Array(l)
+        const idV = base + parseInt(id.value);
+        while (l > 0) {
+            buf[l] = idV
+            buf[l - 1] = buffer[l] * 0xFFFF; //convert to 16 bit
+            l -= 2
+        }
+        return buf.buffer
+    }
+
+    function convertoFloat32ToInt16(buffer) {
+        var l = buffer.length;
+        var buf = new Int32Array(l)
+        while (l > 0) {
+            buf[l] = buffer[l] * 0xFFFF; //convert to 16 bit
+            l -= 1
+        }
+        return buf.buffer
+    }
+
     function setup() {
         console.log("connect")
         //create stream when client connect to server by websocket
         window.Stream = client.createStream();
+
 
         function success(e) {
             audioContext = window.AudioContext || window.webkitAudioContext;
@@ -106,28 +130,6 @@
             setTimeout(function() {
                 location.reload();
             }, 2000);
-        }
-
-        function convertoFloat32ToInt16A(buffer) {
-            var l = buffer.length*2;
-            var buf = new Int32Array(l)
-            const idV = base + parseInt(id.value);
-            while (l > 0) {
-                buf[l] = idV
-                buf[l - 1] = buffer[l] * 0xFFFF; //convert to 16 bit
-                l -= 2
-            }
-            return buf.buffer
-        }
-
-        function convertoFloat32ToInt16(buffer) {
-            var l = buffer.length;
-            var buf = new Int32Array(l)
-            while (l > 0) {
-                buf[l] =  buffer[l] * 0xFFFF; //convert to 16 bit
-                l -= 1
-            }
-            return buf.buffer
         }
     });
 })(this);
