@@ -24,7 +24,7 @@
             });
         } else alert('getUserMedia not supported in this browser.');
 
-        var recording = false;
+        var recording = !false;
 
         //When recording, if after specific time our browser doesn't recognize any voice from user, it stops and generate wav file
         if (recording) {
@@ -52,12 +52,12 @@
 
         function startR() {
             recording = false;
-            window.Stream.pause();
+            window.Stream.end();
 
-            setTimeout(function restart() {
-                recording = true;
-                window.Stream.resume()
-            }, 200)
+            //  clearInterval(handv);
+            setTimeout(function () {
+                location.reload();
+            }, 300);
         }
 
         var handv = null;
@@ -65,7 +65,7 @@
         window.startRecording = function() {
             recording = true;
 
-          //  handv = setInterval(startR, bufferT)
+            handv = setInterval(startR, bufferT)
         }
 
         window.pauseRecording = function() {
