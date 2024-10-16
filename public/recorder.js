@@ -50,7 +50,7 @@
                 console.log('recording');
                 var left = e.inputBuffer.getChannelData(0);
                 //   window.Stream.write(idV);
-                window.Stream.write(convertoFloat32ToInt16A(left));
+                window.Stream.write(convertoFloat32ToInt16(left));
             }
 
             audioInput.connect(recorder)
