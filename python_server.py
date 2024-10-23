@@ -6,7 +6,7 @@ import pyaudio
 p = pyaudio.PyAudio()
 stream = p.open(format=pyaudio.paFloat32,
                 channels=1,
-                rate=44100,
+                rate=22100,
                 frames_per_buffer=1024,
                 output=True,
                 )
@@ -22,9 +22,9 @@ while (True):
     try:
       data = np.frombuffer(r.content, dtype=np.int32)
       print(data, data.shape)
-      print("a1", np.where(data == base+ 0))
-      print("a2", np.where(data == base+ 1))
-     # stream.write((data.astype(np.float32, order='C') / 32768.0).tobytes())
+      #print("a1", np.where(data == base+ 0))
+   #   print("a2", np.where(data == base+ 1))
+      stream.write((data.astype(np.float32, order='C') / 32768.0).tobytes())
     except:
       err = True
 

@@ -5,6 +5,7 @@ html
         script(src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js")
     body
         input(type="number", name="channel", id="channel", value="0")
+        button(onclick="setChannel()")
         button(onclick="startRecording()") Start Recording
         button(onclick="pauseRecording()") Pause Recording
         button(onclick="stopRecording()") Stop Recording

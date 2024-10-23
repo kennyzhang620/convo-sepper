@@ -27,6 +27,8 @@ var port = process.env.PORT || 3000;
 var outFile = '-demo.wav';
 
 var pipeM = null;
+var channels = [];
+
 var app = express();
 
 app.set('views', __dirname + '/tpl');
@@ -47,7 +49,7 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-app.get('/str', function (req, res) {
+app.get('/stream/:id', function (req, res) {
     if (!pipeM)
         return res.send("No data");
 

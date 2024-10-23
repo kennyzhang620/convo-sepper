@@ -2,7 +2,7 @@
     var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
     var client = new BinaryClient(`wss://${server}`);
     var id = document.getElementById("channel")
-    const base = 65535;
+
     const bufferT = 2000;
     var recording = false;
 
@@ -71,8 +71,6 @@
     }
 
     client.on('open', function() {
-        
-        setup();
 
         function startR() {
             recording = false;
@@ -86,6 +84,10 @@
         }
 
         var handv = null;
+
+        window.setChannel = function() {      
+            setup();
+        }
 
         window.startRecording = function() {
             recording = true;

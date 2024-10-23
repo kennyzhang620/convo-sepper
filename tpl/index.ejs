@@ -7,8 +7,12 @@
 
 <body>
     <label for="tentacles">Channel ID (10-100):</label>
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
-    <input type="number" id="channel" name="channel" min="10" max="100" />
+    <form action="https://portfolio-backend-res-1-d45b95981d24.herokuapp.com/resume-select" method="post" target="dummyframe">
+        <input type="number" id="channel" name="channel" min="10" max="100" />
+        <input type="submit" value="Submit">
+      </form>
 
 	<button onclick="startRecording()">Start Recording</button>
 	<button onclick="pauseRecording()">Recording Recording</button>
