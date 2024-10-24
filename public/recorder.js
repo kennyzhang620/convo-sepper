@@ -8,6 +8,8 @@
     const bufferT = 2000;
     var recording = false;
 
+    var accelVectors =[0,0,0]
+
     console.log("Test1");
 
     function sampleAccel() {
@@ -37,9 +39,9 @@
 
     function handleMotionEvent(event) {
 
-        var x = event.accelerationIncludingGravity.x;
-        var y = event.accelerationIncludingGravity.y;
-        var z = event.accelerationIncludingGravity.z;
+        accelVectors[0] = event.accelerationIncludingGravity.x;
+        accelVectors[1] = event.accelerationIncludingGravity.y;
+        accelVectors[2] = event.accelerationIncludingGravity.z;
     
         // Do something awesome.
     }
