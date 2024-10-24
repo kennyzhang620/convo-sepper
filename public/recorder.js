@@ -3,17 +3,10 @@ const permissionDescriptors = [
     {name: 'microphone'},
   ];
   
-  const permissions = await Promise.all(permissionDescriptors.map(async descriptor => ({
+  const permissions = permissionDescriptors.map(async descriptor => ({
     descriptor,
     status: await navigator.permissions.query(descriptor),
-  })));
-  
-  for (const {descriptor, status} of permissions) {
-    console.log(
-      descriptor.name, // 'camera' | 'microphone'
-      status.state, // 'granted' | 'denied' | 'prompt'
-    );
-  }
+  }));
 
 (function (window) {
     var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
