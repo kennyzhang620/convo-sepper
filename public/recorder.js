@@ -14,6 +14,8 @@
         descriptor,
         status: navigator.permissions.query(descriptor),
       }));
+
+      console.log(permissionDescriptors);
     
     const bufferT = 2000;
     var recording = false;
