@@ -32,7 +32,7 @@ var channels = [];
 var app = express();
 
 app.set('views', __dirname + '/tpl');
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 //app.engine('jade', require('jade').__express);
 app.use(express.static(__dirname + '/public'))
 

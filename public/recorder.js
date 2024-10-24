@@ -62,6 +62,8 @@
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
                 navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
+            
+
         if (navigator.getUserMedia) {
             navigator.getUserMedia({ audio: true }, success, function (e) {
                 alert('Error capturing audio.');
