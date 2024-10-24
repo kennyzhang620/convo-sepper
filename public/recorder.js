@@ -9,6 +9,11 @@
 
     console.log("Test1");
 
+    window.setChannel = function() {      
+        setup();
+        controls.style = "display: block;";
+    }
+
     function setup() {
         console.log("connect")
         //create stream when client connect to server by websocket
@@ -87,11 +92,6 @@
         }
 
         var handv = null;
-
-        window.setChannel = function() {      
-            setup();
-            controls.style = "display: block;";
-        }
 
         window.startRecording = function() {
             recording = true;
