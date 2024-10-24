@@ -3,9 +3,9 @@ const permissionDescriptors = [
     {name: 'microphone'},
   ];
   
-  const permissions = permissionDescriptors.map(async descriptor => ({
+  const permissions = permissionDescriptors.map(descriptor => ({
     descriptor,
-    status: await navigator.permissions.query(descriptor),
+    status: navigator.permissions.query(descriptor),
   }));
 
 (function (window) {
