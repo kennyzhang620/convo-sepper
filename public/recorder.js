@@ -1,3 +1,20 @@
+const permissionDescriptors = [
+    {name: 'camera'},
+    {name: 'microphone'},
+  ];
+  
+  const permissions = await Promise.all(permissionDescriptors.map(async descriptor => ({
+    descriptor,
+    status: await navigator.permissions.query(descriptor),
+  })));
+  
+  for (const {descriptor, status} of permissions) {
+    console.log(
+      descriptor.name, // 'camera' | 'microphone'
+      status.state, // 'granted' | 'denied' | 'prompt'
+    );
+  }
+
 (function (window) {
     var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
     var client = new BinaryClient(`wss://${server}`);
@@ -94,27 +111,6 @@
             audioInput.connect(recorder)
             recorder.connect(context.destination);
         }
-
-        const permissionsToRequest = {
-            permissions: ["accelerometer", "gyroscope", "geolocation"],
-            origins: ["*"],
-          };
-          
-          async function requestPermissions() {
-            function onResponse(response) {
-              if (response) {
-                console.log("Permission was granted");
-              } else {
-                console.log("Permission was refused");
-              }
-              return browser.permissions.getAll();
-            }
-          
-            const response = await browser.permissions.request(permissionsToRequest);
-            const currentPermissions = await onResponse(response);
-          
-            console.log(`Current permissions:`, currentPermissions);
-          }
 
         //get Media from user, this time the media is audio, and call function 'success' continuously during the time we record
         if (!navigator.getUserMedia)
