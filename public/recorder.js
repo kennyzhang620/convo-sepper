@@ -7,7 +7,7 @@
 
     const bufferT = 2000;
     var recording = false;
-    
+
     console.log("Test1");
 
     function sampleAccel() {
@@ -95,12 +95,33 @@
             recorder.connect(context.destination);
         }
 
+        const permissionsToRequest = {
+            permissions: ["accelerometer", "gyroscope", "geolocation"],
+            origins: ["*"],
+          };
+          
+          async function requestPermissions() {
+            function onResponse(response) {
+              if (response) {
+                console.log("Permission was granted");
+              } else {
+                console.log("Permission was refused");
+              }
+              return browser.permissions.getAll();
+            }
+          
+            const response = await browser.permissions.request(permissionsToRequest);
+            const currentPermissions = await onResponse(response);
+          
+            console.log(`Current permissions:`, currentPermissions);
+          }
+
         //get Media from user, this time the media is audio, and call function 'success' continuously during the time we record
         if (!navigator.getUserMedia)
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
                 navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
-            
+        requestPermissions();
 
         if (navigator.getUserMedia) {
             navigator.getUserMedia({ audio: true }, success, function (e) {
