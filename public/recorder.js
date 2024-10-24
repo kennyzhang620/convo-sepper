@@ -7,8 +7,7 @@
 
     const bufferT = 2000;
     var recording = false;
-    var acl = null;
-
+    
     console.log("Test1");
 
     function sampleAccel() {
@@ -36,16 +35,18 @@
 
     }
 
+    function handleMotionEvent(event) {
+
+        var x = event.accelerationIncludingGravity.x;
+        var y = event.accelerationIncludingGravity.y;
+        var z = event.accelerationIncludingGravity.z;
+    
+        // Do something awesome.
+    }
+    
+    window.addEventListener("devicemotion", handleMotionEvent, true);
+
     function setup() {
-        acl = new Accelerometer({ frequency: 60 });
-        acl.addEventListener("reading", () => {
-        console.log(`Acceleration along the X-axis ${acl.x}`);
-        console.log(`Acceleration along the Y-axis ${acl.y}`);
-        console.log(`Acceleration along the Z-axis ${acl.z}`);
-        });
-
-        acl.start();
-
         console.log("connect")
         //create stream when client connect to server by websocket
         window.Stream = client.createStream();
