@@ -5,6 +5,10 @@
     var controls = document.getElementById("controls");
     var ms = document.getElementById("ms");
 
+    var ax = document.getElementById("ax")
+    var ay = document.getElementById("ay")
+    var az = document.getElementById("az")
+
     const bufferT = 2000;
     var recording = false;
 
@@ -20,7 +24,9 @@
         timeElapsed += 1
         ms.value = timeElapsed;
 
-        
+        ax.value = accelVectors[0]
+        ay.value = accelVectors[1];
+        az.value = accelVectors[2]
     }
 
     // 25 samples in 25 ms
@@ -35,6 +41,7 @@
         controls.style = "display: block;";
         setInterval(elapsedTimeU, 1);
 
+        
     }
 
     function handleMotionEvent(event) {
