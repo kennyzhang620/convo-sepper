@@ -5,18 +5,6 @@
     var controls = document.getElementById("controls");
     var ms = document.getElementById("ms");
 
-    const permissionDescriptors = [
-        {name: 'geolocation'},
-        {name: 'accelerometer'},
-      ];
-      
-      const permissions = permissionDescriptors.map(descriptor => ({
-        descriptor,
-        status: navigator.permissions.query(descriptor),
-      }));
-
-      console.log(permissionDescriptors);
-    
     const bufferT = 2000;
     var recording = false;
 
@@ -105,6 +93,14 @@
 
             audioInput.connect(recorder)
             recorder.connect(context.destination);
+        }
+
+         // Request permission for iOS 13+ devices
+        if (
+            DeviceMotionEvent &&
+            typeof DeviceMotionEvent.requestPermission === "function"
+        ) {
+            DeviceMotionEvent.requestPermission();
         }
 
         //get Media from user, this time the media is audio, and call function 'success' continuously during the time we record
