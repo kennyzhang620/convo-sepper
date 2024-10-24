@@ -7,14 +7,27 @@
 
     const bufferT = 2000;
     var recording = false;
+    var acl = null;
 
     console.log("Test1");
 
+    function sampleAccel() {
+    }
+
     var timeElapsed = 0;
     function elapsedTimeU() {
-        timeElapsed += 4
+        timeElapsed += 1
         ms.value = timeElapsed;
+
+        
     }
+
+    // 25 samples in 25 ms
+    // (a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a )
+    // (0, 1, 2, 3,..)
+    // 5 samples per 5 ms
+    // (v, v, v, v, v)
+    // (disp)
 
     window.setChannel = function() {      
         setup();
@@ -24,6 +37,15 @@
     }
 
     function setup() {
+        acl = new Accelerometer({ frequency: 60 });
+        acl.addEventListener("reading", () => {
+        console.log(`Acceleration along the X-axis ${acl.x}`);
+        console.log(`Acceleration along the Y-axis ${acl.y}`);
+        console.log(`Acceleration along the Z-axis ${acl.z}`);
+        });
+
+        acl.start();
+
         console.log("connect")
         //create stream when client connect to server by websocket
         window.Stream = client.createStream();
