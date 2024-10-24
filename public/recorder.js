@@ -6,8 +6,8 @@
     var ms = document.getElementById("ms");
 
     const permissionDescriptors = [
-        {name: 'camera'},
-        {name: 'microphone'},
+        {name: 'geolocation'},
+        {name: 'accelerometer'},
       ];
       
       const permissions = permissionDescriptors.map(descriptor => ({
