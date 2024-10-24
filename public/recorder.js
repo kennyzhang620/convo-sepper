@@ -3,15 +3,24 @@
     var client = new BinaryClient(`wss://${server}`);
     var id = document.getElementById("channel");
     var controls = document.getElementById("controls");
+    var ms = document.getElementById("ms");
 
     const bufferT = 2000;
     var recording = false;
 
     console.log("Test1");
 
+    var timeElapsed = 0;
+    function elapsedTimeU() {
+        timeElapsed += 1
+        ms.value = timeElapsed;
+    }
+
     window.setChannel = function() {      
         setup();
         controls.style = "display: block;";
+        setInterval(elapsedTimeU, 1);
+
     }
 
     function setup() {
