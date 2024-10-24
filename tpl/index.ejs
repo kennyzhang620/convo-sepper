@@ -10,7 +10,7 @@
     <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
     <form action="https://conv-count-poc-997c48b4c4cc.herokuapp.com/channel" method="post" target="dummyframe">
-        <input type="number" id="channel" name="channel" min="10" max="100" value=`${<%- JSON.stringify(SENT_OBJECT_NAME); %>}` />
+        <input type="number" id="channel" name="channel" min="0" max="25" value=`${<%- JSON.stringify(SENT_OBJECT_NAME); %>}` />
         <input type="submit" value="Connect to Channel" onclick="setChannel()">
       </form>
 
