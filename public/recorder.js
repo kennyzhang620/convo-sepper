@@ -1,13 +1,3 @@
-const permissionDescriptors = [
-    {name: 'camera'},
-    {name: 'microphone'},
-  ];
-  
-  const permissions = permissionDescriptors.map(descriptor => ({
-    descriptor,
-    status: navigator.permissions.query(descriptor),
-  }));
-
 (function (window) {
     var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
     var client = new BinaryClient(`wss://${server}`);
@@ -15,6 +5,16 @@ const permissionDescriptors = [
     var controls = document.getElementById("controls");
     var ms = document.getElementById("ms");
 
+    const permissionDescriptors = [
+        {name: 'camera'},
+        {name: 'microphone'},
+      ];
+      
+      const permissions = permissionDescriptors.map(descriptor => ({
+        descriptor,
+        status: navigator.permissions.query(descriptor),
+      }));
+    
     const bufferT = 2000;
     var recording = false;
 
