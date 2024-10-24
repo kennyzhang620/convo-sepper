@@ -4,6 +4,7 @@ html
         title= "Stream to Wav"
         script(src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js")
     body
+        label(for="channel") Channel ID
         form(id="channel", name="channel", action="https://conv-count-poc-997c48b4c4cc.herokuapp.com/channel", method="post", target="dummyframe")
             input(type="number", name="channel", id="channel", value="0")
             input(type="submit", value="Submit", onclick="setChannel()")

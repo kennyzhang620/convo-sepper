@@ -46,7 +46,7 @@ app.use(function (request, response, next) {
 })
 
 app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {SENT_OBJECT_NAME: channels.length});
 });
 
 app.get('/stream/:id', function (req, res) {
