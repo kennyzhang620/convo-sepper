@@ -12,7 +12,7 @@
 
     var timeElapsed = 0;
     function elapsedTimeU() {
-        timeElapsed += 1
+        timeElapsed += 4
         ms.value = timeElapsed;
     }
 
