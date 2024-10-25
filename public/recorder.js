@@ -45,14 +45,24 @@
     function sampleAccel() {
     }
 
+    function threshold(flv, thres) {
+        if (flv > thres)
+            return flv
+
+        if (flv < -thres)
+            return flv
+
+        return 0;
+    }
+
     var timeElapsed = 0;
     function elapsedTimeU() {
         timeElapsed += 1
         ms.value = timeElapsed;
 
-        var ax = accelVectors[0]
-        var ay = accelVectors[1]
-        var az = accelVectors[2]
+        var ax = threshold(accelVectors[0], 0.8)
+        var ay = threshold(accelVectors[1], 0.8)
+        var az = threshold(accelVectors[2], 0.8)
 
         avx.value = ax
         avy.value = ay
