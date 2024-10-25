@@ -12,9 +12,27 @@
     const bufferT = 2000;
     var recording = false;
 
-    var accelVectors =[0,0,0]
+    var accelVectors = [0, 0, 0]
+    var testX = [];
+    var testY = [];
 
     console.log("Test1");
+
+    window.exportJson = function() {
+        //https://stackoverflow.com/questions/26414167/javascript-button-to-download-a-file
+
+        var obj = {
+            x: testX,
+            y: testY
+        };
+        var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+        // what to return in order to show download window?
+
+
+        el.setAttribute("href", "data:" + data);
+        el.setAttribute("download", "data.json");
+
+    }
 
     function sampleAccel() {
     }
@@ -27,6 +45,9 @@
         ax.value = accelVectors[0]
         ay.value = accelVectors[1];
         az.value = accelVectors[2]
+
+        testX.push([timeElapsed, accelVectors[0]])
+        testY.push([timeElapsed, accelVectors[2]])
     }
 
     // 25 samples in 25 ms
