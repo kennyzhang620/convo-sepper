@@ -116,9 +116,9 @@
 
     function handleMotionEvent(event) {
 
-        accelVectors[0] = event.accelerationIncludingGravity.x;
-        accelVectors[1] = event.accelerationIncludingGravity.y;
-        accelVectors[2] = event.accelerationIncludingGravity.z;
+        accelVectors[0] = event.acceleration.x;
+        accelVectors[1] = event.acceleration.y;
+        accelVectors[2] = event.acceleration.z;
     
         // Do something awesome.
     }
