@@ -17,6 +17,14 @@
     var testY = [];
     var testZ = [];
 
+    var testVX = [];
+    var testVY = [];
+    var testVZ = [];
+
+    var testPX = [];
+    var testPY = [];
+    var testPZ = [];
+
     console.log("Test1");
 
     function downloadObjectAsJson(exportObj, exportName) {
@@ -30,8 +38,8 @@
         downloadAnchorNode.remove();
     }
 
-    window.exportJson = function() {
-        downloadObjectAsJson({ x: testX, y: testY, z: testZ}, "dataxy.json")
+    window.exportJson = function () {
+        downloadObjectAsJson({ ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ }, "dataxy")
     }
 
     function sampleAccel() {
@@ -42,13 +50,44 @@
         timeElapsed += 1
         ms.value = timeElapsed;
 
-        ax.value = accelVectors[0]
-        ay.value = accelVectors[1];
-        az.value = accelVectors[2]
+        var ax = accelVectors[0]
+        var ay = accelVectors[1]
+        var az = accelVectors[2]
 
-        testX.push([timeElapsed, accelVectors[0]])
-        testY.push([timeElapsed, accelVectors[1]])
-        testZ.push([timeElapsed, accelVectors[2]])
+        ax.value = ax
+        ay.value = ay
+        az.value = az
+
+        testX.push([timeElapsed, ax])
+        testY.push([timeElapsed, ay])
+        testZ.push([timeElapsed, az])
+
+        if (testVX.length <= 0)
+            testVX.push([timeElapsed, 0])
+
+        if (testVY.length <= 0)
+            testVY.push([timeElapsed, 0])
+
+        if (testVZ.length <= 0)
+            testVZ.push([timeElapsed, 0])
+
+        testVX.push([timeElapsed, testVX[testVX.length - 1] + ax])
+        testVY.push([timeElapsed, testVY[testVY.length - 1] + ay])
+        testVZ.push([timeElapsed, testVZ[testVZ.length - 1] + az])
+
+        if (testPX.length <= 0)
+            testPX.push([timeElapsed, 0])
+
+        if (testPY.length <= 0)
+            testPY.push([timeElapsed, 0])
+
+        if (testPZ.length <= 0)
+            testPZ.push([timeElapsed, 0])
+
+        testPX.push([timeElapsed, testPX[testPX.length - 1] + testVX[testVX.length - 1]])
+        testPY.push([timeElapsed, testPY[testPY.length - 1] + testVY[testVY.length - 1]])
+        testPZ.push([timeElapsed, testPZ[testPZ.length - 1] + testVZ[testVZ.length - 1]])
+
     }
 
     // 25 samples in 25 ms
