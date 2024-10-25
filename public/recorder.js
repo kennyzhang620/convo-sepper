@@ -5,9 +5,9 @@
     var controls = document.getElementById("controls");
     var ms = document.getElementById("ms");
 
-    var ax = document.getElementById("ax")
-    var ay = document.getElementById("ay")
-    var az = document.getElementById("az")
+    var avx = document.getElementById("ax")
+    var avy = document.getElementById("ay")
+    var avz = document.getElementById("az")
 
     const bufferT = 2000;
     var recording = false;
@@ -54,9 +54,9 @@
         var ay = accelVectors[1]
         var az = accelVectors[2]
 
-        ax.value = ax
-        ay.value = ay
-        az.value = az
+        avx.value = ax
+        avy.value = ay
+        avz.value = az
 
         testX.push([timeElapsed, ax])
         testY.push([timeElapsed, ay])
