@@ -18,21 +18,19 @@
 
     console.log("Test1");
 
-    window.exportJson = function(el) {
-        //https://stackoverflow.com/questions/26414167/javascript-button-to-download-a-file
+    function downloadObjectAsJson(exportObj, exportName) {
+        // https://stackoverflow.com/questions/19721439/download-json-object-as-a-file-from-browser
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+        var downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", exportName + ".json");
+        document.body.appendChild(downloadAnchorNode); // required for firefox
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    }
 
-        var obj = {
-            x: testX,
-            y: testY
-        };
-        var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
-        // what to return in order to show download window?
-
-        console.log("Yay")
-
-        el.setAttribute("href", "data:" + data);
-        el.setAttribute("download", "data.json");
-
+    window.exportJson = function() {
+        downloadObjectAsJson({ x: testX, y: testY }, "dataxy.json")
     }
 
     function sampleAccel() {
