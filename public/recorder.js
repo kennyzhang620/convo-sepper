@@ -71,10 +71,22 @@
         if (testVZ.length <= 0)
             testVZ.push([timeElapsed, 0])
 
-        testVX.push([timeElapsed, testVX[testVX.length - 1] + ax])
-        testVY.push([timeElapsed, testVY[testVY.length - 1] + ay])
-        testVZ.push([timeElapsed, testVZ[testVZ.length - 1] + az])
+        testVX.push([timeElapsed, testVX[testVX.length - 1][1] + ax])
+        testVY.push([timeElapsed, testVY[testVY.length - 1][1] + ay])
+        testVZ.push([timeElapsed, testVZ[testVZ.length - 1][1] + az])
 
+        if (testPX.length <= 0)
+            testPX.push([timeElapsed, 0])
+
+        if (testPY.length <= 0)
+            testPY.push([timeElapsed, 0])
+
+        if (testPZ.length <= 0)
+            testPZ.push([timeElapsed, 0])
+
+        testPX.push([timeElapsed, testPX[testPX.length - 1][1] + testVX[testVX.length - 1][1]])
+        testPY.push([timeElapsed, testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1]])
+        testPZ.push([timeElapsed, testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1]])
 
     }
 
