@@ -58,6 +58,15 @@
         avy.value = ay
         avz.value = az
 
+        if (testX.length <= 0)
+            testX.push([timeElapsed, 0])
+
+        if (testY.length <= 0)
+            testY.push([timeElapsed, 0])
+
+        if (testZ.length <= 0)
+            testZ.push([timeElapsed, 0])
+
         testX.push([timeElapsed, ax])
         testY.push([timeElapsed, ay])
         testZ.push([timeElapsed, az])
