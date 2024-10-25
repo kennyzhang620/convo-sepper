@@ -15,6 +15,7 @@
     var accelVectors = [0, 0, 0]
     var testX = [];
     var testY = [];
+    var testZ = [];
 
     console.log("Test1");
 
@@ -30,7 +31,7 @@
     }
 
     window.exportJson = function() {
-        downloadObjectAsJson({ x: testX, y: testY }, "dataxy.json")
+        downloadObjectAsJson({ x: testX, y: testY, z: testZ}, "dataxy.json")
     }
 
     function sampleAccel() {
@@ -46,7 +47,8 @@
         az.value = accelVectors[2]
 
         testX.push([timeElapsed, accelVectors[0]])
-        testY.push([timeElapsed, accelVectors[2]])
+        testY.push([timeElapsed, accelVectors[1]])
+        testZ.push([timeElapsed, accelVectors[2]])
     }
 
     // 25 samples in 25 ms
