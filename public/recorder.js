@@ -18,7 +18,7 @@
 
     console.log("Test1");
 
-    window.exportJson = function() {
+    window.exportJson = function(el) {
         //https://stackoverflow.com/questions/26414167/javascript-button-to-download-a-file
 
         var obj = {
