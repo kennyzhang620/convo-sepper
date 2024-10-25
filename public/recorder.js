@@ -28,6 +28,7 @@
         var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
         // what to return in order to show download window?
 
+        console.log("Yay")
 
         el.setAttribute("href", "data:" + data);
         el.setAttribute("download", "data.json");
