@@ -75,18 +75,6 @@
         testVY.push([timeElapsed, testVY[testVY.length - 1] + ay])
         testVZ.push([timeElapsed, testVZ[testVZ.length - 1] + az])
 
-        if (testPX.length <= 0)
-            testPX.push([timeElapsed, 0])
-
-        if (testPY.length <= 0)
-            testPY.push([timeElapsed, 0])
-
-        if (testPZ.length <= 0)
-            testPZ.push([timeElapsed, 0])
-
-        testPX.push([timeElapsed, testPX[testPX.length - 1] + testVX[testVX.length - 1]])
-        testPY.push([timeElapsed, testPY[testPY.length - 1] + testVY[testVY.length - 1]])
-        testPZ.push([timeElapsed, testPZ[testPZ.length - 1] + testVZ[testVZ.length - 1]])
 
     }
 
