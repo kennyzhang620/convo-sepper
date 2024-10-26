@@ -45,12 +45,34 @@
     function sampleAccel() {
     }
 
+    // Sample only data +/- > thres
     function threshold(flv, thres) {
         if (flv > thres)
             return flv
 
         if (flv < -thres)
             return flv
+
+        return 0;
+    }
+
+    function abs(val){
+        if (val < 0) return -val;
+
+        return val;
+    }
+
+    // Add negated acceleration to counteract accuracy loss as result of thresholding
+    function bias(val, offset, thres) {
+        if (abs(thres - val) <= thres) {
+            return 0
+        }
+
+        if (val > 0)
+            return val - offset;
+
+        if (val < 0)
+            return val + offset;
 
         return 0;
     }
@@ -90,9 +112,9 @@
         if (testVZ.length <= 0)
             testVZ.push([timeElapsed, 0])
 
-        testVX.push([timeElapsed, testVX[testVX.length - 1][1] + ax])
-        testVY.push([timeElapsed, testVY[testVY.length - 1][1] + ay])
-        testVZ.push([timeElapsed, testVZ[testVZ.length - 1][1] + az])
+        testVX.push([timeElapsed, bias(testVX[testVX.length - 1][1],0.005, 0.001) + ax])
+        testVY.push([timeElapsed, bias(testVY[testVY.length - 1][1],0.005, 0.001) + ay])
+        testVZ.push([timeElapsed, bias(testVZ[testVZ.length - 1][1],0.005, 0.001) + az])
 
         if (testPX.length <= 0)
             testPX.push([timeElapsed, 0])
