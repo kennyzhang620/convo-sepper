@@ -82,9 +82,9 @@
         timeElapsed += 1
         ms.value = timeElapsed;
 
-        var ax = threshold(accelVectors[0], 0.2)
-        var ay = threshold(accelVectors[1], 0.2)
-        var az = threshold(accelVectors[2], 0.2)
+        var ax = threshold(accelVectors[0], 0.5)
+        var ay = threshold(accelVectors[1], 0.5)
+        var az = threshold(accelVectors[2], 0.5)
 
         avx.value = ax
         avy.value = ay
