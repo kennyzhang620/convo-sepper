@@ -112,9 +112,9 @@
         if (testVZ.length <= 0)
             testVZ.push([timeElapsed, 0])
 
-        testVX.push([timeElapsed, bias(testVX[testVX.length - 1][1],1, 1) + ax])
-        testVY.push([timeElapsed, bias(testVY[testVY.length - 1][1],1, 1) + ay])
-        testVZ.push([timeElapsed, bias(testVZ[testVZ.length - 1][1],1, 1) + az])
+        testVX.push([timeElapsed, bias(testVX[testVX.length - 1][1],0.5, 0.5) + ax])
+        testVY.push([timeElapsed, bias(testVY[testVY.length - 1][1],0.5, 0.5) + ay])
+        testVZ.push([timeElapsed, bias(testVZ[testVZ.length - 1][1],0.5, 0.5) + az])
 
         if (testPX.length <= 0)
             testPX.push([timeElapsed, 0])
