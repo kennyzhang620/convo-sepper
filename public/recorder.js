@@ -112,7 +112,7 @@
         if (testVZ.length <= 0)
             testVZ.push([timeElapsed, 0])
 
-        testVX.push([timeElapsed, bias(testVX[testVX.length - 1][1],5, 1) + ax])
+        testVX.push([timeElapsed, bias(testVX[testVX.length - 1][1],5, 5) + ax])
         testVY.push([timeElapsed, bias(testVY[testVY.length - 1][1],5, 1) + ay])
         testVZ.push([timeElapsed, bias(testVZ[testVZ.length - 1][1],5, 1) + az])
 
