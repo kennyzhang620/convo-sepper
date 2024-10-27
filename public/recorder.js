@@ -82,9 +82,9 @@
         timeElapsed += 1
         ms.value = timeElapsed;
 
-        var ax = threshold(accelVectors[0], 0.6)
-        var ay = threshold(accelVectors[1], 0.6)
-        var az = threshold(accelVectors[2], 0.6)
+        var ax = threshold(accelVectors[0], 0.025)
+        var ay = threshold(accelVectors[1], 0.025)
+        var az = threshold(accelVectors[2], 0.025)
 
         avx.value = ax
         avy.value = ay
@@ -146,11 +146,24 @@
         
     }
 
+    var ind = 0;
+    var axc, ayc, azc;
     function handleMotionEvent(event) {
 
-        accelVectors[0] = event.acceleration.x;
-        accelVectors[1] = event.acceleration.y;
-        accelVectors[2] = event.acceleration.z;
+        if (ind < 10) {
+            axc += event.acceleration.x;
+            ayc += event.acceleration.y;
+            azc += event.acceleration.z;
+
+            ind++;
+        }
+        else {
+            accelVectors[0] = axc / ind;
+            accelVectors[1] = ayc / ind;
+            accelVectors[2] = acc / ind;
+
+            axc = 0; ayc = 0; azc = 0; ind = 0;
+        }
     
         // Do something awesome.
     }
