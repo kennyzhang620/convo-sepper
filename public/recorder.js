@@ -150,7 +150,7 @@
     var axc = 0, ayc = 0, azc = 0;
     function handleMotionEvent(event) {
 
-        if (ind < 10) {
+        if (ind < 3) {
             axc += event.acceleration.x;
             ayc += event.acceleration.y;
             azc += event.acceleration.z;
