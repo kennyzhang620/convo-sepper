@@ -78,13 +78,24 @@
     }
 
     var timeElapsed = 0;
+
+    var axc = 0, ayc = 0, azc = 0;
     function elapsedTimeU() {
         timeElapsed += 1
         ms.value = timeElapsed;
 
-        var ax = (accelVectors[0], 0.025)
-        var ay = (accelVectors[1], 0.025)
-        var az = (accelVectors[2], 0.025)
+        if (timeElapsed % 10 != 0 || timeElapsed == 0) {
+            axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
+            return;
+        }
+
+        axc /= 10; ayc /= 10; azc /= 10;
+
+        var ax = threshold(axc, 0.06)
+        var ay = threshold(ayc, 0.06)
+        var az = threshold(azc, 0.06)
+
+        axc = 0, ayc = 0, azc = 0;
 
         avx.value = ax
         avy.value = ay
@@ -146,24 +157,11 @@
         
     }
 
-    var ind = 0;
-    var axc = 0, ayc = 0, azc = 0;
     function handleMotionEvent(event) {
 
-        if (ind < 3) {
-            axc += event.acceleration.x;
-            ayc += event.acceleration.y;
-            azc += event.acceleration.z;
-
-            ind++;
-        }
-        else {
-            accelVectors[0] = axc / ind;
-            accelVectors[1] = ayc / ind;
-            accelVectors[2] = acc / ind;
-
-            axc = 0; ayc = 0; azc = 0; ind = 0;
-        }
+        accelVectors[0] = event.acceleration.x;
+        accelVectors[1] = event.acceleration.y;
+        accelVectors[2] = event.acceleration.z;
     
         // Do something awesome.
     }
