@@ -84,7 +84,7 @@
         timeElapsed += 1
         ms.value = timeElapsed;
 
-        if (timeElapsed % 20 != 0 || timeElapsed == 0) {
+        if (timeElapsed % 10 != 0 || timeElapsed == 0) {
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
             return;
         }
