@@ -25,6 +25,8 @@
     var testPY = [];
     var testPZ = [];
 
+    var testTheta = [];
+
     console.log("Test1");
 
     function downloadObjectAsJson(exportObj, exportName) {
@@ -39,7 +41,7 @@
     }
 
     window.exportJson = function () {
-        downloadObjectAsJson({ ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ }, "dataxy")
+        downloadObjectAsJson({ ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta }, "dataxy")
     }
 
     function sampleAccel() {
@@ -109,6 +111,11 @@
 
         if (testZ.length <= 0)
             testZ.push([timeElapsed, 0])
+
+        if (testTheta.length <= 0)
+            testTheta.push([timeElapsed, 0])
+
+        testTheta.push([timeElapsed, pointDegree])
 
         testX.push([timeElapsed, ax])
         testY.push([timeElapsed, ay])
