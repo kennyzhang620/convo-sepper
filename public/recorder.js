@@ -115,7 +115,7 @@
         if (testTheta.length <= 0)
             testTheta.push([timeElapsed, 0])
 
-        testTheta.push([timeElapsed, pointDegree])
+        testTheta.push([timeElapsed, compass])
 
         testX.push([timeElapsed, ax])
         testY.push([timeElapsed, ay])

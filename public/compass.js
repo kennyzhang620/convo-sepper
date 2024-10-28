@@ -1,6 +1,7 @@
 // adapted from https://codesandbox.io/s/flamboyant-flower-idzgd?fontsize=14&hidenavigation=1&theme=dark
 // https://dev.to/orkhanjafarovr/real-compass-on-mobile-browsers-with-javascript-3emi
 // https://idzgd.csb.app/
+var compass = 0;
 
 const isIOS =
     navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
