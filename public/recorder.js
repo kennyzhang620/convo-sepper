@@ -91,9 +91,9 @@
 
         axc /= 10; ayc /= 10; azc /= 10;
 
-        var ax = threshold(axc, 0.80)
-        var ay = threshold(ayc, 0.80)
-        var az = threshold(azc, 0.80)
+        var ax = threshold(axc, 0.06)
+        var ay = threshold(ayc, 0.06)
+        var az = threshold(azc, 0.06)
 
         axc = 0, ayc = 0, azc = 0;
 
@@ -168,6 +168,28 @@
     
     window.addEventListener("devicemotion", handleMotionEvent, true);
 
+    function init() {
+        navigator.geolocation.getCurrentPosition(locationHandler);
+
+        if (!isIOS) {
+            window.addEventListener("deviceorientationabsolute", handler_compass, true);
+        }
+    }
+
+    function startCompass() {
+        if (isIOS) {
+            DeviceOrientationEvent.requestPermission()
+                .then((response) => {
+                    if (response === "granted") {
+                        window.addEventListener("deviceorientation", handler_compass, true);
+                    } else {
+                        alert("has to be allowed!");
+                    }
+                })
+                .catch(() => alert("not supported"));
+        }
+    }
+
     function setup() {
         console.log("connect")
         //create stream when client connect to server by websocket
@@ -218,12 +240,8 @@
         }
 
          // Request permission for iOS 13+ devices
-        if (
-            DeviceMotionEvent &&
-            typeof DeviceMotionEvent.requestPermission === "function"
-        ) {
-            DeviceMotionEvent.requestPermission();
-        }
+        init();
+        startCompass();
 
         //get Media from user, this time the media is audio, and call function 'success' continuously during the time we record
         if (!navigator.getUserMedia)
