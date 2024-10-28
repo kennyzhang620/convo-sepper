@@ -91,9 +91,9 @@
 
         axc /= 10; ayc /= 10; azc /= 10;
 
-        var ax = threshold(axc, 0.20)
-        var ay = threshold(ayc, 0.20)
-        var az = threshold(azc, 0.20)
+        var ax = threshold(axc, 0.80)
+        var ay = threshold(ayc, 0.80)
+        var az = threshold(azc, 0.80)
 
         axc = 0, ayc = 0, azc = 0;
 
