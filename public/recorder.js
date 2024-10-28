@@ -250,13 +250,8 @@
         init();
         startCompass();
 
-        //get Media from user, this time the media is audio, and call function 'success' continuously during the time we record
-        if (!navigator.getUserMedia)
-            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-        if (navigator.getUserMedia) {
-            navigator.getUserMedia({ audio: true }, success, function (e) {
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ audio: true }, success, function (e) {
                 alert('Error capturing audio.');
             });
         } else alert('getUserMedia not supported in this browser.');
