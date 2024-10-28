@@ -19,7 +19,7 @@ function handler_compass(e) {
     }
 }
 
-let pointDegree;
+var pointDegree = 0;
 
 function locationHandler(position) {
     const { latitude, longitude } = position.coords;
