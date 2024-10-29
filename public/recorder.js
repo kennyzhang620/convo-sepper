@@ -85,7 +85,9 @@
     var timeElapsed = 0;
 
     var axc = 0, ayc = 0, azc = 0;
-    var diff = 0; 
+    var diff = 0;
+    var avgZ = 0;
+
     function elapsedTimeU() {
         timeElapsed += 1
         ms.value = timeElapsed;
@@ -93,12 +95,27 @@
         if (timeElapsed % 10 != 0 || timeElapsed == 0) {
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
 
-            if (timeElapsed % 2 == 0) {
+            if (timeElapsed % 2 == 1) {
+                diff -= compass;
             }
-            
+            else {
+                if (timeElapsed != 0)
+                    avgZ += abs(diff);
+
+                diff = compass
+            }
+
             return;
         }
 
+        avgZ += abs(diff);
+        avgZ /= 5;
+
+        if (avgZ >= rotDelta) {
+            axc = 0, ayc = 0, azc = 0;
+        }
+
+        avgZ = 0;, diff = 0;
         axc /= 10; ayc /= 10; azc /= 10;
 
         var ax = threshold(axc, 0.06)
