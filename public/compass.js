@@ -2,6 +2,8 @@
 // https://dev.to/orkhanjafarovr/real-compass-on-mobile-browsers-with-javascript-3emi
 // https://idzgd.csb.app/
 var compass = 0;
+var gamma = 0;
+var beta = 0;
 
 const isIOS =
     navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
@@ -9,7 +11,10 @@ const isIOS =
 
 function handler_compass(e) {
     compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
-    // ±15 degree
+    gamma = e.gamma;
+    beta = e.beta;
+
+    // ï¿½15 degree
     if (
         (pointDegree < Math.abs(compass) &&
             pointDegree + 15 > Math.abs(compass)) ||

@@ -26,6 +26,9 @@
     var testPZ = [];
 
     var testTheta = [];
+    var testBeta = [];
+    var testGamma = [];
+    const rotDelta = 60;
 
     console.log("Test1");
 
@@ -88,6 +91,11 @@
 
         if (timeElapsed % 10 != 0 || timeElapsed == 0) {
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
+
+            if (timeElapsed % 2 == 0) {
+
+            }
+            
             return;
         }
 
@@ -115,7 +123,15 @@
         if (testTheta.length <= 0)
             testTheta.push([timeElapsed, 0])
 
+        if (testBeta.length <= 0)
+            testBeta.push([timeElapsed, 0])
+
+        if (testGamma.length <= 0)
+            testGamma.push([timeElapsed, 0])
+
         testTheta.push([timeElapsed, compass])
+        testBeta.push([timeElapsed, compass])
+        testGamma.push([timeElapsed, compass])
 
         testX.push([timeElapsed, ax])
         testY.push([timeElapsed, ay])
