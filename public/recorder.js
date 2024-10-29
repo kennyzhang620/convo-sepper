@@ -44,7 +44,7 @@
     }
 
     window.exportJson = function () {
-        downloadObjectAsJson({ ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta }, "dataxy")
+        downloadObjectAsJson({ ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta, gamma: testGamma, beta: testBeta }, "dataxy")
     }
 
     function sampleAccel() {
