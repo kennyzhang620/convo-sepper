@@ -30,7 +30,7 @@
     var testGamma = [];
 
     var testdb = [0];
-    const rotDelta = 60;
+    const rotDelta = 40;
 
     console.log("Test1");
 
