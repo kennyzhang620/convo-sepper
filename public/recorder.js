@@ -85,6 +85,7 @@
     var timeElapsed = 0;
 
     var axc = 0, ayc = 0, azc = 0;
+    var diff = 0; 
     function elapsedTimeU() {
         timeElapsed += 1
         ms.value = timeElapsed;
@@ -93,7 +94,6 @@
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
 
             if (timeElapsed % 2 == 0) {
-
             }
             
             return;
