@@ -99,18 +99,15 @@
 
             if (timeElapsed % 2 == 1) {
                 diff -= compass;
+                avgZ += abs(diff);
             }
             else {
-                if (timeElapsed != 0)
-                    avgZ += abs(diff);
-
                 diff = compass
             }
 
             return;
         }
 
-        avgZ += abs(diff);
         avgZ /= 5;
 
         testdb.push(avgZ);
