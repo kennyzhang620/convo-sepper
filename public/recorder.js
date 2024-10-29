@@ -115,7 +115,7 @@
             axc = 0, ayc = 0, azc = 0;
         }
 
-        avgZ = 0;, diff = 0;
+        avgZ = 0; diff = 0;
         axc /= 10; ayc /= 10; azc /= 10;
 
         var ax = threshold(axc, 0.06)
