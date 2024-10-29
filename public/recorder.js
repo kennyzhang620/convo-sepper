@@ -130,8 +130,8 @@
             testGamma.push([timeElapsed, 0])
 
         testTheta.push([timeElapsed, compass])
-        testBeta.push([timeElapsed, compass])
-        testGamma.push([timeElapsed, compass])
+        testBeta.push([timeElapsed, beta])
+        testGamma.push([timeElapsed, gamma])
 
         testX.push([timeElapsed, ax])
         testY.push([timeElapsed, ay])
