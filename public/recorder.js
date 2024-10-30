@@ -105,7 +105,7 @@
             }
             else {
                 diff = compass;
-                testdb.push([timeElapsed, abs(diff)]);
+                testdb.push([timeElapsed, abs(diff), -1]);
             }
 
             return;
