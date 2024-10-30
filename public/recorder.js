@@ -92,7 +92,6 @@
     var avgZ = 0;
 
     function elapsedTimeU() {
-        timeElapsed += 1
         ms.value = timeElapsed;
 
         if (timeElapsed % 10 != 0 || timeElapsed == 0) {
@@ -108,6 +107,7 @@
                 testdb.push([timeElapsed, abs(diff), -1]);
             }
 
+            timeElapsed += 1
             return;
         }
 
@@ -184,6 +184,7 @@
         testPY.push([timeElapsed, testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1]])
         testPZ.push([timeElapsed, testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1]])
 
+        timeElapsed += 1
     }
 
     // 25 samples in 25 ms
