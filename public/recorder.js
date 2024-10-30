@@ -47,7 +47,7 @@
 
     window.exportJson = function () {
         var obj = { c: testdb }//{ ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta, gamma: testGamma, beta: testBeta, tdb: testdb };
-        downloadObjectAsJson(, "dataxy")
+        downloadObjectAsJson(obj, "dataxy")
     }
 
     function sampleAccel() {
@@ -100,11 +100,11 @@
 
             if (timeElapsed % 2 == 1) {
                 diff -= compass;
-                testdb.push(abs(diff))
+                testdb.push(abs(diff));
                 avgZ += abs(diff);
             }
             else {
-                diff = compass
+                diff = compass;
             }
 
             return;
