@@ -100,11 +100,12 @@
 
             if (timeElapsed % 2 == 1) {
                 diff -= compass;
-                testdb.push(abs(diff));
+                testdb.push([timeElapsed, abs(diff)]);
                 avgZ += abs(diff);
             }
             else {
                 diff = compass;
+                testdb.push([timeElapsed, abs(diff)]);
             }
 
             return;
