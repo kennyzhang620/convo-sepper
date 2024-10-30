@@ -110,8 +110,6 @@
 
         avgZ /= 5;
 
-        testdb.push([timeElapsed,avgZ]);
-
         if (avgZ >= rotDelta) {
             axc = 0, ayc = 0, azc = 0;
         }
