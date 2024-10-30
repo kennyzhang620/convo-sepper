@@ -46,7 +46,8 @@
     }
 
     window.exportJson = function () {
-        downloadObjectAsJson({ ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta, gamma: testGamma, beta: testBeta, tdb: testdb }, "dataxy")
+        var obj = { c: testdb }//{ ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta, gamma: testGamma, beta: testBeta, tdb: testdb };
+        downloadObjectAsJson(, "dataxy")
     }
 
     function sampleAccel() {
@@ -99,10 +100,11 @@
 
             if (timeElapsed % 2 == 1) {
                 diff -= compass;
-                avgZ += (diff);
+                testdb.push(abs(diff))
+                avgZ += abs(diff);
             }
             else {
-               // diff = compass
+                diff = compass
             }
 
             return;
@@ -110,7 +112,7 @@
 
         avgZ /= 5;
 
-        testdb.push(avgZ);
+      //  testdb.push(avgZ);
 
         if (avgZ >= rotDelta) {
             axc = 0, ayc = 0, azc = 0;
