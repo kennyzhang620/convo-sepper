@@ -45,7 +45,7 @@
     }
 
     window.exportJson = function () {
-        var obj = { ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta, gamma: testGamma, beta: testBeta, tdb: testdb };
+        var obj = { ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta, gamma: testGamma, beta: testBeta };
         downloadObjectAsJson(obj, "dataxy")
     }
 
