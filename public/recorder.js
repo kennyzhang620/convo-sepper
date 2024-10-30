@@ -29,8 +29,7 @@
     var testBeta = [];
     var testGamma = [];
 
-    var testdb = [];
-    const rotDelta = 40;
+    const rotDelta = 100;
 
     console.log("Test1");
 
@@ -46,7 +45,7 @@
     }
 
     window.exportJson = function () {
-        var obj = { c: testdb }//{ ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta, gamma: testGamma, beta: testBeta, tdb: testdb };
+        var obj = { ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta, gamma: testGamma, beta: testBeta, tdb: testdb };
         downloadObjectAsJson(obj, "dataxy")
     }
 
@@ -100,11 +99,9 @@
             if (timeElapsed % 2 == 1) {
                 diff -= compass;
                 avgZ += abs(diff);
-                testdb.push([timeElapsed, abs(diff), avgZ]);
             }
             else {
                 diff = compass;
-                testdb.push([timeElapsed, abs(diff), -1]);
             }
 
             timeElapsed += 1
