@@ -74,7 +74,7 @@ app.post('/resume-select', async(req, res) => {
 
 app.post('/channel', function (req, res) {
 
-    const ind = req.body.channel;
+    const ind = req.body;
 
     console.log(req.body)
 
