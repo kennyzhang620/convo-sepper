@@ -29,6 +29,8 @@ var outFile = '-demo.wav';
 var pipeM = null;
 var channels = [];
 
+var needle = -1;
+
 var app = express();
 
 app.set('views', __dirname + '/tpl');
@@ -49,11 +51,58 @@ app.get('/', function (req, res) {
     res.render('index', {id: channels.length});
 });
 
+app.post('/resume-select', async(req, res) => {
+    var data = await get_from_backend(0,0,0,0,10,false);     
+    console.log("Post mode");
+
+   // data.projects += data.legacy_p
+
+    console.log("A")
+    markSelection(data.projects,req.body.keywords.replace(/\s/g, '').split(","))
+    console.log("A")
+    markSelection(data.jobs,req.body.keywords.split(","))
+    console.log("A")
+    markSelection(data.volunt,req.body.keywords.split(","))
+    console.log("A")
+    markSelection(data.awar,req.body.keywords.split(","))
+    console.log("A")
+   // splitSkill(data.profile, req.body.keywords.split(","))
+    //console.log("A")
+
+    latexgen.generateLatex(data, latexgen.latexTemp, res);
+});
+
+app.post('/channel', function (req, res) {
+    const ind = req.body.channel;
+
+    if (ind > channels.length || ind < 0) {
+        return res.json("Invalid channel ID");
+    }
+
+    if (ind == channels.length) {
+        channels.push(0)
+    }
+
+    needle = ind;
+
+    console.log("Position set to " + needle);
+    return res.end();
+
+});
+
 app.get('/stream/:id', function (req, res) {
-    if (!pipeM)
+
+    let ind = req.params.id;
+
+    if (needle == -1 || !ind)
         return res.send("No data");
 
-    pipeM.pipe(res);
+    const dpipe = channels[ind];
+
+    if (dpipe)
+        return dpipe.pipe(res);
+
+    return res.send("Does not exist");
 });
 
 const server = app.listen(port);
@@ -67,7 +116,7 @@ binaryServer.on('connection', function (client) {
     try {
         client.on('stream', function (stream, meta) {
             console.log('new stream');
-            pipeM = stream;
+            channels[needle] = stream;
 
             stream.on('end', function () {
              //   pipeM = null;
