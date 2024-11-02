@@ -73,7 +73,10 @@ app.post('/resume-select', async(req, res) => {
 });
 
 app.post('/channel', function (req, res) {
+
     const ind = req.body.channel;
+
+    console.log(req.body)
 
     if (ind > channels.length || ind < 0) {
         return res.json("Invalid channel ID");
