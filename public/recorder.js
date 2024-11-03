@@ -29,6 +29,7 @@
     var testBeta = [];
     var testGamma = [];
 
+    const rollOff = 0.5;
     const rotDelta = 0.5;
 
     console.log("Test1");
@@ -117,9 +118,9 @@
         avgZ = 0; diff = 0;
         axc /= 10; ayc /= 10; azc /= 10;
 
-        var ax = threshold(axc, 0.06)
-        var ay = threshold(ayc, 0.06)
-        var az = threshold(azc, 0.06)
+        var ax = threshold(axc, rollOff)
+        var ay = threshold(ayc, rollOff)
+        var az = threshold(azc, rollOff)
 
         axc = 0, ayc = 0, azc = 0;
 
