@@ -29,7 +29,7 @@
     var testBeta = [];
     var testGamma = [];
 
-    const rotDelta = 100;
+    const rotDelta = 0.5;
 
     console.log("Test1");
 
@@ -97,11 +97,11 @@
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
 
             if (timeElapsed % 2 == 1) {
-                diff -= compass;
+                diff -= Math.sin(0.5*((compass * Math.PI)/180));
                 avgZ += abs(diff);
             }
             else {
-                diff = compass;
+                diff = Math.sin(0.5*((compass * Math.PI) / 180));
             }
 
             timeElapsed += 1
