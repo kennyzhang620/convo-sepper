@@ -85,6 +85,16 @@
         return 0;
     }
 
+    function cutoff(val, maxval) {
+        if (val > maxval)
+            return maxval;
+
+        if (val < -maxval)
+            return -maxval;
+
+        return val;
+    }
+
     var timeElapsed = 0;
 
     var axc = 0, ayc = 0, azc = 0;
@@ -205,9 +215,9 @@
         if (testPZ.length <= 0)
             testPZ.push([timeElapsed, 0])
 
-        testPX.push([timeElapsed, testPX[testPX.length - 1][1] + testVX[testVX.length - 1][1]])
-        testPY.push([timeElapsed, testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1]])
-        testPZ.push([timeElapsed, testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1]])
+        testPX.push([timeElapsed, cutoff(testPX[testPX.length - 1][1] + testVX[testVX.length - 1][1], 5)])
+        testPY.push([timeElapsed, cutoff(testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1], 5)])
+        testPZ.push([timeElapsed, cutoff(testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1], 5)])
 
         timeElapsed += 1
     }
