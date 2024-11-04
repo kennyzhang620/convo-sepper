@@ -29,7 +29,7 @@
     var testBeta = [];
     var testGamma = [];
 
-    const rollOff = 0.8;
+    const rollOff = 1.2;
     const rotDelta = 0.5;
 
     console.log("Test1");
