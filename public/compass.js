@@ -4,6 +4,7 @@
 var compass = 0;
 var gamma = 0;
 var beta = 0;
+var alpha = 0;
 
 const isIOS =
     navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
@@ -11,6 +12,7 @@ const isIOS =
 
 function handler_compass(e) {
     compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
+    alpha = e.alpha;
     gamma = e.gamma;
     beta = e.beta;
 
