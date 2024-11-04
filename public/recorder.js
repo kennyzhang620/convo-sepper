@@ -115,7 +115,7 @@
         return [x, y, z];
     }
 
-    function radians(deg) {
+    function radian(deg) {
         return ((deg * Math.PI) / 180);
     }
     function elapsedTimeU() {
