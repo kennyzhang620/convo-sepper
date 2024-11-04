@@ -115,6 +115,9 @@
         return [x, y, z];
     }
 
+    function radians(deg) {
+        return ((deg * Math.PI) / 180);
+    }
     function elapsedTimeU() {
         ms.value = timeElapsed;
 
@@ -122,11 +125,11 @@
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
 
             if (timeElapsed % 2 == 1) {
-                diff -= Math.sin(0.5*((compass * Math.PI)/180));
+                diff -= Math.sin(0.5 * radians(compass));
                 avgZ += abs(diff);
             }
             else {
-                diff = Math.sin(0.5*((compass * Math.PI) / 180));
+                diff = Math.sin(0.5 * radians(compass));
             }
 
             timeElapsed += 1
@@ -142,7 +145,7 @@
         avgZ = 0; diff = 0;
         axc /= 10; ayc /= 10; azc /= 10;
 
-        var corrXYZ = rotationX(beta, rotationY(-gamma, rotationZ(0, [axc, ayc, azc])))
+        var corrXYZ = rotationX(radian(beta), rotationY(radians(-gamma), rotationZ(0, [axc, ayc, azc])))
 
         var ax = threshold(corrXYZ[0], rollOff)
         var ay = threshold(corrXYZ[1], rollOff)
