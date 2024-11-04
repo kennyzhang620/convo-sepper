@@ -217,9 +217,9 @@
         if (testPZ.length <= 0)
             testPZ.push([timeElapsed, 0])
 
-        testPX.push([timeElapsed, cutoff(testPX[testPX.length - 1][1] + testVX[testVX.length - 1][1], boundariesM)])
-        testPY.push([timeElapsed, cutoff(testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1], boundariesM)])
-        testPZ.push([timeElapsed, cutoff(testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1], boundariesM)])
+        testPX.push([timeElapsed, testPX[testPX.length - 1][1] + testVX[testVX.length - 1][1]])
+        testPY.push([timeElapsed, testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1]])
+        testPZ.push([timeElapsed, testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1]])
 
         timeElapsed += 1
     }
