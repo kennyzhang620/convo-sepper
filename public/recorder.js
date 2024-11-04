@@ -145,11 +145,11 @@
         avgZ = 0; diff = 0;
         axc /= 10; ayc /= 10; azc /= 10;
 
-        var corrXYZ = rotationX(radian(beta), rotationY(radians(-gamma), rotationZ(0, [axc, ayc, azc])))
+        var corrXYZ = rotationX(radian(beta), rotationY(radians(-gamma), rotationZ(0, [threshold(axc, rollOff), threshold(ayz, rollOff), threshold(azc, rollOff)])))
 
-        var ax = threshold(corrXYZ[0], rollOff)
-        var ay = threshold(corrXYZ[1], rollOff)
-        var az = threshold(corrXYZ[2], rollOff)
+        var ax = corrXYZ[0]
+        var ay = corrXYZ[1]
+        var az = corrXYZ[2]
 
         axc = 0, ayc = 0, azc = 0;
 
