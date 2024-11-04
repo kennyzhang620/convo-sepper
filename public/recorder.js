@@ -157,7 +157,7 @@
         avgZ = 0; diff = 0;
         axc /= 10; ayc /= 10; azc /= 10;
 
-        var corrXYZ = rotationX(radians(-beta), rotationY(radians(-gamma), rotationZ(-alpha, [axc, ayc, azc])))
+        var corrXYZ = rotationX(radians(-beta), rotationY(radians(-gamma), rotationZ(radians(-alpha), [axc, ayc, azc])))
 
         var ax = Math.sin(radians(compass)) * threshold(corrXYZ[0], rollOff, maxAccel)
         var ay = threshold(corrXYZ[1], rollOff, maxAccel )
