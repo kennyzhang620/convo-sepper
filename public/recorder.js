@@ -31,6 +31,8 @@
 
     const rollOff = 0.6;
     const rotDelta = 0.5;
+    const boundariesM = 5;
+    const maxAccel = 5;
 
     console.log("Test1");
 
@@ -54,11 +56,11 @@
     }
 
     // Sample only data +/- > thres
-    function threshold(flv, thres) {
-        if (flv > thres)
+    function threshold(flv, thres, max=9.8) {
+        if (flv > thres && flv < max)
             return flv
 
-        if (flv < -thres)
+        if (flv < -thres && flv > -max)
             return flv
 
         return 0;
@@ -157,9 +159,9 @@
 
         var corrXYZ = rotationX(radians(-beta), rotationY(radians(-gamma), rotationZ(0, [axc, ayc, azc])))
 
-        var ax = Math.sin(radians(compass))*threshold(corrXYZ[0], rollOff)
-        var ay = threshold(corrXYZ[1], rollOff)
-        var az = Math.cos(radians(compass)) *threshold(corrXYZ[2], rollOff)
+        var ax = Math.sin(radians(compass)) * threshold(corrXYZ[0], rollOff, maxAccel)
+        var ay = threshold(corrXYZ[1], rollOff, maxAccel )
+        var az = Math.cos(radians(compass)) * threshold(corrXYZ[2], rollOff, maxAccel)
 
         axc = 0, ayc = 0, azc = 0;
 
@@ -215,9 +217,9 @@
         if (testPZ.length <= 0)
             testPZ.push([timeElapsed, 0])
 
-        testPX.push([timeElapsed, cutoff(testPX[testPX.length - 1][1] + testVX[testVX.length - 1][1], 5)])
-        testPY.push([timeElapsed, cutoff(testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1], 5)])
-        testPZ.push([timeElapsed, cutoff(testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1], 5)])
+        testPX.push([timeElapsed, cutoff(testPX[testPX.length - 1][1] + testVX[testVX.length - 1][1], boundariesM)])
+        testPY.push([timeElapsed, cutoff(testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1], boundariesM)])
+        testPZ.push([timeElapsed, cutoff(testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1], boundariesM)])
 
         timeElapsed += 1
     }
