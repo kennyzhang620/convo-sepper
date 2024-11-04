@@ -9,6 +9,9 @@
     var avy = document.getElementById("ay")
     var avz = document.getElementById("az")
 
+    var pvx = document.getElementById("px");
+    var pvz = document.getElementById("pz");
+
     const bufferT = 2000;
     var recording = false;
 
@@ -220,6 +223,9 @@
         testPX.push([timeElapsed, testPX[testPX.length - 1][1] + testVX[testVX.length - 1][1]])
         testPY.push([timeElapsed, testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1]])
         testPZ.push([timeElapsed, testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1]])
+
+        pvx.value = testPX[testPZ.length - 1][1]
+        pvz.value = testPZ[testPZ.length - 1][1]
 
         timeElapsed += 1
     }
