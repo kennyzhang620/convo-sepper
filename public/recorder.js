@@ -35,7 +35,7 @@
     const rollOff = 0.6;
     const rotDelta = 0.5;
     const boundariesM = 5;
-    const maxAccel = 5;
+    const maxAccel = 0.4;
 
     console.log("Test1");
 
