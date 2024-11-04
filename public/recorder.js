@@ -91,6 +91,30 @@
     var diff = 0;
     var avgZ = 0;
 
+    function rotationZ(angle, vector) {
+        const x = Math.cos(angle) * vector[0] - Math.sin(angle) * vector[1] + 0;
+        const y = Math.sin(angle) * vector[0] + Math.cos(angle) * vector[1] + 0;
+        const z = vector[2];
+
+        return [x, y, z];
+    }
+
+    function rotationY(angle, vector) {
+        const x = Math.cos(angle) * vector[0] + 0 + Math.sin(angle) * vector[2]
+        const y = vector[1];
+        const z = -Math.sin(angle) * vector[0] + 0 + Math.cos(angle) * vector[2];
+
+        return [x, y, z];
+    }
+
+    function rotationX(angle, vector) {
+        const x = vector[1];
+        const y = Math.cos(angle) * vector[1] - Math.sin(angle) * vector[2];
+        const z = Math.sin(angle) * vector[1] + Math.cos(angle) * vector[2];
+
+        return [x, y, z];
+    }
+
     function elapsedTimeU() {
         ms.value = timeElapsed;
 
@@ -118,9 +142,11 @@
         avgZ = 0; diff = 0;
         axc /= 10; ayc /= 10; azc /= 10;
 
-        var ax = threshold(axc, rollOff)
-        var ay = threshold(ayc, rollOff)
-        var az = threshold(azc, rollOff)
+        var corrXYZ = rotationX(beta, rotationY(-gamma, rotationZ(0, [axc, ayc, azc])))
+
+        var ax = threshold(corrXYZ[0], rollOff)
+        var ay = threshold(corrXYZ[1], rollOff)
+        var az = threshold(corrXYZ[2], rollOff)
 
         axc = 0, ayc = 0, azc = 0;
 
