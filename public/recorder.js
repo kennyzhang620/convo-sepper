@@ -115,7 +115,7 @@
         return [x, y, z];
     }
 
-    function radian(deg) {
+    function radians(deg) {
         return ((deg * Math.PI) / 180);
     }
     function elapsedTimeU() {
@@ -145,7 +145,7 @@
         avgZ = 0; diff = 0;
         axc /= 10; ayc /= 10; azc /= 10;
 
-        var corrXYZ = rotationX(radian(beta), rotationY(radians(-gamma), rotationZ(0, [threshold(axc, rollOff), threshold(ayz, rollOff), threshold(azc, rollOff)])))
+        var corrXYZ = rotationX(radians(beta), rotationY(radians(-gamma), rotationZ(0, [threshold(axc, rollOff), threshold(ayz, rollOff), threshold(azc, rollOff)])))
 
         var ax = corrXYZ[0]
         var ay = corrXYZ[1]
