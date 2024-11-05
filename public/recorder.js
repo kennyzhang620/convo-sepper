@@ -164,7 +164,7 @@
 
         var ax = threshold(corrXYZ[2], rollOff, maxAccel)
         var ay = threshold(corrXYZ[1], rollOff, maxAccel )
-        var az = threshold(corrXYZ[0], rollOff, maxAccel)
+        var az = -threshold(corrXYZ[0], rollOff, maxAccel)
 
         axc = 0, ayc = 0, azc = 0;
 
