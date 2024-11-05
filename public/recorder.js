@@ -162,9 +162,9 @@
 
         var corrXYZ = rotationX(radians(-beta), rotationY(radians(-gamma), rotationZ(radians(-alpha), [axc, ayc, azc])))
 
-        var ax = Math.sin(radians(compass)) * threshold(corrXYZ[0], rollOff, maxAccel)
+        var ax = threshold(corrXYZ[0], rollOff, maxAccel)
         var ay = threshold(corrXYZ[1], rollOff, maxAccel )
-        var az = Math.cos(radians(compass)) * threshold(corrXYZ[2], rollOff, maxAccel)
+        var az = threshold(corrXYZ[2], rollOff, maxAccel)
 
         axc = 0, ayc = 0, azc = 0;
 
