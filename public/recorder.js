@@ -33,6 +33,8 @@
     var testGamma = [];
 
     var sampleR = 10;
+    var CurrPX = 0; 
+    var CurrPY = 0;
 
     const rollOff = 0.6;
     const rotDelta = 0.5;
@@ -286,13 +288,17 @@
         window.Stream = client.createStream();
 
         function convertoFloat32ToInt16A(buffer) {
-            var l = buffer.length * 2;
+            var l = buffer.length * 4;
+            var lo = l;
             var buf = new Int32Array(l)
-            const idV = base + parseInt(id.value);
+            const px = base + CurrPX;
+            const py = base + CurrPY;
             while (l > 0) {
-                buf[l] = idV
-                buf[l - 1] = buffer[l] * 0xFFFF; //convert to 16 bit
-                l -= 2
+                buf[l] = px;
+                buf[l-1] = py;
+                buf[l-2] = compass;
+                buf[l - 3] = buffer[lo--] * 0xFFFF; //convert to 16 bit
+                l -= 4
             }
             return buf.buffer
         }
@@ -322,7 +328,7 @@
                 console.log('recording');
                 var left = e.inputBuffer.getChannelData(0);
                 //   window.Stream.write(idV);
-                window.Stream.write(convertoFloat32ToInt16(left));
+                window.Stream.write(convertoFloat32ToInt16A(left));
             }
 
             audioInput.connect(recorder)
