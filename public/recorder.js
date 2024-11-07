@@ -32,7 +32,7 @@
     var testBeta = [];
     var testGamma = [];
 
-    var sampleR = 50;
+    var sampleR = 20;
 
     const rollOff = 0.25;
     const rotDelta = 0.5;
@@ -226,8 +226,8 @@
         testPY.push([timeElapsed, testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1]])
         testPZ.push([timeElapsed, testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1]])
 
-        pvx.value = testPX[testPX.length - 1][1] *0.05;
-        pvz.value = testPZ[testPZ.length - 1][1] *0.05;
+        pvx.value = testPX[testPX.length - 1][1] * (1/sampleR);
+        pvz.value = testPZ[testPZ.length - 1][1] * (1/sampleR);
 
         timeElapsed += 1
     }
