@@ -1,6 +1,7 @@
 var express = require('express');
 
 const { networkInterfaces } = require('os');
+const cookieParser = require('cookie-parser');
 
 const nets = networkInterfaces();
 const results = Object.create(null); // Or just '{}', an empty object
