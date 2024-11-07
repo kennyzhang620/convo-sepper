@@ -32,7 +32,9 @@
     var testBeta = [];
     var testGamma = [];
 
-    const rollOff = 0.3;
+    var sampleR = 50;
+
+    const rollOff = 0.25;
     const rotDelta = 0.5;
     const boundariesM = 5;
     const maxAccel = 1.4;
@@ -136,7 +138,7 @@
     function elapsedTimeU() {
         ms.value = timeElapsed;
 
-        if (timeElapsed % 10 != 0 || timeElapsed == 0) {
+        if (timeElapsed % sampleR != 0 || timeElapsed == 0) {
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
 
             if (timeElapsed % 2 == 1) {
@@ -158,7 +160,7 @@
         }
 
         avgZ = 0; diff = 0;
-        axc /= 10; ayc /= 10; azc /= 10;
+        axc /= sampleR; ayc /= sampleR; azc /= sampleR;
 
         var corrXYZ = rotationX(radians(-beta), rotationY(radians(-gamma), [axc, ayc, azc]))
 
