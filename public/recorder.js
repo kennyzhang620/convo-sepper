@@ -32,7 +32,7 @@
     var testBeta = [];
     var testGamma = [];
 
-    const rollOff = 0.6;
+    const rollOff = 0.3;
     const rotDelta = 0.5;
     const boundariesM = 5;
     const maxAccel = 1.4;
