@@ -35,6 +35,7 @@
     var sampleR = 10;
     var CurrPX = 0; 
     var CurrPY = 0;
+    var base = 75000;
 
     const rollOff = 0.6;
     const rotDelta = 0.5;

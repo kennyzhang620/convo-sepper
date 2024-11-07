@@ -24,7 +24,7 @@ while (True):
       print(data, data.shape)
       #print("a1", np.where(data == base+ 0))
    #   print("a2", np.where(data == base+ 1))
-      stream.write((data.astype(np.float32, order='C') / 32768.0).tobytes())
+      #stream.write((data.astype(np.float32, order='C') / 32768.0).tobytes())
     except:
       err = True
 
