@@ -34,7 +34,7 @@
 
     var sampleR = 20;
 
-    const rollOff = 0.25;
+    const rollOff = 0.6;
     const rotDelta = 0.5;
     const boundariesM = 5;
     const maxAccel = 1.4;
