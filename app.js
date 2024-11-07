@@ -92,7 +92,7 @@ app.post('/channel', function (req, res) {
 
     needle = ind;
 
-    console.log("Position set to " + needle);
+    console.log("Position set to " + needle + " " + channels.length);
     return res.end();
 
 });
