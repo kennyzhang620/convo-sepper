@@ -9,9 +9,9 @@
     <label for="channel">Channel ID (10-100):</label>
     <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
-    <form action="https://conv-count-poc-997c48b4c4cc.herokuapp.com/channel" method="post" target="dummyframe" onsubmit="setChannel()">
+    <form action="https://conv-count-poc-997c48b4c4cc.herokuapp.com/channel" method="post" onsubmit="setChannel()">
         <input type="number" id="channel" name="channel" min="0" max="25" value=<%= id %> />
-        <input type="submit" value="Connect to Channel">
+        <input type="submit" value="Submit">
       </form>
 
     <div id="debug">
