@@ -35,6 +35,9 @@ var app = express();
 
 app.set('views', __dirname + '/tpl');
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cookieParser());
 //app.engine('jade', require('jade').__express);
 app.use(express.static(__dirname + '/public'))
 
