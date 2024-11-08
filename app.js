@@ -128,6 +128,7 @@ binaryServer.on('connection', function (client) {
             channels[needle] = stream;
 
             stream.on('end', function () {
+                console.log('end stream at' + needle);
              //   pipeM = null;
             });
         });
