@@ -124,11 +124,11 @@ binaryServer.on('connection', function (client) {
     console.log('new connection');
     try {
         client.on('stream', function (stream, meta) {
-            console.log('new stream at' + needle);
+           // console.log('new stream at' + needle);
             channels[needle] = stream;
 
             stream.on('end', function () {
-                console.log('end stream at' + needle);
+               // console.log('end stream at' + needle);
              //   pipeM = null;
             });
         });
