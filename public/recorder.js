@@ -241,12 +241,14 @@
     // 5 samples per 5 ms
     // (v, v, v, v, v)
     // (disp)
-
-    window.setChannel = function() {      
-        setup();
-        controls.style = "display: block;";
-        setInterval(elapsedTimeU, 1);
-
+var chSet = false;
+    window.setChannel = function() {   
+        if (!chSet) {
+            setup();
+            controls.style = "display: block;";
+            setInterval(elapsedTimeU, 1);
+            chSet = true;
+        }
         
     }
 
