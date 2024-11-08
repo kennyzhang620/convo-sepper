@@ -14,7 +14,7 @@ stream = p.open(format=pyaudio.paFloat32,
 
 base = 65535
 while (True):
-    url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/str'
+    url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/stream/1'
 
     r = requests.get(url, stream=False)
     err = False;

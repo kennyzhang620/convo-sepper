@@ -107,8 +107,8 @@ app.get('/stream/:id', function (req, res) {
     const dpipe = channels[ind];
 
     if (dpipe) {
-        dpipe.pipe(res);
-        return;
+        console.log("pipe " + dpipe)
+        return dpipe.pipe(res);
     }
 
     return res.send("Does not exist");
