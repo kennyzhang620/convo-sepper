@@ -87,7 +87,7 @@ app.post('/channel', function (req, res) {
     }
 
     if (ind == channels.length) {
-        channels.push(0)
+        channels.push(null)
     }
 
     needle = ind;
