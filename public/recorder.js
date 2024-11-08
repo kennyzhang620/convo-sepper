@@ -355,7 +355,6 @@ var chSet = false;
     client.on('open', function() {
 
         function startR() {
-            recording = false;
             window.Stream.end();
 
             //  clearInterval(handv);
