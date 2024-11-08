@@ -14,7 +14,7 @@
     <label for="channel">Channel ID (10-100):</label>
     <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
-    <form action="https://conv-count-poc-997c48b4c4cc.herokuapp.com/channel" method="post" target="dummyframe" onsubmit="setChannel()">
+    <form action="https://conv-count-poc-997c48b4c4cc.herokuapp.com/channel" method="post" target="dummyframe">
         <input type="number" id="channel" name="channel" min="0" max="25" value=<%= id %> />
         <input type="submit" value="Connect to Channel">
       </form>
@@ -32,6 +32,7 @@
     <div id="controls" style="display:none;">
         <input type="number" id="px">
         <input type="number" id="pz">
+        <button onclick="setChannel()">Connect to Channel</button>
         <button onclick="startRecording()">Start Recording</button>
         <button onclick="pauseRecording()">Pause Recording</button>
         <button onclick="stopRecording()">Stop Recording</button>
