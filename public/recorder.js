@@ -242,10 +242,12 @@
     // (v, v, v, v, v)
     // (disp)
 var chSet = false;
+    window.loadChannel = function() {
+        controls.style = "display: block;";
+    }
     window.setChannel = function() {   
         if (!chSet) {
             setup();
-            controls.style = "display: block;";
             setInterval(elapsedTimeU, 1);
             chSet = true;
         }
