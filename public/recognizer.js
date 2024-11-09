@@ -16,7 +16,3 @@ recognition.onresult = (event) => {
 recognition.onend = () => {
     console.log('Start Voice Input');
 };
-
-startButton.addEventListener('click', () => {
-    recognition.start();
-});

@@ -208,11 +208,17 @@
         }, null);
     }
 
+    function callrecog() {
+        recognition.start()
+    }
+
     var handv = null;
+    var handv2 = null;
 
     window.startRecording = function() {
         recording = true;
         handv = setInterval(captureData, bufferT)
+        handv2 = setInterval(callrecog, 300);
     }
 
     window.pauseRecording = function() {
@@ -225,6 +231,7 @@
      //   window.Stream.end();
 
         clearInterval(handv);
+        clearInterval(handv2);
         setTimeout(function() {
             location.reload();
         }, 2000);
