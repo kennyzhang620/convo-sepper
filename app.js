@@ -97,7 +97,7 @@ app.post('/channel', function (req, res) {
 
 });
 
-app.push('/convo-ts', function(req, res) {
+app.post('/convo-ts', function(req, res) {
     const ind = req.body.channel;
 
     console.log(req.body)
