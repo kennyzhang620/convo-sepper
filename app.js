@@ -97,6 +97,26 @@ app.post('/channel', function (req, res) {
 
 });
 
+app.push('/convo-ts', function(req, res) {
+    const ind = req.body.channel;
+
+    console.log(req.body)
+
+    if (ind > channels.length || ind < 0) {
+        return res.json("Invalid channel ID");
+    }
+
+    if (ind == channels.length) {
+        channels.push(null)
+    }
+
+    needle = ind;
+
+    console.log("Position set to " + needle + " " + channels.length);
+    return res.end();
+
+});
+
 app.get('/stream/:id', function (req, res) {
 
     let ind = req.params.id;
