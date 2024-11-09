@@ -42,102 +42,6 @@
     const boundariesM = 5;
     const maxAccel = 1.4;
 
-    console.log("Test1");
-
-    function downloadObjectAsJson(exportObj, exportName) {
-        // https://stackoverflow.com/questions/19721439/download-json-object-as-a-file-from-browser
-        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
-        var downloadAnchorNode = document.createElement('a');
-        downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", exportName + ".json");
-        document.body.appendChild(downloadAnchorNode); // required for firefox
-        downloadAnchorNode.click();
-        downloadAnchorNode.remove();
-    }
-
-    window.exportJson = function () {
-        var obj = { ax: testX, ay: testY, az: testZ, vx: testVX, vy: testVY, vz: testVZ, px: testPX, py: testPY, pz: testPZ, theta: testTheta, gamma: testGamma, beta: testBeta };
-        downloadObjectAsJson(obj, "dataxy")
-    }
-
-    function sampleAccel() {
-    }
-
-    // Sample only data +/- > thres
-    function threshold(flv, thres, max=9.8) {
-        if (flv > thres && flv < max)
-            return flv
-
-        if (flv < -thres && flv > -max)
-            return flv
-
-        return 0;
-    }
-
-    function abs(val){
-        if (val < 0) return -val;
-
-        return val;
-    }
-
-    // Add negated acceleration to counteract accuracy loss as result of thresholding
-    function bias(val, offset, thres) {
-        if (abs(thres - val) <= thres) {
-            return 0
-        }
-
-        if (val > 0)
-            return val - offset;
-
-        if (val < 0)
-            return val + offset;
-
-        return 0;
-    }
-
-    function cutoff(val, maxval) {
-        if (val > maxval)
-            return maxval;
-
-        if (val < -maxval)
-            return -maxval;
-
-        return val;
-    }
-
-    var timeElapsed = 0;
-
-    var axc = 0, ayc = 0, azc = 0;
-    var diff = 0;
-    var avgZ = 0;
-
-    function rotationZ(angle, vector) {
-        const x = Math.cos(angle) * vector[0] - Math.sin(angle) * vector[1] + 0;
-        const y = Math.sin(angle) * vector[0] + Math.cos(angle) * vector[1] + 0;
-        const z = vector[2];
-
-        return [x, y, z];
-    }
-
-    function rotationY(angle, vector) {
-        const x = Math.cos(angle) * vector[0] + 0 + Math.sin(angle) * vector[2]
-        const y = vector[1];
-        const z = -Math.sin(angle) * vector[0] + 0 + Math.cos(angle) * vector[2];
-
-        return [x, y, z];
-    }
-
-    function rotationX(angle, vector) {
-        const x = vector[1];
-        const y = Math.cos(angle) * vector[1] - Math.sin(angle) * vector[2];
-        const z = Math.sin(angle) * vector[1] + Math.cos(angle) * vector[2];
-
-        return [x, y, z];
-    }
-
-    function radians(deg) {
-        return ((deg * Math.PI) / 180);
-    }
     function elapsedTimeU() {
         ms.value = timeElapsed;
 
@@ -229,8 +133,10 @@
         testPY.push([timeElapsed, testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1]])
         testPZ.push([timeElapsed, testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1]])
 
-        pvx.value = testPX[testPX.length - 1][1];
-        pvz.value = testPZ[testPZ.length - 1][1];
+        CurrPX = testPX[testPX.length - 1][1];
+        CurrPY = testPZ[testPZ.length - 1][1];
+
+        pvx.value = CurrPX; pvz.value = CurrPY;
 
         timeElapsed += 1
     }
@@ -241,7 +147,7 @@
     // 5 samples per 5 ms
     // (v, v, v, v, v)
     // (disp)
-var chSet = false;
+    var chSet = false;
     window.loadChannel = function() {
         controls.style = "display: block;";
     }
@@ -289,101 +195,38 @@ var chSet = false;
 
     function setup() {
         console.log("connect")
-        //create stream when client connect to server by websocket
-        window.Stream = client.createStream();
-
-        function convertoFloat32ToInt16A(buffer) {
-            var l = buffer.length * 4;
-            var lo = l;
-            var buf = new Int32Array(l)
-            const px = base + CurrPX;
-            const py = base + CurrPY;
-            while (l > 0) {
-                buf[l] = px;
-                buf[l-1] = py;
-                buf[l-2] = compass;
-                buf[l - 3] = buffer[lo--] * 0xFFFF; //convert to 16 bit
-                l -= 4
-            }
-            return buf.buffer
-        }
-
-        function convertoFloat32ToInt16(buffer) {
-            var l = buffer.length;
-            var buf = new Int32Array(l)
-            while (l > 0) {
-                buf[l] = buffer[l] * 0xFFFF; //convert to 16 bit
-                l -= 1
-            }
-            return buf.buffer
-        }
-
-        function success(e) {
-            audioContext = window.AudioContext || window.webkitAudioContext;
-            context = new audioContext();
-
-            // the sample rate is in context.sampleRate
-            audioInput = context.createMediaStreamSource(e);
-
-            var bufferSize = 2048;
-            recorder = context.createScriptProcessor(bufferSize, 1, 1);
-
-            recorder.onaudioprocess = function (e) {
-                if (!recording) return;
-                console.log('recording');
-                var left = e.inputBuffer.getChannelData(0);
-                //   window.Stream.write(idV);
-                window.Stream.write(convertoFloat32ToInt16(left));
-            }
-
-            audioInput.connect(recorder)
-            recorder.connect(context.destination);
-        }
-
          // Request permission for iOS 13+ devices
         init();
         startCompass();
-
-        if (navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ audio: true }, success, function (e) {
-                alert('Error capturing audio.');
-            });
-        } else alert('getUserMedia not supported in this browser.');
-
     }
 
-    client.on('open', function() {
+    function captureData() {
+        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "timestamp": Date().toString(), "transcript": transcriptWords}
 
-        function startR() {
-            window.Stream.end();
+        sendPacket('/convo-ts', "POST", data, true, function(e) {
 
-            //  clearInterval(handv);
-            setTimeout(function () {
-                recording = true;
-                setup();
-            }, 300);
-        }
+        }, null);
+    }
 
-        var handv = null;
+    var handv = null;
 
-        window.startRecording = function() {
-            recording = true;
-            handv = setInterval(startR, bufferT)
-        }
+    window.startRecording = function() {
+        recording = true;
+        handv = setInterval(captureData, bufferT)
+    }
 
-        window.pauseRecording = function() {
-            recording = false;
-            window.Stream.pause();
-        }
+    window.pauseRecording = function() {
+        recording = false;
+       // window.Stream.pause();
+    }
 
-        window.stopRecording = function() {
-            recording = false;
-            window.Stream.end();
+    window.stopRecording = function() {
+        recording = false;
+     //   window.Stream.end();
 
-            clearInterval(handv);
-            setTimeout(function() {
-                location.reload();
-            }, 2000);
-        }
-    });
+        clearInterval(handv);
+        setTimeout(function() {
+            location.reload();
+        }, 2000);
+    }
 })(this);
