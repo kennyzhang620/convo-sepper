@@ -4,6 +4,7 @@
     var id = document.getElementById("channel");
     var controls = document.getElementById("controls");
     var ms = document.getElementById("ms");
+    var txt = document.getElementById('txt');
 
     var avx = document.getElementById("ax")
     var avy = document.getElementById("ay")
@@ -203,6 +204,7 @@
     function captureData() {
         const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "timestamp": Date().toString(), "transcript": transcriptWords}
 
+        txt.value = data;
         sendPacket('/convo-ts', "POST", data, true, function(e) {
 
         }, null);
