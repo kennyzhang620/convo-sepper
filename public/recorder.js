@@ -17,21 +17,21 @@
     var recording = false;
 
     var accelVectors = [0, 0, 0]
-    var testX = [];
-    var testY = [];
-    var testZ = [];
+    var testX = 0;
+    var testY = 0;
+    var testZ = 0;
 
-    var testVX = [];
-    var testVY = [];
-    var testVZ = [];
+    var testVX = 0;
+    var testVY = 0;
+    var testVZ = 0;
 
-    var testPX = [];
-    var testPY = [];
-    var testPZ = [];
+    var testPX = 0;
+    var testPY = 0;
+    var testPZ = 0;
 
-    var testTheta = [];
-    var testBeta = [];
-    var testGamma = [];
+    var testTheta = 0;
+    var testBeta = 0;
+    var testGamma = 0;
 
     var sampleR = 10;
     var CurrPX = 0; 
@@ -82,60 +82,42 @@
         avy.value = ay
         avz.value = az
 
-        if (testX.length <= 0)
-            testX.push([timeElapsed, 0])
+        testTheta = compass;
+        testBeta = beta;
+        testGamma = gamma;
 
-        if (testY.length <= 0)
-            testY.push([timeElapsed, 0])
-
-        if (testZ.length <= 0)
-            testZ.push([timeElapsed, 0])
-
-        if (testTheta.length <= 0)
-            testTheta.push([timeElapsed, 0])
-
-        if (testBeta.length <= 0)
-            testBeta.push([timeElapsed, 0])
-
-        if (testGamma.length <= 0)
-            testGamma.push([timeElapsed, 0])
-
-        testTheta.push([timeElapsed, compass])
-        testBeta.push([timeElapsed, beta])
-        testGamma.push([timeElapsed, gamma])
-
-        testX.push([timeElapsed, ax])
-        testY.push([timeElapsed, ay])
-        testZ.push([timeElapsed, az])
+        testX = ax;
+        testY = ay;
+        testZ = az;
 
         if (testVX.length <= 0)
-            testVX.push([timeElapsed, 0])
+            testVX = 0;
 
         if (testVY.length <= 0)
-            testVY.push([timeElapsed, 0])
+            testVY = 0;
 
         if (testVZ.length <= 0)
-            testVZ.push([timeElapsed, 0])
+            testVZ = 0;
 
-        testVX.push([timeElapsed, bias(testVX[testVX.length - 1][1],0.5, 0.5) + ax])
-        testVY.push([timeElapsed, bias(testVY[testVY.length - 1][1],0.5, 0.5) + ay])
-        testVZ.push([timeElapsed, bias(testVZ[testVZ.length - 1][1],0.5, 0.5) + az])
+        testVX = bias(testVX,0.5, 0.5) + ax;
+        testVY = bias(testVY,0.5, 0.5) + ay;
+        testVZ = bias(testVZ,0.5, 0.5) + az
 
         if (testPX.length <= 0)
-            testPX.push([timeElapsed, 0])
+            testPX = 0;
 
         if (testPY.length <= 0)
-            testPY.push([timeElapsed, 0])
+            testPY = 0;
 
         if (testPZ.length <= 0)
-            testPZ.push([timeElapsed, 0])
+            testPZ = 0;
 
-        testPX.push([timeElapsed, testPX[testPX.length - 1][1] + testVX[testVX.length - 1][1]])
-        testPY.push([timeElapsed, testPY[testPY.length - 1][1] + testVY[testVY.length - 1][1]])
-        testPZ.push([timeElapsed, testPZ[testPZ.length - 1][1] + testVZ[testVZ.length - 1][1]])
+        testPX += testVX;
+        testPY += testVY;
+        testPZ += testVZ;
 
-        CurrPX = testPX[testPX.length - 1][1];
-        CurrPY = testPZ[testPZ.length - 1][1];
+        CurrPX = testPX;
+        CurrPY = testPZ;
 
         pvx.value = CurrPX; pvz.value = CurrPY;
 
