@@ -11,7 +11,7 @@ recognition.onstart = () => {
 };
 
 recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
+    transcriptWords = event.results[0][0].transcript;
     
 };
 
