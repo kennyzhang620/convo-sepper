@@ -11,7 +11,7 @@ console.log("Test1");
         downloadAnchorNode.remove();
     }
 
-    function sendPacket(url, type, data_main, asyncV = false, callback = null, failure = null) {
+    function sendPacket(url, type, data_main, asyncV = false, callback = null, failure = null, TIMEOUT=3000) {
         var txtFile = new XMLHttpRequest();
         txtFile.open(type, url, asyncV);
     

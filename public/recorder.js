@@ -211,7 +211,8 @@
     }
 
     function callrecog() {
-        recognition.start()
+        if (!Cstatus)
+            recognition.start()
     }
 
     var handv = null;
