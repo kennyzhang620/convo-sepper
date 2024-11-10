@@ -206,7 +206,7 @@
 
         txt.value = data.transcript;
         sendPacket('/convo-ts', "POST", data, true, function(e) {
-
+        transcriptWords = "";
         }, null);
     }
 
