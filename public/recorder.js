@@ -43,6 +43,8 @@
     const boundariesM = 5;
     const maxAccel = 1.4;
 
+    const scaleVal = 1/20;
+
     function elapsedTimeU() {
         ms.value = timeElapsed;
 
@@ -90,34 +92,16 @@
         testY = ay;
         testZ = az;
 
-        if (testVX.length <= 0)
-            testVX = 0;
-
-        if (testVY.length <= 0)
-            testVY = 0;
-
-        if (testVZ.length <= 0)
-            testVZ = 0;
-
         testVX = bias(testVX,0.5, 0.5) + ax;
         testVY = bias(testVY,0.5, 0.5) + ay;
-        testVZ = bias(testVZ,0.5, 0.5) + az
-
-        if (testPX.length <= 0)
-            testPX = 0;
-
-        if (testPY.length <= 0)
-            testPY = 0;
-
-        if (testPZ.length <= 0)
-            testPZ = 0;
+        testVZ = bias(testVZ,0.5, 0.5) + az;
 
         testPX += testVX;
         testPY += testVY;
         testPZ += testVZ;
 
-        CurrPX = testPX;
-        CurrPY = testPZ;
+        CurrPX = testPX *scaleVal;
+        CurrPY = testPZ *scaleVal;
 
         pvx.value = CurrPX; pvz.value = CurrPY;
 
