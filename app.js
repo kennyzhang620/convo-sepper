@@ -97,24 +97,30 @@ app.post('/channel', function (req, res) {
 
 });
 
+var convologs = []
+var ind = 0;
 app.post('/convo-ts', function(req, res) {
-    const ind = req.body.channel;
+    if (req == null || req.body == null)
+        return res.end();
 
-    console.log(req.body)
-
-    if (ind > channels.length || ind < 0) {
-        return res.json("Invalid channel ID");
+    if (convologs.length < 500) {
+        convologs.push(req.body);
+    }
+    else {
+        convologs[ind++ % 500] = req.body;
     }
 
-    if (ind == channels.length) {
-        channels.push(null)
-    }
-
-    needle = ind;
-
-    console.log("Position set to " + needle + " " + channels.length);
     return res.end();
 
+});
+
+app.get('/convo-ts-logs', function(req,res) {
+    return res.json(convologs);
+});
+
+app.get('/convo-ts-logs-reset', function(req,res) {
+    convologs = [];
+    return res.send("Cleared.");
 });
 
 app.get('/stream/:id', function (req, res) {
