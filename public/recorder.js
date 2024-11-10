@@ -204,7 +204,7 @@
     function captureData() {
         const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "timestamp": Date().toString(), "transcript": transcriptWords}
 
-        txt.value = data;
+        txt.value = data.transcript;
         sendPacket('/convo-ts', "POST", data, true, function(e) {
 
         }, null);
