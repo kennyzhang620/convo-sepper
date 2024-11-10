@@ -205,9 +205,12 @@
         const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "timestamp": Date().toString(), "transcript": transcriptWords}
 
         txt.value = data.transcript;
-        sendPacket('/convo-ts', "POST", data, true, function(e) {
-        transcriptWords = "";
-        }, null);
+
+        if (data.transcript.length > 0) {
+            sendPacket('/convo-ts', "POST", data, true, function(e) {
+                transcriptWords = "";
+            }, null);
+        }
     }
 
     function callrecog() {
