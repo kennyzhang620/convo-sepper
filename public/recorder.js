@@ -189,8 +189,8 @@
 
     window.startRecording = function() {
         recording = true;
-        handv = setInterval(captureData, bufferT)
-        handv2 = setInterval(callrecog, 300);
+        handv = setInterval(captureData, 1)
+        handv2 = setInterval(callrecog, 1);
     }
 
     window.pauseRecording = function() {
