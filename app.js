@@ -98,10 +98,15 @@ app.post('/channel', function (req, res) {
 });
 
 var convologs = []
+
 var ind = 0;
 app.post('/convo-ts', function(req, res) {
     if (req == null || req.body == null)
         return res.end();
+
+    if (channels.length < req.body.id || req.body.id < 0) {
+        return res.end();
+    }
 
     if (convologs.length < 500) {
         convologs.push(req.body);
@@ -110,12 +115,18 @@ app.post('/convo-ts', function(req, res) {
         convologs[ind++ % 500] = req.body;
     }
 
+    channels[req.body.id] = req.body;
+
     return res.end();
 
 });
 
 app.get('/convo-ts-logs', function(req,res) {
     return res.json(convologs);
+});
+
+app.get('/convo-ts-ids', function(req,res) {
+    return res.json(channels);
 });
 
 app.get('/convo-ts-logs-reset', function(req,res) {
