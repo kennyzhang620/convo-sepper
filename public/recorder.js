@@ -48,6 +48,10 @@
     function elapsedTimeU() {
         ms.value = timeElapsed;
 
+        if (timeElapsed % bufferT == 0) {
+            MicSnapshot();
+        }
+
         if (timeElapsed % sampleR != 0 || timeElapsed == 0) {
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
 
@@ -61,10 +65,6 @@
 
             timeElapsed += 1
             return;
-        }
-
-        if (timeElapsed % bufferT == 0) {
-            MicSnapshot();
         }
 
         avgZ /= 5;
