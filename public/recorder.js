@@ -63,6 +63,10 @@
             return;
         }
 
+        if (timeElapsed % 250 == 0) {
+            MicSnapshot();
+        }
+
         avgZ /= 5;
 
         if (avgZ >= rotDelta) {
@@ -179,18 +183,17 @@
         }
     }
 
-    function callrecog() {
+    function MicSnapshot() {
         if (!Cstatus)
-            recognition.start()
+            return recognition.start();
+        return recognition.stop();
     }
 
     var handv = null;
-    var handv2 = null;
 
     window.startRecording = function() {
         recording = true;
         handv = setInterval(captureData, 1)
-        handv2 = setInterval(callrecog, 1);
     }
 
     window.pauseRecording = function() {
@@ -203,7 +206,6 @@
      //   window.Stream.end();
 
         clearInterval(handv);
-        clearInterval(handv2);
         setTimeout(function() {
             location.reload();
         }, 2000);
