@@ -63,7 +63,7 @@
             return;
         }
 
-        if (timeElapsed % 250 == 0) {
+        if (timeElapsed % bufferT == 0) {
             MicSnapshot();
         }
 
