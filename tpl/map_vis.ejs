@@ -13,10 +13,13 @@
         </div>
         
        </div>
+       <label for="Scale">Scale</label>
+       <input type="number" id="scale">
     </body>
     <script>
         const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids";
         const map = getElementID("map_points");
+        const scaler = document.getElementById('scale');
         
         function loadPoints(e) {
 
@@ -37,7 +40,7 @@
 
                 console.log(point)
                 if (point)
-                    appendElement(map, addPoint(point.px, point.py, point.theta, point.id))
+                    appendElement(map, addPoint(point.px*scaler.value, point.py*scaler.value, point.theta, point.id))
             }
 
         }
