@@ -24,7 +24,7 @@
         function loadPoints(e) {
 
             var dataArr = null;
-            console.log(e)
+           // console.log(e)
             try {
                 dataArr = JSON.parse(e);
             }
@@ -38,7 +38,7 @@
             for (var i =0;i<dataArr.length;i++) {
                 const point = dataArr[i];
 
-                console.log(point)
+             //   console.log(point)
                 if (point)
                     appendElement(map, addPoint(point.px*scaler.value, point.py*scaler.value, point.theta, point.id))
             }

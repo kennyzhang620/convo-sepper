@@ -31,7 +31,7 @@ console.log("Test1");
     
                 }
                 else {
-                    console.log("--->>>", txtFile.statusText);
+                //    console.log("--->>>", txtFile.statusText);
                     if (failure != null) {
                         failure(txtFile.statusText)
                     }
