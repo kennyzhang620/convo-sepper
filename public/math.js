@@ -40,11 +40,11 @@ console.log("Test1");
         };
     
         txtFile.ontimeout = function(e) {
-            console.err("Connection timed out. Please refresh the page and try again.");
+            console.error("Connection timed out. Please refresh the page and try again.");
         }
         
         txtFile.onerror = function (e) {
-            console.err("An error has occurred. Please refresh the page and try again.");
+            console.error("An error has occurred. Please refresh the page and try again.");
             console.error(txtFile.statusText);
         };
     
