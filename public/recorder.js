@@ -172,7 +172,7 @@
     }
 
     function captureData() {
-        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "timestamp": Date().toString(), "transcript": transcriptWords}
+        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "timestamp": Date().toString(), "transcript": transcriptWords}
 
         txt.value = data.transcript;
 

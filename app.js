@@ -55,6 +55,10 @@ app.get('/', function (req, res) {
     res.render('index', {id: channels.length});
 });
 
+app.get('/map', function (req, res) {
+    res.render('map_vis', {id: channels.length});
+});
+
 app.post('/resume-select', async(req, res) => {
     var data = await get_from_backend(0,0,0,0,10,false);     
     console.log("Post mode");

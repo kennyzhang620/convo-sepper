@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="/mapper.js"></script>
+        <script src="/math.js"></script>
+    </head>
+
+    <body style="margin: 0; overflow: hidden;">
+       <div id="map" style="width:250px; height:250px; border: 3px dotted black;">
+        <div class="map_points">
+            <div id="point" style="position: fixed;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: 10px;top: 10px;text-align: center;transform: rotate(0deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>1</div>
+            <div id="point" style="position: fixed;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: 10px;top: 10px;text-align: center;transform: rotate(0deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>1</div>
+        </div>
+        
+       </div>
+    </body>
+    <script>
+        const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids";
+        const map = getElementID("map");
+        
+        function loadPoints(e) {
+            try {
+                const dataArr = JSON.parse(csvD) | null;
+            }
+            catch (e) {
+                console.error(e);
+            }
+
+            if (!dataArr) return;
+
+            clearElements(map);
+            for (var i =0;i<dataArr.length;i++) {
+                const point = dataArr[i];
+
+                appendElement(map, addPoint(point.px, point.py, point.theta, point.id))
+            }
+
+        }
+
+        function map_loop() {
+            sendPacket(server, 'GET', '', true, loadPoints,  null, 3000)
+        }
+
+        setInterval(map_loop, 3000);
+
+    </script>
+</html>
