@@ -1,5 +1,5 @@
-const XOFFSET = 250;
-const YOFFSET = 250;
+const XOFFSET = 125;
+const YOFFSET = 125;
 
 function getElementID(strIn) {
     return document.getElementsByClassName(strIn)[0];
