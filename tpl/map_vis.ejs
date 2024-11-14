@@ -36,8 +36,8 @@
                 const point = dataArr[i];
 
                 console.log(point)
-
-                appendElement(map, addPoint(point.px, point.py, point.theta, point.id))
+                if (point)
+                    appendElement(map, addPoint(point.px, point.py, point.theta, point.id))
             }
 
         }

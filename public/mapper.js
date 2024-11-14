@@ -2,7 +2,7 @@ const XOFFSET = 250;
 const YOFFSET = 250;
 
 function getElementID(strIn) {
-    return document.getElementsByClassName(strIn);
+    return document.getElementsByClassName(strIn)[0];
 }
 
 function addPoint(x,y, theta, id) {
