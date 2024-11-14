@@ -19,8 +19,10 @@
         const map = getElementID("map");
         
         function loadPoints(e) {
+
+            var dataArr = null;
             try {
-                const dataArr = JSON.parse(e) | null;
+                dataArr = JSON.parse(e);
             }
             catch (e) {
                 console.error(e);
