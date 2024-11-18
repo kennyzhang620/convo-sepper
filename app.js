@@ -31,7 +31,7 @@ var pipeM = null;
 var channels = [];
 
 var needle = -1;
-const limit = 5000;
+const limit = 500;
 
 var app = express();
 
