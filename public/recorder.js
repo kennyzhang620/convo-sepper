@@ -38,12 +38,17 @@
     var CurrPY = 0;
     var base = 75000;
 
+    const maxWidth = 5;
     const rollOff = 0.2;
     const rotDelta = 0.5;
     const boundariesM = 5;
     const maxAccel = 1.4;
 
     const scaleVal = 1/20;
+
+    function encodeXY(x,y) {
+        return y*maxWidth + x;
+    }
 
     function elapsedTimeU() {
         ms.value = timeElapsed;
@@ -172,7 +177,7 @@
     }
 
     function captureData() {
-        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "timestamp": Date().toString(), "transcript": transcriptWords}
+        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "cxy": encodeXY(CurrPX, CurrPY), "timestamp": Date().toString(), "transcript": transcriptWords}
 
         txt.value = data.transcript;
 

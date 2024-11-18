@@ -31,6 +31,7 @@ var pipeM = null;
 var channels = [];
 
 var needle = -1;
+const limit = 5000;
 
 var app = express();
 
@@ -112,11 +113,11 @@ app.post('/convo-ts', function(req, res) {
         return res.end();
     }
 
-    if (convologs.length < 500) {
+    if (convologs.length < limit) {
         convologs.push(req.body);
     }
     else {
-        convologs[ind++ % 500] = req.body;
+        convologs[ind++ % limit] = req.body;
     }
 
     channels[req.body.id] = req.body;
@@ -124,6 +125,8 @@ app.post('/convo-ts', function(req, res) {
     return res.end();
 
 });
+
+app,get()
 
 app.get('/convo-ts-logs', function(req,res) {
     return res.json(convologs);
