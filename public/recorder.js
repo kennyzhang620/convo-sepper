@@ -38,7 +38,7 @@
     var CurrPY = 0;
     var base = 75000;
 
-    const rollOff = 0.6;
+    const rollOff = 0.2;
     const rotDelta = 0.5;
     const boundariesM = 5;
     const maxAccel = 1.4;
