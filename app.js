@@ -31,7 +31,7 @@ var pipeM = null;
 var channels = [];
 
 var needle = -1;
-const limit = 500;
+const limit = 5000;
 
 var app = express();
 
@@ -125,8 +125,6 @@ app.post('/convo-ts', function(req, res) {
     return res.end();
 
 });
-
-app,get()
 
 app.get('/convo-ts-logs', function(req,res) {
     return res.json(convologs);
