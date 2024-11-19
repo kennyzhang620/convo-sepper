@@ -99,8 +99,6 @@ app.post('/channel', function (req, res) {
         channels.push(null)
     }
 
-    needle = ind;
-
     console.log("Position set to " + needle + " " + channels.length);
     return res.end();
 
