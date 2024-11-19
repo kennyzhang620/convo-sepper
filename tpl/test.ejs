@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+        <title>AudioScanner!</title>
+    </head>
+</head>
+
+<body>
+    <label for="channel">Channel ID (10-100):</label>
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+
+    <form action="https://conv-count-poc-997c48b4c4cc.herokuapp.com/channel" method="post" target="dummyframe" onsubmit="loadChannel()">
+        <input type="number" id="channel" name="channel" min="0" max="25" value=<%= id %> />
+        <input type="submit" value="Load Panel">
+      </form>
+
+      <form action="https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts" method="post" target="dummyframe">
+        <input type="number" name="id">
+        <input type="number" id='x' name="px" onchange="document.getElementById('cxy').value = encodeXY(document.getElementById('x').value, document.getElementById('y').value)">
+        <input type="number" id='y' name="py" onchange="document.getElementById('cxy').value = encodeXY(document.getElementById('x').value, document.getElementById('y').value)">
+        <input type="number" name="theta">
+        <input type="number" id='cxy' name="cxy">
+        <input type="date" id='cdate' name="timestamp">
+        <input type="text" id="'text" name="transcript">
+        <input type="submit" value="Load Panel">
+      </form>
+
+    <script>
+        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "cxy": encodeXY(CurrPX, CurrPY), "timestamp": Date().toString(), "transcript": transcriptWords}
+
+
+    </script>
+</body>
+
+</html>

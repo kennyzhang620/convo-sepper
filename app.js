@@ -56,6 +56,10 @@ app.get('/', function (req, res) {
     res.render('index', {id: channels.length});
 });
 
+app.get('/test', function (req, res) {
+    res.render('test', {id: channels.length});
+});
+
 app.get('/map', function (req, res) {
     res.render('map_vis', {id: channels.length});
 });
