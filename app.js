@@ -113,7 +113,7 @@ app.post('/convo-ts', function(req, res) {
 
     channels[req.body.id] = req.body;
 
-    return res.end();
+    return res.status(200);
 
 });
 
