@@ -114,6 +114,9 @@
 
         pvx.value = CurrPX; pvz.value = CurrPY;
 
+        if (!Cstatus)
+            recognition.start();
+
         timeElapsed += 1
     }
 
@@ -192,8 +195,6 @@
     function MicSnapshot() {
         if (Cstatus)
             recognition.stop();
-
-        return recognition.start();
     }
 
     var handv = null;
