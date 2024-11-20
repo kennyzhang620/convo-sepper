@@ -187,8 +187,10 @@
 
         if (data.transcript.length > 0 || true) {
             sendPacket('/convo-ts', "POST", data, true, function(e) {
-                transcriptWords = "";
+
             }, null);
+
+            transcriptWords = "";
         }
     }
 
