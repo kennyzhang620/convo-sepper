@@ -13,7 +13,7 @@
     var pvx = document.getElementById("px");
     var pvz = document.getElementById("pz");
 
-    const bufferT = 2000;
+    const bufferT = 50;
     var recording = false;
 
     var accelVectors = [0, 0, 0]
