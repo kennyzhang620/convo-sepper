@@ -190,9 +190,10 @@
     }
 
     function MicSnapshot() {
-        if (!Cstatus)
-            return recognition.start();
-        return recognition.stop();
+        if (Cstatus)
+            recognition.stop();
+
+        return recognition.start();
     }
 
     var handv = null;
