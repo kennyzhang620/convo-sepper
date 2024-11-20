@@ -129,6 +129,7 @@
     }
     window.setChannel = function() {   
         if (!chSet) {
+            loadChannel()
             setup();
             setInterval(elapsedTimeU, 1);
             chSet = true;
