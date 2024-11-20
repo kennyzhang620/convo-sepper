@@ -85,25 +85,6 @@ app.post('/resume-select', async(req, res) => {
     latexgen.generateLatex(data, latexgen.latexTemp, res);
 });
 
-app.post('/channel', function (req, res) {
-
-    const ind = req.body.channel;
-
-    console.log(req.body)
-
-    if (ind > channels.length || ind < 0) {
-        return res.json("Invalid channel ID");
-    }
-
-    if (ind == channels.length) {
-        channels.push(null)
-    }
-
-    console.log("Position set to " + needle + " " + channels.length);
-    return res.end();
-
-});
-
 var convologs = []
 
 var ind = 0;
@@ -113,6 +94,16 @@ app.post('/convo-ts', function(req, res) {
 
     if (channels.length < req.body.id || req.body.id < 0) {
         return res.end();
+    }
+
+    const ind = req.body.id;
+
+    if (ind > channels.length || ind < 0) {
+        return res.json("Invalid channel ID");
+    }
+
+    if (ind == channels.length) {
+        channels.push(null)
     }
 
     if (convologs.length < limit) {
