@@ -96,13 +96,11 @@ app.post('/convo-ts', function(req, res) {
         return res.end();
     }
 
-    const ind = req.body.id;
-
-    if (ind > channels.length || ind < 0) {
+    if (req.body.id > channels.length || ind < 0) {
         return res.json("Invalid channel ID");
     }
 
-    if (ind == channels.length) {
+    if (req.body.id == channels.length) {
         channels.push(null)
     }
 
