@@ -55,6 +55,7 @@
     var handles = [0,0,0,0];
 
     const maxWidth = 5;
+    const scale = 1/50;
 
     function encodeXY(x,y) {
         return y*maxWidth + x;
@@ -86,7 +87,7 @@
             document.getElementById('text').innerHTML = transcriptWords;
 
             const id = document.getElementById('id');
-            const data = {"id": id.value, "px": testX, "py": testY, "theta": testZ, "cxy": encodeXY(testX, testY), "timestamp": Date().toString(), "transcript": transcriptWords}
+            const data = {"id": id.value, "px": testX*scale, "py": testY*scale, "theta": testZ, "cxy": encodeXY(testX*scale, testY*scale), "timestamp": Date().toString(), "transcript": transcriptWords}
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
             sendPacket('/convo-ts', "POST", data, true, function(e) {
