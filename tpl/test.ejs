@@ -42,8 +42,8 @@
         </div>
         <div style="display:block; margin: 20px 0;" id="xyz"></div>
         <label for="text">Transcript</label>
-        <input type="text" id="text" name="transcript" onsubmit="send()">
-        <button onpointerdown="recognizer.start()">Record</button>
+        <input type="text" id="text" name="transcript">
+        <button onpointerdown="recognition.start()">Record</button>
         <button onpointerdown="start()">Start</button>
 
     <script>
@@ -52,7 +52,7 @@
     var testY = 0;
     var testZ = 0;
 
-    var handles = [0,0,0,0];
+    var handles = [0,0,0,0,0];
 
     const maxWidth = 5;
     const scale = 1/50;
@@ -100,6 +100,7 @@
     }
     function start() {
         handles[3] = setInterval(update, 100);
+        handles[4] = setInterval(send, 2000);
     }
 
     </script>
