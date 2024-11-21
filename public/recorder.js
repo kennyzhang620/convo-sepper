@@ -46,10 +46,6 @@
 
     const scaleVal = 1/20;
 
-    function encodeXY(x,y) {
-        return y*maxWidth + x;
-    }
-
     function elapsedTimeU() {
         ms.value = timeElapsed;
 
