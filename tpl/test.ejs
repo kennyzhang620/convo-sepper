@@ -85,7 +85,6 @@
     function result(e) {
         if (transcriptWords.length > 0) {
             transcriptWords = "";
-            document.getElementById('text').value = transcriptWords;
         }
     }
 
@@ -104,6 +103,7 @@
 
     function send() {
         transcriptWords = document.getElementById('text').value;
+        document.getElementById('text').value = ""
     }
     function start() {
         handles[3] = setInterval(update, 100);
