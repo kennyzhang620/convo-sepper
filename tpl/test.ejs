@@ -84,9 +84,11 @@
 
     function result(e) {
 
-        console.log(e);
+        const data = JSON.parse(e);
+        console.log(data);
+
         
-        if (transcriptWords.length > 0) {
+        if (transcriptWords.length > 0 && data.ts == transcriptWords) {
             transcriptWords = "";
             document.getElementById('text').value = "";
         }
