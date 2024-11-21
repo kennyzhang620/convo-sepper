@@ -23,7 +23,7 @@ const openai = new OpenAIApi(configuration);
 async function responseGenerator (prompt) {
     let inputMessage = prompt;
     const completion = await openai.createCompletion({
-        model: "text-davinci-003",
+        model: "gpt-4o-mini",
         prompt: inputMessage,
         max_tokens: 1000,
     }).catch(err => {
