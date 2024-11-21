@@ -43,7 +43,7 @@
         <div style="display:block; margin: 20px 0;" id="xyz"></div>
         <label for="text">Transcript</label>
         <input type="text" id="text" name="transcript">
-        <button onpointerdown="record()">Record</button>
+        <button onpointerdown="recognizer.start()">Record</button>
         <button onpointerdown="start()">Start</button>
 
     <script>
@@ -54,7 +54,6 @@
 
     var handles = [0,0,0,0];
 
-    var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
     const maxWidth = 5;
 
     function encodeXY(x,y) {
@@ -90,7 +89,9 @@
             const data = {"id": id.value, "px": testX, "py": testY, "theta": testZ, "cxy": encodeXY(testX, testY), "timestamp": Date().toString(), "transcript": transcriptWords}
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
-            sendPacket(server, 'POST', data, true, null, null, 1000);
+            sendPacket('/convo-ts', "POST", data, true, function(e) {
+                transcriptWords = "";
+            }, null);
     }
 
     function start() {
