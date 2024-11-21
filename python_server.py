@@ -25,6 +25,7 @@ def cluster(df, err):
    clusters = []
    ind = -1
    for index, row in df.sort_values(by=['cxy']).iterrows():
+      print(error(pcxy,row['cxy']) )
       if error(pcxy,row['cxy']) > err:
         clusters.append([row['id']])
         ind += 1
@@ -65,7 +66,8 @@ while (True):
     try:
       data = pd.read_json(r.text);
       data2 = pd.read_json(r2.text);
-      c = cluster(data, 0.5);
+      c = cluster(data, 0.8);
+      print(c)
     
       ts = transcripts(data2, c);
     

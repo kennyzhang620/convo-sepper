@@ -109,6 +109,7 @@
     var testZ = 0;
 
     var handles = [0,0,0,0,0];
+    var status = false;
 
     const maxWidth = 5;
     const scale = 1/50;
@@ -130,12 +131,16 @@
         handles[0] = setInterval(move, 100, x, y, z);
         handles[1] = setInterval(move, 100, x, y, z);
         handles[2] = setInterval(move, 100, x, y, z);
+
+        status = true;
     }
 
     function release(x,y,z) {
         clearInterval(handles[0]);
         clearInterval(handles[1]);
         clearInterval(handles[2]);
+
+        status = false;
     }
 
     function result(e) {
@@ -160,7 +165,7 @@
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
 
-            if (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0)
+            if (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0 || status)
                 sendPacket('/convo-ts', "POST", data, true, result, null);
     }
 
