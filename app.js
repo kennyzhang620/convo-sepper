@@ -43,6 +43,10 @@ app.post('/chatrecvm', async (req, res) => {
 	res.json(resdata);
 });
 
+app.get('/chattest', async (req, res) => {
+    res.json(await responseGenerator("hello"));
+})
+
 app.get('/chatrecvm', (req,res) => {
 	res.json(resdata);
 })
