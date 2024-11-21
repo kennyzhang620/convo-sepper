@@ -104,11 +104,13 @@ app.post('/convo-ts', function(req, res) {
         channels.push(null)
     }
 
-    if (convologs.length < limit) {
+    if (convologs.length < limit && req.body.transcript.length > 0) {
         convologs.push(req.body);
     }
     else {
-        convologs[ind++ % limit] = req.body;
+        if (req.body.transcript.length > 0) {
+            convologs[ind++ % limit] = req.body;
+        }
     }
 
     channels[req.body.id] = req.body;
