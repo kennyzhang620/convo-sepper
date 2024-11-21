@@ -54,6 +54,12 @@
 
     var handles = [0,0,0,0];
 
+    const maxWidth = 5;
+
+    function encodeXY(x,y) {
+        return y*maxWidth + x;
+    }
+
     function move(x,y,z) {
         testX += x;
         testY += y;
