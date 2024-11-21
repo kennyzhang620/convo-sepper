@@ -123,7 +123,7 @@
         testY += y;
         testZ += z;
 
-        if (x != 0 || y != 0 || z != 0)
+        if (testX - x != 0 || testY - y != 0 || testZ - z != 0)
             status = true;
         else
             status = false;
