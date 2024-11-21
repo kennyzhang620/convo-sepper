@@ -115,7 +115,7 @@ app.post('/convo-ts', function(req, res) {
 
     channels[req.body.id] = req.body;
 
-    return res.json(Date.now())
+    return res.json({status: "ok", ts: req.body.transcript, timestamp: Date.now()})
 
 });
 
