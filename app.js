@@ -15,10 +15,7 @@ app.use(cors());
 const { Configuration, OpenAIApi } = require("openai");
 require('dotenv').config()
 
-const configuration = new Configuration({
-    apiKey: process.env.CHAT_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAI({apiKey: process.env.CHAT_API_KEY});
 
 async function responseGenerator (prompt) {
     let inputMessage = prompt;
