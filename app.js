@@ -31,7 +31,7 @@ async function responseGenerator (prompt) {
 		return err;
     });
 
-    return completion.data.choices[0].text
+    return completion.data
 }
 
 app.post('/chatrecvm', async (req, res) => {
