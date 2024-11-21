@@ -17,18 +17,20 @@ require('dotenv').config()
 
 const openai = new OpenAI({apiKey: process.env.CHAT_API_KEY});
 
+
+
 async function responseGenerator (prompt) {
     let inputMessage = prompt;
-    const completion = await openai.createCompletion({
-        model: "gpt-4o-mini",
-        prompt: inputMessage,
-        max_tokens: 1000,
-    }).catch(err => {
+    const completion = await openai.chat.completions.create({
+		model: "gpt-4o-mini",
+		messages: [{ role: "user", content: prompt }],
+		max_tokens: 1000,
+	}).catch(err => {
         console.log(err);
 		return err;
     });
 
-    return completion.data
+    return completion.choices[0].message.content;
 }
 
 app.post('/chatrecvm', async (req, res) => {
