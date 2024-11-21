@@ -82,6 +82,11 @@
         clearInterval(handles[2]);
     }
 
+    function result(e) {
+        transcriptWords = "";
+        document.getElementById('text').innerHTML = transcriptWords;
+    }
+
     function update() {
         if (Cstatus)
             document.getElementById('text').innerHTML = transcriptWords;
@@ -90,10 +95,7 @@
             const data = {"id": id.value, "px": testX*scale, "py": testY*scale, "theta": testZ, "cxy": encodeXY(testX*scale, testY*scale), "timestamp": Date().toString(), "transcript": transcriptWords}
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
-            sendPacket('/convo-ts', "POST", data, true, function(e) {
-                transcriptWords = "";
-                document.getElementById('text').innerHTML = transcriptWords;
-            }, null);
+            sendPacket('/convo-ts', "POST", data, true, result, null);
     }
 
     function send() {
