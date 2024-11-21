@@ -168,6 +168,11 @@
         if (document.getElementById('toggleSwitch').checked) {
             if (!Cstatus)
                 recognition.start();
+
+            if (Cstatus) {
+                recognition.stop();
+                recognition.start();
+            }
         }
     }
     function start() {
