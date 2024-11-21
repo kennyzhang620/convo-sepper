@@ -37,7 +37,7 @@ async function responseGenerator (prompt) {
 app.post('/chatrecvm', async (req, res) => {
 	let txt = req.body.prompt
 
-    response = await responseGenerator(prompt);
+    response = await responseGenerator(txt);
     resdata = prompt;
 	
 	res.json(resdata);
