@@ -123,6 +123,11 @@
         testY += y;
         testZ += z;
 
+        if (x != 0 || y != 0 || z != 0)
+            status = true;
+        else
+            status = false;
+
         console.log(testX, testY, testZ);
         document.getElementById('angle').innerHTML = testZ+ "°";
     }
@@ -131,16 +136,12 @@
         handles[0] = setInterval(move, 100, x, y, z);
         handles[1] = setInterval(move, 100, x, y, z);
         handles[2] = setInterval(move, 100, x, y, z);
-
-        status = true;
     }
 
     function release(x,y,z) {
         clearInterval(handles[0]);
         clearInterval(handles[1]);
         clearInterval(handles[2]);
-
-        status = false;
     }
 
     function result(e) {
