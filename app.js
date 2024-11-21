@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-const { Configuration, OpenAIApi } = require("openai");
+const { Configuration, OpenAI } = require("openai");
 require('dotenv').config()
 
 const openai = new OpenAI({apiKey: process.env.CHAT_API_KEY});
