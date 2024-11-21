@@ -42,7 +42,7 @@
         </div>
         <div style="display:block; margin: 20px 0;" id="xyz"></div>
         <label for="text">Transcript</label>
-        <input type="text" id="text" name="transcript">
+        <input type="text" id="text" name="transcript" onsubmit="send()">
         <button onpointerdown="recognizer.start()">Record</button>
         <button onpointerdown="start()">Start</button>
 
@@ -95,6 +95,8 @@
             }, null);
     }
 
+    function send() {
+        transcriptWords = document.getElementById('text').value;
     function start() {
         handles[3] = setInterval(update, 100);
     }
