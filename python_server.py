@@ -40,13 +40,17 @@ def cluster(df, err):
 
 def transcripts(data, clusters):
    datav = data.sort_values(by=['timestamp'])
-   convos = []
+   convos = pd.DataFrame()
+   ind = 0
    for ids in clusters:
-      convo = []
+      convodf = pd.DataFrame()
       for id in ids:
-         convo.append(datav.loc[datav['id'] == id]['transcript'])
+         condf = datav.loc[datav['id'] == id].sort_values(by=['timestamp'])
+         condf['convo'] = ind
+         convodf = pd.concat([convodf, condf])
+      ind += 1
 
-      convos.append(convo)
+      convos = pd.concat([convos, convodf])
   
    return convos;
 
@@ -65,7 +69,7 @@ while (True):
     
       ts = transcripts(data2, c);
     
-      print(ts)
+      ts.to_csv('conversations.csv', index=False)
     except:
       err = True
 

@@ -159,7 +159,9 @@
             const data = {"id": id.value, "px": testX*scale, "py": testY*scale, "theta": testZ, "cxy": encodeXY(testX*scale, testY*scale), "timestamp": Date().toString(), "transcript": transcriptWords}
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
-            sendPacket('/convo-ts', "POST", data, true, result, null);
+
+            if (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0)
+                sendPacket('/convo-ts', "POST", data, true, result, null);
     }
 
     function send() {
