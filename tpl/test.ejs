@@ -83,6 +83,9 @@
     }
 
     function result(e) {
+
+        console.log(transcriptWords);
+        
         if (transcriptWords.length > 0) {
             transcriptWords = "";
         }
@@ -90,7 +93,6 @@
 
     function update() {
 
-        console.log(transcriptWords);
         if (Cstatus)
             document.getElementById('text').value = transcriptWords;
 
