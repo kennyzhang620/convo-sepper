@@ -109,7 +109,6 @@
     var testZ = 0;
 
     var handles = [0,0,0,0,0];
-    var status = false;
 
     const maxWidth = 5;
     const scale = 1/50;
@@ -123,12 +122,6 @@
         testY += y;
         testZ += z;
 
-        if (testX - x != 0 || testY - y != 0 || testZ - z != 0)
-            status = true;
-        else
-            status = false;
-
-        console.log(testX, testY, testZ);
         document.getElementById('angle').innerHTML = testZ+ "°";
     }
 
@@ -162,7 +155,7 @@
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
 
-            if (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0 || status)
+            if (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0)
                 sendPacket('/convo-ts', "POST", data, true, result, null);
     }
 
