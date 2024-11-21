@@ -79,6 +79,7 @@
         if (Cstatus)
             document.getElementById('text').innerHTML = transcriptWords;
 
+            const id = document.getElementById('id');
             const data = {"id": id.value, "px": testX, "py": testY, "theta": testZ, "cxy": encodeXY(testX, testY), "timestamp": Date().toString(), "transcript": transcriptWords}
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
