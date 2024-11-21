@@ -1,20 +1,21 @@
 {
-  "name": "MicStreamToWav",
-  "version": "0.0.0",
-  "description": "Stream microphone pcm data to server and save on wav file.",
+  "name": "chatgpt-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node app.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "binaryjs": "latest",
-    "cookie-parser": "^1.4.7",
-    "ejs": "^2.5.9",
-    "express": "latest",
-    "jade": "latest",
-    "socket.io": "^2.1.0",
-    "socket.io-stream": "^0.9.1",
-    "wav": "latest"
-  },
-  "author": "gabrielpoca",
-  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
+    "ai": "^1.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.1",
+    "open": "^8.4.1",
+    "openai": "^3.1.0"
+  }
 }
