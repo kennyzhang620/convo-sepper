@@ -134,14 +134,10 @@
 
     function hold(x,y,z) {
         handles[0] = setInterval(move, 100, x, y, z);
-        handles[1] = setInterval(move, 100, x, y, z);
-        handles[2] = setInterval(move, 100, x, y, z);
     }
 
     function release(x,y,z) {
         clearInterval(handles[0]);
-        clearInterval(handles[1]);
-        clearInterval(handles[2]);
     }
 
     function result(e) {
@@ -184,8 +180,8 @@
         }
     }
     function start() {
-        handles[3] = setInterval(update, 100);
-        handles[4] = setInterval(send, 2000);
+        handles[1] = setInterval(update, 100);
+        handles[2] = setInterval(send, 2000);
     }
 
     </script>
