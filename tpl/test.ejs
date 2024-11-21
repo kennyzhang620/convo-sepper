@@ -108,6 +108,10 @@
     var testY = 0;
     var testZ = 0;
 
+    var prevX = 0;
+    var prevY = 0;
+    var prevZ = 0;
+
     var handles = [0,0,0,0,0];
 
     const maxWidth = 5;
@@ -147,6 +151,14 @@
 
     function update() {
 
+        const sx = testX - prevX;
+        const sy = testY - prevY;
+        const sz = testZ - prevZ;
+
+        var status = false;
+
+        status = (sx != 0 || sy != 0 || sz != 0);
+            
         if (Cstatus)
             document.getElementById('text').value = transcriptWords;
 
@@ -155,8 +167,12 @@
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
 
-            if (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0)
+            if (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0 || status)
                 sendPacket('/convo-ts', "POST", data, true, result, null);
+
+        prevX = testX;
+        prevY = testY;
+        prevZ = testZ;
     }
 
     function send() {

@@ -18,14 +18,14 @@ def error(exp, actual):
    if (exp == 0):
       return 0;
 
-   return abs(exp - actual)/abs(exp);
+   return abs(exp - actual)
 
 def cluster(df, err):
    pcxy = 0
    clusters = []
    ind = -1
    for index, row in df.sort_values(by=['cxy']).iterrows():
-      print(error(pcxy,row['cxy']) )
+      print(pcxy, row['cxy'], error(pcxy,row['cxy']) )
       if ind == -1:
           clusters.append([row['id']])
           ind += 1
