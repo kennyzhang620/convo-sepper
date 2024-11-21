@@ -83,8 +83,10 @@
     }
 
     function result(e) {
-        transcriptWords = "";
-        document.getElementById('text').value = transcriptWords;
+        if (transcriptWords.length > 0) {
+            transcriptWords = "";
+            document.getElementById('text').value = transcriptWords;
+        }
     }
 
     function update() {
