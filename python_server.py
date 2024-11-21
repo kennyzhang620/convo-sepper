@@ -26,15 +26,15 @@ def cluster(df, err):
    ind = -1
    for index, row in df.sort_values(by=['cxy']).iterrows():
       print(error(pcxy,row['cxy']) )
-      if error(pcxy,row['cxy']) > err:
-        clusters.append([row['id']])
-        ind += 1
-      else:
-        if ind == -1:
+      if ind == -1:
           clusters.append([row['id']])
           ind += 1
-        else:
-          clusters[ind].append(row['id'])
+      else:
+         if error(pcxy,row['cxy']) > err:
+            clusters.append([row['id']])
+            ind += 1
+         else:
+            clusters[ind].append(row['id'])
 
       pcxy = row['cxy']
    return clusters;
