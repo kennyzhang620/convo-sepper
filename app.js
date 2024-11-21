@@ -108,6 +108,10 @@ app.post('/convo-ts', function(req, res) {
 
         if (req.body.transcript.length > 0 || convologs.length == 0) {
             convologs.push(req.body);
+            const ts = req.body.transcript;
+            req.body.transcript = "";
+            convologs.push(req.body);
+            req.body.transcript = ts;
         }
         else {
             convologs[convologs.length - 1] = req.body;
@@ -116,6 +120,10 @@ app.post('/convo-ts', function(req, res) {
     else {
         if (req.body.transcript.length > 0) {
             convologs[ind++ % limit] = req.body;
+            const ts = req.body.transcript;
+            req.body.transcript = "";
+            convologs[ind % limit] = req.body;
+            req.body.transcript = ts;
         }
         else {
             convologs[ind % limit] = req.body;
