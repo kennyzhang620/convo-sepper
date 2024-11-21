@@ -92,6 +92,7 @@
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
             sendPacket('/convo-ts', "POST", data, true, function(e) {
                 transcriptWords = "";
+                document.getElementById('text').innerHTML = transcriptWords;
             }, null);
     }
 
