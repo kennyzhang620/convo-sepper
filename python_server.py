@@ -25,7 +25,7 @@ def cluster(df, err):
    clusters = []
    ind = -1
    for index, row in df.sort_values(by=['cxy']).iterrows():
-      print(pcxy, row['cxy'], error(pcxy,row['cxy']) )
+    #  print(pcxy, row['cxy'], error(pcxy,row['cxy']) )
       if ind == -1:
           clusters.append([row['id']])
           ind += 1
@@ -40,7 +40,7 @@ def cluster(df, err):
    return clusters;
 
 def transcripts(data, clusters):
-   datav = data.sort_values(by=['timestamp'])
+   datav = data.sort_values(by=['timestamp']).drop_duplicates(subset='transcript', keep="last")
    convos = pd.DataFrame()
    ind = 0
    for ids in clusters:
@@ -48,7 +48,7 @@ def transcripts(data, clusters):
       for id in ids:
          condf = datav.loc[datav['id'] == id].sort_values(by=['timestamp'])
          condf['convo'] = ind
-         convodf = pd.concat([convodf, condf])
+         convodf = pd.concat([convodf, condf]).sort_values(by=['timestamp'])
       ind += 1
 
       convos = pd.concat([convos, convodf])
@@ -66,12 +66,12 @@ while (True):
     try:
       data = pd.read_json(r.text);
       data2 = pd.read_json(r2.text);
-      c = cluster(data, 0.8);
+      c = cluster(data, 1);
       print(c)
     
-      ts = transcripts(data2, c);
+      ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo']].tail(20);
     
       ts.to_csv('conversations.csv', index=False)
-    except:
-      err = True
+    except Exception as e:
+      print("Error: ", e)
 

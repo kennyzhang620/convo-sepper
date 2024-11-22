@@ -139,13 +139,17 @@
 
     function result(e) {
 
-        const data = JSON.parse(e);
-        console.log(data);
+        try {
+            const data = JSON.parse(e);
+            console.log(data);
 
         
-        if (transcriptWords.length > 0 && data.ts == transcriptWords) {
-            transcriptWords = "";
-            document.getElementById('text').value = "";
+            if (transcriptWords.length > 0 && data.ts == transcriptWords) {
+                transcriptWords = "";
+                document.getElementById('text').value = "";
+            }
+        } catch (e) {
+            console.log("Error: ", e);
         }
     }
 

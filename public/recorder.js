@@ -36,7 +36,6 @@
     var sampleR = 10;
     var CurrPX = 0; 
     var CurrPY = 0;
-    var base = 75000;
 
     const maxWidth = 5;
     const rollOff = 0.2;
@@ -180,15 +179,26 @@
         startCompass();
     }
 
+    function result(e) {
+
+        try {
+            const data = JSON.parse(e);
+
+            if (transcriptWords.length > 0 && data.ts == transcriptWords) {
+                transcriptWords = "";
+            }
+        } catch (e) {
+            console.log("Error: ", e);
+        }
+    }
+
     function captureData() {
         const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "cxy": encodeXY(CurrPX, CurrPY), "timestamp": Date().toString(), "transcript": transcriptWords}
 
         txt.value = data.transcript;
 
         if (data.transcript.length > 0 || true) {
-            sendPacket('/convo-ts', "POST", data, true, function(e) {
-                transcriptWords = "";
-            }, null);
+            sendPacket('/convo-ts', "POST", data, true, result, null);
         }
     }
 
@@ -202,11 +212,6 @@
     window.startRecording = function() {
         recording = true;
         handv = setInterval(captureData, 1)
-    }
-
-    window.pauseRecording = function() {
-        recording = false;
-       // window.Stream.pause();
     }
 
     window.stopRecording = function() {
