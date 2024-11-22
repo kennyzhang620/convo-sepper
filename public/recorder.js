@@ -38,7 +38,7 @@
     var CurrPY = 0;
 
     const maxWidth = 5;
-    const rollOff = 0.2;
+    const rollOff = 0.5;
     const rotDelta = 0.5;
     const boundariesM = 5;
     const maxAccel = 1.4;
