@@ -108,8 +108,8 @@
             testPX += testVX;
         if (testPY + testVY < maxWidth && testPY + testVY > -maxWidth)
             testPY += testVY;
-        if (testPY + testVY < maxWidth && testPZ + testVZ > -maxWidth)
-            testPY += testVY;
+        if (testPZ + testVZ < maxWidth && testPZ + testVZ > -maxWidth)
+            testPZ += testVZ;
 
         CurrPX = testPX *scaleVal;
         CurrPY = testPZ *scaleVal;
