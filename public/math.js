@@ -77,15 +77,15 @@ console.log("Test1");
     }
 
     // Add negated acceleration to counteract accuracy loss as result of thresholding
-    function bias(val, offset, thres) {
+    function bias(val, offset, thres, maxv) {
         if (abs(thres - val) <= thres) {
             return 0
         }
 
-        if (val > 0)
+        if (maxv > val && val > 0)
             return val - offset;
 
-        if (val < 0)
+        if (-maxv < val && val < 0)
             return val + offset;
 
         return 0;

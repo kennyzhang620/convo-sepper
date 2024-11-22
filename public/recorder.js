@@ -39,7 +39,7 @@
 
     const maxWidth = 5;
     const rollOff = 0.5;
-    const rotDelta = 0.5;
+    const rotDelta = 0.25;
     const boundariesM = 5;
     const maxAccel = 1.4;
 
@@ -100,9 +100,9 @@
         testY = ay;
         testZ = az;
 
-        testVX = bias(testVX,0.5, 0.5) + ax;
-        testVY = bias(testVY,0.5, 0.5) + ay;
-        testVZ = bias(testVZ,0.5, 0.5) + az;
+        testVX = bias(testVX,0.5, 0.5, 2) + ax;
+        testVY = bias(testVY,0.5, 0.5, 2) + ay;
+        testVZ = bias(testVZ,0.5, 0.5, 2) + az;
 
         testPX += testVX;
         testPY += testVY;
@@ -111,10 +111,7 @@
         CurrPX = testPX *scaleVal;
         CurrPY = testPZ *scaleVal;
 
-        pvx.value = CurrPX; pvz.value = CurrPY;
-
-        if (!Cstatus)
-            recognition.start();
+        pvx.value = testPX; pvz.value = testPZ;
 
         timeElapsed += 1
     }
@@ -203,8 +200,13 @@
     }
 
     function MicSnapshot() {
-        if (Cstatus)
+        if (!Cstatus)
+            recognition.start();
+
+        if (Cstatus) {
             recognition.stop();
+            recognition.start();
+        }
     }
 
     var handv = null;
