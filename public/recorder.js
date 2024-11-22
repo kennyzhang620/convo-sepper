@@ -211,7 +211,7 @@
 
     window.startRecording = function() {
         recording = true;
-        handv = setInterval(captureData, 1)
+        handv = setInterval(captureData, 100)
     }
 
     window.stopRecording = function() {
