@@ -37,7 +37,7 @@
     var CurrPX = 0; 
     var CurrPY = 0;
 
-    const maxWidth = 5;
+    const maxWidth = 13;
     const rollOff = 0.8;
     const rotDelta = 0.25;
     const boundariesM = 5;
@@ -104,9 +104,12 @@
         testVY = bias(testVY,0.5, 0.5, 2) + ay;
         testVZ = bias(testVZ,0.5, 0.5, 2) + az;
 
-        testPX += testVX;
-        testPY += testVY;
-        testPZ += testVZ;
+        if (testPX + testVX < maxWidth && testPX + testVX > -maxWidth)
+            testPX += testVX;
+        if (testPY + testVY < maxWidth && testPY + testVY > -maxWidth)
+            testPY += testVY;
+        if (testPY + testVY < maxWidth && testPZ + testVZ > -maxWidth)
+            testPY += testVY;
 
         CurrPX = testPX *scaleVal;
         CurrPY = testPZ *scaleVal;
