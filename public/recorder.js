@@ -71,6 +71,9 @@
             return;
         }
 
+        if (!Cstatus)
+            recognition.start();
+
         avgZ /= 5;
 
         if (avgZ >= rotDelta) {
@@ -204,12 +207,8 @@
 
     function MicSnapshot() {
         try {
-            if (!Cstatus)
-                recognition.start();
-
             if (Cstatus) {
                 recognition.stop();
-                recognition.start();
             }
         }
         catch (e) {
