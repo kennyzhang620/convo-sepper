@@ -203,12 +203,17 @@
     }
 
     function MicSnapshot() {
-        if (!Cstatus)
-            recognition.start();
+        try {
+            if (!Cstatus)
+                recognition.start();
 
-        if (Cstatus) {
-            recognition.stop();
-            recognition.start();
+            if (Cstatus) {
+                recognition.stop();
+                recognition.start();
+            }
+        }
+        catch (e) {
+            console.error(e);
         }
     }
 

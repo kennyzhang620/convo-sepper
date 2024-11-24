@@ -1,7 +1,7 @@
 import requests
 import numpy as np
 import pandas as pd
-
+from io import StringIO
 import pyaudio
 
 p = pyaudio.PyAudio()
@@ -55,6 +55,9 @@ def transcripts(data, clusters):
   
    return convos;
 
+def advice(data):
+   return data.sort_values(by=['timestamp']).drop_duplicates(subset='transcript', keep="last")
+
 while (True):
     url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids'
     url2 = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-logs'
@@ -64,8 +67,8 @@ while (True):
 
 
     try:
-      data = pd.read_json(r.text);
-      data2 = pd.read_json(r2.text);
+      data = pd.read_json(StringIO(r.text));
+      data2 = pd.read_json(StringIO(r2.text));
       c = cluster(data, 1);
       print(c)
     
