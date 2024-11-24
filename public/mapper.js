@@ -20,3 +20,37 @@ function clearElements(classL) {
     }
 
 }
+
+const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids";
+const map = getElementID("map_points");
+const scaler = document.getElementById('scale');
+
+function loadPoints(e) {
+
+    var dataArr = null;
+   // console.log(e)
+    try {
+        dataArr = JSON.parse(e);
+    }
+    catch (e) {
+        console.error(e);
+    }
+
+    if (!dataArr) return;
+
+    clearElements(map);
+    for (var i =0;i<dataArr.length;i++) {
+        const point = dataArr[i];
+
+     //   console.log(point)
+        if (point)
+            appendElement(map, addPoint(point.px*scaler.value, point.py*scaler.value, point.theta, point.id))
+    }
+
+}
+
+function map_loop() {
+    sendPacket(server, 'GET', '', true, loadPoints,  null, 3000)
+}
+
+setInterval(map_loop, 500);
