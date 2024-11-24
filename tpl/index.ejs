@@ -15,9 +15,10 @@
     <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
     <div id="controller">
+        <label for="id">Identifier:</label>
+        <input type="number" id="channel" name="channel" min="0" max="25" value=<%= id %> />
         <div id="debug">
-            <label for="id">Identifier:</label>
-            <input type="number" id="channel" name="channel" min="0" max="25" value=<%= id %> />
+
             <label for="timing">Time (ms):</label>
             <input type="number" id="ms">
             <label for="coords"></label>
