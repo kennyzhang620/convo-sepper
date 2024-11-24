@@ -189,13 +189,16 @@
     }
 
     function send() {
-        transcriptWords = document.getElementById('text').value;
-
         if (document.getElementById('toggleSwitch').checked) {
             if (Cstatus) {
                 recognition.stop();
             }
+
+            return;
         }
+
+        transcriptWords = document.getElementById('text').value;
+        
     }
     function start() {
         handles[1] = setInterval(update, 1);
