@@ -111,6 +111,7 @@
     var prevX = 0;
     var prevY = 0;
     var prevZ = 0;
+    const bufferT = 1000;
 
     var handles = [0,0,0,0,0];
 
@@ -153,6 +154,8 @@
         }
     }
 
+    var ind = 0;
+
     function update() {
 
         const sx = testX - prevX;
@@ -162,7 +165,7 @@
         var status = false;
 
         status = (sx != 0 || sy != 0 || sz != 0);
-            
+
         if (Cstatus)
             document.getElementById('text').value = transcriptWords;
 
@@ -171,29 +174,31 @@
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
 
-            if (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0 || status)
+            if (ind % bufferT == 0 && (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0 || status)) {
                 sendPacket('/convo-ts', "POST", data, true, result, null);
+
+                if (!Cstatus)
+                    recognition.start();
+            }
 
         prevX = testX;
         prevY = testY;
         prevZ = testZ;
+
+        ind++;
     }
 
     function send() {
         transcriptWords = document.getElementById('text').value;
 
         if (document.getElementById('toggleSwitch').checked) {
-            if (!Cstatus)
-                recognition.start();
-
             if (Cstatus) {
                 recognition.stop();
-                recognition.start();
             }
         }
     }
     function start() {
-        handles[1] = setInterval(update, 100);
+        handles[1] = setInterval(update, 1);
         handles[2] = setInterval(send, 2000);
     }
 
