@@ -200,13 +200,10 @@
             // get fullest bin
             var idx = 0;
             for (var j=0; j < analyser.frequencyBinCount; j++) {
-                if (data[j] > data[idx]) {
-                    idx = j;
-                }
-            }
 
-            var frequency = idx * ctx.sampleRate / analyser.fftSize;
-            console.log(frequency);
+                var frequency = j * ctx.sampleRate / analyser.fftSize;
+                console.log(frequency, data[j]);
+            }
         }
 
         play();
