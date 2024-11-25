@@ -56,7 +56,7 @@
     let data = null;
 
     const humanRange = [150, 10000];
-    const rangerFreq = 18000;
+    const rangerFreq = 16000;
 
     var humanRangeCount = 10;
     var humanCutoff = 100;
