@@ -13,6 +13,9 @@
     var pvx = document.getElementById("px");
     var pvz = document.getElementById("pz");
 
+    var normal = document.getElementById("normal");
+    var ranged = document.getElementById("ranged"); 
+
     const bufferT = 1000;
     var recording = false;
 
@@ -48,11 +51,17 @@
     var analyserActive = false;
     let ctx;
     let analyser;
-    let gainNode;
     let source;
-    let stream;
 
     let data = null;
+
+    const humanRange = [150, 10000];
+    const rangerFreq = 19000;
+
+    const humanRangeCount = 10;
+
+    var rangedDistance = 0;
+    var offset = 0;
 
     function encodeXY(x,y) {
         return y*maxWidth + x;
@@ -202,15 +211,38 @@
             analyser.getByteFrequencyData(data);
 
             // get fullest bin
-            var idx = 0;
+            var nm1 = 0;
+            var nm2 = 0;
+
+            humanRangeCount = 0;
+            rangedDistance = 0;
+            
             for (var j=0; j < analyser.frequencyBinCount; j++) {
 
                 var frequency = j * ctx.sampleRate / analyser.fftSize;
 
-                if (frequency > 15000 && data[j] > 25) {
+                if (frequency >= humanRange[0] && frequency <= humanRange[1] && data[j] > 25) {
+                    humanRangeCount += data[j];
+                    nm1++;
+                }
+                
+                if (frequency > rangerFreq && data[j] > 25) {
+                    rangedDistance += data[j];
                     console.log(frequency, data[j]);
+                    nm2++;
                 }
             }
+
+            if (nm2 > 0) {
+                rangedDistance /= nm2;
+            }
+
+            if (nm1 > 0) {
+                humanRangeCount /= nm1;
+            }
+
+            normal.value = humanRangeCount;
+            ranged.value = rangedDistance;
         }
 
         play();
