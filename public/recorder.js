@@ -206,7 +206,10 @@
             for (var j=0; j < analyser.frequencyBinCount; j++) {
 
                 var frequency = j * ctx.sampleRate / analyser.fftSize;
-                console.log(frequency, data[j]);
+
+                if (frequency > 15000 && data[j] > 25) {
+                    console.log(frequency, data[j]);
+                }
             }
         }
 
