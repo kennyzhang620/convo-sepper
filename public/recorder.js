@@ -52,6 +52,10 @@
     function elapsedTimeU() {
         ms.value = timeElapsed;
 
+        if (timeElapsed % 100 == 0) {
+            audioTracker();
+        }
+
         if (timeElapsed % sampleR != 0 || timeElapsed == 0) {
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
 
@@ -216,7 +220,6 @@
          // Request permission for iOS 13+ devices
         init();
         startCompass();
-        audioTracker();
     }
 
     function result(e) {
