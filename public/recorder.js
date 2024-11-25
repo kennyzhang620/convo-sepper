@@ -59,10 +59,6 @@
     function elapsedTimeU() {
         ms.value = timeElapsed;
 
-        if (timeElapsed % 100 == 0) {
-            audioTracker();
-        }
-
         if (timeElapsed % sampleR != 0 || timeElapsed == 0) {
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
 
@@ -169,7 +165,7 @@
         initAudio();
     }
 
-    function initAudio() {
+    async function initAudio() {
         navigator.mediaDevices
             .getUserMedia({ video : false, audio : true })
             .then(callback)
