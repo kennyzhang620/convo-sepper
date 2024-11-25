@@ -157,6 +157,46 @@
         }
     }
 
+    function audioTracker() {
+        navigator.getUserMedia = navigator.getUserMedia
+                                   || navigator.webkitGetUserMedia
+                                   || navigator.mozGetUserMedia;
+
+            navigator.getUserMedia({ video : false, audio : true }, callback, console.log);
+
+
+            function callback(stream) {
+                var ctx = new AudioContext();
+                var mic = ctx.createMediaStreamSource(stream);
+                var analyser = ctx.createAnalyser();
+                var osc = ctx.createOscillator();
+
+                mic.connect(analyser); 
+                osc.connect(ctx.destination);
+                osc.start(0);
+
+                var data = new Uint8Array(analyser.frequencyBinCount);
+
+                function play() {
+                    analyser.getByteFrequencyData(data);
+
+                    // get fullest bin
+                    var idx = 0;
+                    for (var j=0; j < analyser.frequencyBinCount; j++) {
+                        if (data[j] > data[idx]) {
+                            idx = j;
+                        }
+                    }
+
+                    var frequency = idx * ctx.sampleRate / analyser.fftSize;
+                    console.log(frequency);
+                    osc.frequency.value = frequency;
+                }
+
+                play();
+            }
+    }
+
     function startCompass() {
         if (isIOS) {
             DeviceOrientationEvent.requestPermission()
@@ -176,6 +216,7 @@
          // Request permission for iOS 13+ devices
         init();
         startCompass();
+        audioTracker();
     }
 
     function result(e) {
