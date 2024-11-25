@@ -52,6 +52,8 @@
     let source;
     let stream;
 
+    let data = null;
+
     function encodeXY(x,y) {
         return y*maxWidth + x;
     }
@@ -192,7 +194,9 @@
     }
 
     function audioTracker() {
-        var data = new Uint8Array(analyser.frequencyBinCount);
+        if (data == null) {
+            data = new Uint8Array(analyser.frequencyBinCount);
+        }
 
         function play() {
             analyser.getByteFrequencyData(data);
