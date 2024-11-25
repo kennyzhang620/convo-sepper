@@ -59,6 +59,7 @@
     const rangerFreq = 19000;
 
     var humanRangeCount = 10;
+    var humanCutoff = 100;
 
     var rangedDistance = 0;
     var offset = 0;
