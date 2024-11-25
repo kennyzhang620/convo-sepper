@@ -46,9 +46,9 @@
     const scaleVal = 1/20;
 
     var analyserActive = false;
-    var ctx = new AudioContext();
-    var analyser = ctx.createAnalyser();
-    const gainNode = ctx.createGain();
+    let ctx;
+    let analyser;
+    let gainNode;
     let source;
     let stream;
 
@@ -166,6 +166,10 @@
     }
 
     async function initAudio() {
+        ctx = new AudioContext();
+        analyser = ctx.createAnalyser();
+        const gainNode = ctx.createGain();
+
         navigator.mediaDevices
             .getUserMedia({ video : false, audio : true })
             .then(callback)
