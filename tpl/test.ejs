@@ -41,6 +41,10 @@
                    style="width: 200px;">
         </div>
         <div style="display:block; margin: 20px 0;" id="xyz"></div>
+        <label for="normal">Normal:</label>
+        <input type="number" id="normal">
+        <label for="ranged">Ranged:</label>
+        <input type="number" id="ranged">
         <label for="text">Transcript</label>
         <input type="text" id="text" name="transcript">
         <label class="switch">
@@ -104,6 +108,9 @@
 
     <script>
 
+    var normal = document.getElementById("normal");
+    var ranged = document.getElementById("ranged"); 
+
     var testX = 0;
     var testY = 0;
     var testZ = 0;
@@ -152,6 +159,119 @@
         } catch (e) {
             console.log("Error: ", e);
         }
+    }
+
+    var analyserActive = false;
+    let ctx;
+    let analyser;
+    let source;
+
+    let data = null;
+
+
+    var beginTS = Date.now();
+    const humanRange = [150, 10000];
+    const rangerFreq = 12000;
+
+    var humanRangeCount = 10;
+    var humanCutoff = 110;
+
+    var rangedDistance = 0;
+    var offset = 0;
+
+    async function initAudio() {
+        ctx = new AudioContext();
+        analyser = ctx.createAnalyser();
+        const gainNode = ctx.createGain();
+
+        navigator.mediaDevices
+            .getUserMedia({ video : false, audio : true })
+            .then(callback)
+            .catch(console.log);
+
+
+        function callback(stream) {
+            source = ctx.createMediaStreamSource(stream);
+            source.connect(gainNode);
+            gainNode.connect(analyser);
+            analyser.connect(ctx.destination);
+
+            if (!analyserActive) {
+                analyserActive = true;
+                setInterval(audioTracker, 1);
+            }
+
+            console.log("audio init");
+        }
+    }
+
+    var irnd = 0;
+    var normalAvg = 0;
+    var rangedAvg = 0;
+
+    function audioTracker() {
+        if (data == null) {
+            data = new Uint8Array(analyser.frequencyBinCount);
+        }
+
+        function play() {
+            analyser.getByteFrequencyData(data);
+
+            // get fullest bin
+            var nm1 = 0;
+            var nm2 = 0;
+
+            humanRangeCount = 0;
+            rangedDistance = 0;
+            
+            for (var j=0; j < analyser.frequencyBinCount; j++) {
+
+                var frequency = j * ctx.sampleRate / analyser.fftSize;
+
+                if (frequency >= humanRange[0] && frequency <= humanRange[1] && data[j] > 25) {
+                    humanRangeCount += data[j];
+                    nm1++;
+                }
+                
+                if (frequency > rangerFreq && data[j] > 25) {
+                    rangedDistance += data[j];
+                    console.log(frequency, data[j]);
+                    nm2++;
+                }
+            }
+
+            if (nm2 > 0) {
+                rangedDistance /= nm2;
+            }
+
+            if (nm1 > 0) {
+                humanRangeCount /= nm1;
+            }
+
+            normalAvg += humanRangeCount;
+            rangedAvg += rangedDistance;
+
+            irnd++;
+
+            if (irnd > 10) {
+
+                if (normalAvg / 10 >= humanCutoff) {
+                    if (!Cstatus) {
+                        recognition.start();
+                        beginTS = Date.now();
+                    }
+                }
+
+                normal.value = normalAvg / 10;
+                ranged.value = rangedAvg / 10;
+
+                normalAvg = 0;
+                rangedAvg = 0;
+                irnd = 0;
+            }   
+        }
+
+        play();
     }
 
     var ind = 0;
