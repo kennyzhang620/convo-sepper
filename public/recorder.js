@@ -203,6 +203,9 @@
     }
 
     var irnd = 0;
+    var normalAvg = 0;
+    var rangedAvg = 0;
+
     function audioTracker() {
         if (data == null) {
             data = new Uint8Array(analyser.frequencyBinCount);
@@ -242,14 +245,17 @@
                 humanRangeCount /= nm1;
             }
 
-            normal.value += humanRangeCount;
-            ranged.value += rangedDistance;
+            normalAvg += humanRangeCount;
+            rangedAvg += rangedDistance;
 
             irnd++;
 
             if (irnd > 10) {
-                normal.value /= 10;
-                ranged.value /= 10;
+                normal.value = normalAvg / 10;
+                ranged.value = rangedAvg / 10;
+
+                normalAvg = 0;
+                rangedAvg = 0;
                 irnd = 0;
             }   
         }
