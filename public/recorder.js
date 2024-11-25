@@ -206,7 +206,6 @@
 
             var frequency = idx * ctx.sampleRate / analyser.fftSize;
             console.log(frequency);
-            osc.frequency.value = frequency;
         }
 
         play();
