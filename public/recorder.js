@@ -187,6 +187,8 @@
                 analyserActive = true;
                 setInterval(audioTracker, 1);
             }
+
+            console.log("audio init");
         }
     }
 
