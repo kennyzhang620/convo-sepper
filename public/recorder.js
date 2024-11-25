@@ -46,6 +46,11 @@
     const scaleVal = 1/20;
 
     var analyserActive = false;
+    var ctx = new AudioContext();
+    var analyser = ctx.createAnalyser();
+    const gainNode = ctx.createGain();
+    let source;
+    let stream;
 
     function encodeXY(x,y) {
         return y*maxWidth + x;
@@ -165,10 +170,6 @@
     }
 
     function initAudio() {
-        var ctx = new AudioContext();
-        var analyser = ctx.createAnalyser();
-        const gainNode = ctx.createGain()
-
         navigator.getUserMedia = navigator.getUserMedia
                                    || navigator.webkitGetUserMedia
                                    || navigator.mozGetUserMedia;
@@ -177,8 +178,9 @@
 
 
         function callback(stream) {
-            var mic = ctx.createMediaStreamSource(stream);
-            mic.connect(gainNode);
+            source = ctx.createMediaStreamSource(stream);
+            source.connect(gainNode);
+            gainNode.connect(analyser);
             analyser.connect(ctx.destination);
 
             if (!analyserActive) {
