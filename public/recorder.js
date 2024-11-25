@@ -45,6 +45,8 @@
 
     const scaleVal = 1/20;
 
+    var analyserActive = false;
+
     function encodeXY(x,y) {
         return y*maxWidth + x;
     }
@@ -159,9 +161,14 @@
         if (!isIOS) {
             window.addEventListener("deviceorientationabsolute", handler_compass, true);
         }
+        initAudio();
     }
 
-    function audioTracker() {
+    function initAudio() {
+        var ctx = new AudioContext();
+        var analyser = ctx.createAnalyser();
+        const gainNode = ctx.createGain()
+
         navigator.getUserMedia = navigator.getUserMedia
                                    || navigator.webkitGetUserMedia
                                    || navigator.mozGetUserMedia;
@@ -169,36 +176,38 @@
             navigator.getUserMedia({ video : false, audio : true }, callback, console.log);
 
 
-            function callback(stream) {
-                var ctx = new AudioContext();
-                var mic = ctx.createMediaStreamSource(stream);
-                var analyser = ctx.createAnalyser();
-                var osc = ctx.createOscillator();
+        function callback(stream) {
+            var mic = ctx.createMediaStreamSource(stream);
+            mic.connect(gainNode);
+            analyser.connect(ctx.destination);
 
-                mic.connect(analyser); 
-                osc.connect(ctx.destination);
-                osc.start(0);
-
-                var data = new Uint8Array(analyser.frequencyBinCount);
-
-                function play() {
-                    analyser.getByteFrequencyData(data);
-
-                    // get fullest bin
-                    var idx = 0;
-                    for (var j=0; j < analyser.frequencyBinCount; j++) {
-                        if (data[j] > data[idx]) {
-                            idx = j;
-                        }
-                    }
-
-                    var frequency = idx * ctx.sampleRate / analyser.fftSize;
-                    console.log(frequency);
-                    osc.frequency.value = frequency;
-                }
-
-                play();
+            if (!analyserActive) {
+                analyserActive = true;
+                setInterval(audioTracker, 1);
             }
+        }
+    }
+
+    function audioTracker() {
+        var data = new Uint8Array(analyser.frequencyBinCount);
+
+        function play() {
+            analyser.getByteFrequencyData(data);
+
+            // get fullest bin
+            var idx = 0;
+            for (var j=0; j < analyser.frequencyBinCount; j++) {
+                if (data[j] > data[idx]) {
+                    idx = j;
+                }
+            }
+
+            var frequency = idx * ctx.sampleRate / analyser.fftSize;
+            console.log(frequency);
+            osc.frequency.value = frequency;
+        }
+
+        play();
     }
 
     function startCompass() {
