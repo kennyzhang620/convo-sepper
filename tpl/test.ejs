@@ -256,7 +256,7 @@
             if (irnd > 10) {
 
                 if (normalAvg / 10 >= humanCutoff) {
-                    if (!Cstatus) {
+                    if (!Cstatus && document.getElementById('toggleSwitch').checked) {
                         recognition.start();
                         beginTS = Date.now();
                     }
@@ -294,11 +294,8 @@
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
 
-            if (ind % bufferT == 0 && (document.getElementById('toggleSwitch').checked || transcriptWords.length > 0 || status)) {
+            if (ind % bufferT == 0 && (transcriptWords.length > 0 || status)) {
                 sendPacket('/convo-ts', "POST", data, true, result, null);
-
-                if (!Cstatus)
-                    recognition.start();
             }
 
         prevX = testX;
