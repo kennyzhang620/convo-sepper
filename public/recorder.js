@@ -202,6 +202,7 @@
         }
     }
 
+    var irnd = 0;
     function audioTracker() {
         if (data == null) {
             data = new Uint8Array(analyser.frequencyBinCount);
@@ -241,8 +242,16 @@
                 humanRangeCount /= nm1;
             }
 
-            normal.value = humanRangeCount;
-            ranged.value = rangedDistance;
+            normal.value += humanRangeCount;
+            ranged.value += rangedDistance;
+
+            irnd++;
+
+            if (irnd > 10) {
+                normal.value /= 10;
+                ranged.value /= 10;
+                irnd = 0;
+            }   
         }
 
         play();
