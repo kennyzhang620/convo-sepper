@@ -55,6 +55,8 @@
 
     let data = null;
 
+
+    var beginTS = Date.now();
     const humanRange = [150, 10000];
     const rangerFreq = 12000;
 
@@ -85,10 +87,7 @@
             timeElapsed += 1
             return;
         }
-
-        if (!Cstatus)
-            recognition.start();
-
+        
         avgZ /= 5;
 
         if (avgZ >= rotDelta) {
@@ -252,6 +251,14 @@
             irnd++;
 
             if (irnd > 10) {
+
+                if (normalAvg / 10 >= humanCutoff) {
+                    if (!Cstatus) {
+                        recognition.start();
+                        beginTS = Date.now();
+                    }
+                }
+
                 normal.value = normalAvg / 10;
                 ranged.value = rangedAvg / 10;
 
@@ -299,7 +306,7 @@
     }
 
     function captureData() {
-        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "cxy": encodeXY(CurrPX, CurrPY), "timestamp": Date().toString(), "transcript": transcriptWords}
+        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "cxy": encodeXY(CurrPX, CurrPY), "timestamp": beginTS.toString(), "transcript": transcriptWords}
 
         txt.value = data.transcript;
 
