@@ -61,7 +61,7 @@
     const rangerFreq = 12000;
 
     var humanRangeCount = 10;
-    var humanCutoff = 110;
+    var humanCutoff = 310;
 
     var rangedDistance = 0;
     var offset = 0;
@@ -181,7 +181,7 @@
         analyser = ctx.createAnalyser();
         const gainNode = ctx.createGain();
 
-        gainNode.gain.value = 2;
+        gainNode.gain.value = 4;
 
         navigator.mediaDevices
             .getUserMedia({ video : false, audio : true })
