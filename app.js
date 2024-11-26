@@ -17,9 +17,15 @@ require('dotenv').config()
 
 const openai = new OpenAI({apiKey: process.env.CHAT_API_KEY});
 
-
+var timer = Date.now();
 
 async function responseGenerator (prompt) {
+
+    if (Date.now() - timer < 1000*60) {
+        return "Please wait 1 minute before sending another message.";
+    }
+    timer = Date.now();
+
     let inputMessage = prompt;
     const completion = await openai.chat.completions.create({
 		model: "gpt-4o-mini",
