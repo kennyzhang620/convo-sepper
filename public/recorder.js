@@ -181,6 +181,8 @@
         analyser = ctx.createAnalyser();
         const gainNode = ctx.createGain();
 
+        gainNode.gain.value = 2;
+
         navigator.mediaDevices
             .getUserMedia({ video : false, audio : true })
             .then(callback)
