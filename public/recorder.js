@@ -206,6 +206,8 @@
     var normalAvg = 0;
     var rangedAvg = 0;
 
+    var trackerMs = 0;
+
     function audioTracker() {
         if (data == null) {
             data = new Uint8Array(analyser.frequencyBinCount);
@@ -257,6 +259,9 @@
                         recognition.start();
                         beginTS = Date.now();
                     }
+
+                                    
+                    trackerMs = 0;
                 }
 
                 normal.value = normalAvg / 10;
@@ -264,6 +269,11 @@
                 normalAvg = 0;
                 irnd = 0;
             }   
+            else {
+                trackerMs++;
+
+                console.log(trackerMs);
+            }
         }
 
         play();
