@@ -191,7 +191,7 @@
             source = ctx.createMediaStreamSource(stream);
             source.connect(gainNode);
             gainNode.connect(analyser);
-            analyser.connect(ctx.destination);
+            //analyser.connect(ctx.destination);
 
             if (!analyserActive) {
                 analyserActive = true;
