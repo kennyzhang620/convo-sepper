@@ -266,6 +266,12 @@
                 rangedAvg = 0;
                 irnd = 0;
             }   
+
+            if (irnd % 3 == 0 && irnd != 0) {
+
+                ranged.value = rangedAvg / 3;
+                rangedAvg = 0;
+            } 
         }
 
         play();
