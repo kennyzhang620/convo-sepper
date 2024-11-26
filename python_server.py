@@ -55,7 +55,10 @@ def transcripts(data, clusters):
   
    return convos;
 
-def advice(data):
+def advice(data, convo):
+   for index, row in data.iterrows():
+      if row['convo'] == convo:
+         print(row['transcript'])
    return data.sort_values(by=['timestamp']).drop_duplicates(subset='transcript', keep="last")
 
 while (True):
@@ -72,7 +75,9 @@ while (True):
       c = cluster(data, 1);
       print(c)
     
-      ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo']].tail(20);
+      ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(80);
+
+      advice(ts, 0)
     
       ts.to_csv('conversations.csv', index=False)
     except Exception as e:
