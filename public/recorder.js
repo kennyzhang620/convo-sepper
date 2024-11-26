@@ -231,7 +231,10 @@
                 }
                 
                 if (frequency > rangerFreq && data[j] > 0) {
-                    rangedDistance += data[j];
+                    if (nm2 == 0)
+                        rangedDistance = data[j];
+                    else if (rangedDistance < data[j])
+                        rangedDistance = data[j];
                     console.log(frequency, data[j]);
                     nm2++;
                 }
