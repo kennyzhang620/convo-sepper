@@ -308,7 +308,7 @@
     function send() {
         if (document.getElementById('toggleSwitch').checked) {
             if (Cstatus) {
-                recognition.stop();
+                document.getElementById('text').value = transcriptWords;
             }
 
             return;
