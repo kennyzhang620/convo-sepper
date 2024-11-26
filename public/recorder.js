@@ -246,10 +246,11 @@
             }
 
             normalAvg += humanRangeCount;
-            rangedAvg += rangedDistance;
+            ranged.value = rangedDistance;
 
             irnd++;
 
+            
             if (irnd > 10) {
 
                 if (normalAvg / 10 >= humanCutoff) {
@@ -260,18 +261,10 @@
                 }
 
                 normal.value = normalAvg / 10;
-                ranged.value = rangedAvg / 10;
 
                 normalAvg = 0;
-                rangedAvg = 0;
                 irnd = 0;
             }   
-
-            if (irnd % 3 == 0 && irnd != 0) {
-
-                ranged.value = rangedAvg / 3;
-                rangedAvg = 0;
-            } 
         }
 
         play();
