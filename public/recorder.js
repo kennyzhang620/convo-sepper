@@ -239,11 +239,7 @@
                     nm2++;
                 }
             }
-
-            if (nm2 > 0) {
-                rangedDistance /= nm2;
-            }
-
+            
             if (nm1 > 0) {
                 humanRangeCount /= nm1;
             }
