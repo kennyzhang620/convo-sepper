@@ -55,9 +55,21 @@ def transcripts(data, clusters):
   
    return convos;
 
-def advice(data, convo):
-   datai = data.loc[data['convo'] == convo].sort_values(by=['timestamp'])
-   return datai;
+
+def inference(transcript):
+   url = "https://translate-server.herokuapp.com/chatrecvm"
+   payload = {
+      "prompt": transcript
+   }
+   response = requests.post(url, json=payload)
+   return response.json()
+
+def advice(data):
+   results = pd.DataFrame()
+   for convo in data['convo'].unique():   
+      datai = data.loc[data['convo'] == convo].sort_values(by=['timestamp'])
+      results = pd.concat([results, pd.DataFrame({'inference': [inference(str(datai['transcript']))]})])
+   return results;
 
 while (True):
     url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids'
