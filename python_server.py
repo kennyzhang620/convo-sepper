@@ -56,10 +56,8 @@ def transcripts(data, clusters):
    return convos;
 
 def advice(data, convo):
-   for index, row in data.iterrows():
-      if row['convo'] == convo:
-         print(row['transcript'])
-   return data.sort_values(by=['timestamp']).drop_duplicates(subset='transcript', keep="last")
+   datai = data.loc[data['convo'] == convo].sort_values(by=['timestamp'])
+   return datai;
 
 while (True):
     url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids'
@@ -77,7 +75,7 @@ while (True):
     
       ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(80);
 
-      advice(ts, 0)
+      print(str(advice(ts, 1)))
     
       ts.to_csv('conversations.csv', index=False)
     except Exception as e:
