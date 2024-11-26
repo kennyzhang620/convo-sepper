@@ -210,6 +210,7 @@
 
     var trackerMs = 0;
 
+    var paused = false;
     function audioTracker() {
         if (data == null) {
             data = new Uint8Array(analyser.frequencyBinCount);
@@ -275,6 +276,13 @@
                 trackerMs++;
 
                 console.log(trackerMs);
+
+                if (trackerMs > 3500) {
+                    paused = true;
+                }   
+                else {
+                    paused = false;
+                }
             }
         }
 
@@ -316,7 +324,7 @@
     }
 
     function captureData() {
-        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "cxy": encodeXY(CurrPX, CurrPY), "timestamp": beginTS.toString(), "transcript": transcriptWords}
+        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "cxy": encodeXY(CurrPX, CurrPY), "timestamp": beginTS.toString(), "transcript": transcriptWords, "paused": paused}
 
         txt.value = data.transcript;
 
