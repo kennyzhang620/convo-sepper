@@ -309,7 +309,7 @@
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
 
-            if (ind % bufferT == 0 && (transcriptWords.length > 0 || status)) {
+            if ((transcriptWords.length > 0 || status)) {
                 sendPacket('/convo-ts', "POST", data, true, result, null);
             }
 
@@ -333,7 +333,7 @@
         
     }
     function start() {
-        handles[1] = setInterval(update, 1);
+        handles[1] = setInterval(update, 100);
         handles[2] = setInterval(send, 2000);
 
         initAudio();
