@@ -45,7 +45,7 @@
         <input type="number" id="normal">
         <label for="ranged">Ranged:</label>
         <input type="number" id="ranged">
-        <label for="text">Transcript</label>
+        <label for="text" id="textlabel">Transcript</label>
         <input type="text" id="text" name="transcript">
         <label class="switch">
             <input type="checkbox" id="toggleSwitch">
@@ -317,6 +317,7 @@
         prevY = testY;
         prevZ = testZ;
 
+        send();
         ind++;
     }
 
@@ -324,6 +325,10 @@
         if (document.getElementById('toggleSwitch').checked) {
             if (Cstatus) {
                 document.getElementById('text').value = transcriptWords;
+                document.getElementById('textlabel').innerHTML = "Transcript - Recording";
+            }
+            else {
+                document.getElementById('textlabel').innerHTML = "Transcript";
             }
 
             return;
@@ -334,7 +339,6 @@
     }
     function start() {
         handles[1] = setInterval(update, 100);
-        handles[2] = setInterval(send, 2000);
 
         initAudio();
     }

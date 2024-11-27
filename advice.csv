@@ -1,5 +1,3 @@
 convo-id,transcript,inference
-0,"   id                                          timestamp                      transcript  convo  paused
-0   0  Tue Nov 26 2024 16:15:48 GMT-0800 (Pacific Sta...  what time is such a weird name      0   False",Please wait 1 minute before sending another message.
-1,"   id                                          timestamp transcript  convo  paused
-1   1  Tue Nov 26 2024 16:19:08 GMT-0800 (Pacific Sta...    testing      1   False",Please wait 1 minute before sending another message.
+0,"   id                                          timestamp transcript  convo  paused
+8   0  Tue Nov 26 2024 17:09:38 GMT-0800 (Pacific Sta...                 0   False",Please wait 1 minute before sending another message.
