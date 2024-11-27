@@ -59,7 +59,7 @@ def transcripts(data, clusters):
 def inference(transcript):
    url = "https://translate-server.herokuapp.com/chatrecvm"
    payload = {
-      "prompt": transcript
+      "prompt": "Infer the topic of the following conversation: " + transcript
    }
    response = requests.post(url, json=payload)
    return response.json()
@@ -68,7 +68,7 @@ def advice(data):
    results = pd.DataFrame()
    for convo in data['convo'].unique():   
       datai = data.loc[data['convo'] == convo].sort_values(by=['timestamp'])
-      results = pd.concat([results, pd.DataFrame({'inference': [inference(str(datai['transcript']))]})])
+      results = pd.concat([results, pd.DataFrame({'convo-id': [convo], 'transcript': [str(datai)], 'inference': [inference(str(datai['transcript']))]})])
    return results;
 
 while (True):
@@ -87,7 +87,7 @@ while (True):
     
       ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(80);
 
-      print(str(advice(ts)))
+      advice(ts).to_csv('advice.csv', index=False)
     
       ts.to_csv('conversations.csv', index=False)
     except Exception as e:

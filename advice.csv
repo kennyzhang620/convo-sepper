@@ -1,0 +1,6 @@
+convo-id,transcript,inference
+0,"147             test
+148            1 234
+150                 
+152    testing 1 2 3
+Name: transcript, dtype: object",Please wait 1 minute before sending another message.

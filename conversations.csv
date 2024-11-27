@@ -1,7 +1,5 @@
 id,timestamp,transcript,convo,paused
-0,Tue Nov 26 2024 15:37:45 GMT-0800 (Pacific Standard Time),b,0,False
-0,Tue Nov 26 2024 15:39:44 GMT-0800 (Pacific Standard Time),,0,False
-0,Tue Nov 26 2024 15:40:01 GMT-0800 (Pacific Standard Time),     ,0,True
-0,Tue Nov 26 2024 15:40:03 GMT-0800 (Pacific Standard Time), ,0,True
-0,Tue Nov 26 2024 15:41:04 GMT-0800 (Pacific Standard Time),testing,0,False
-0,Tue Nov 26 2024 15:41:16 GMT-0800 (Pacific Standard Time),go to free testing,0,False
+0,Tue Nov 26 2024 16:02:00 GMT-0800 (Pacific Standard Time),test,0,False
+0,Tue Nov 26 2024 16:09:06 GMT-0800 (Pacific Standard Time),1 234,0,False
+0,Tue Nov 26 2024 16:09:18 GMT-0800 (Pacific Standard Time),,0,False
+0,Tue Nov 26 2024 16:10:11 GMT-0800 (Pacific Standard Time),testing 1 2 3,0,False
