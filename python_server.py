@@ -88,6 +88,8 @@ while (True):
       ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(80);
 
       advice(ts).to_csv('advice.csv', index=False)
+      
+      advice(ts).to_json('advice.json', index=False)
     
       ts.to_csv('conversations.csv', index=False)
     except Exception as e:
