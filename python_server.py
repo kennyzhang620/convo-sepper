@@ -1,3 +1,4 @@
+import hashlib
 import requests
 import numpy as np
 import pandas as pd
@@ -59,18 +60,27 @@ def transcripts(data, clusters):
 def inference(transcript):
    url = "https://translate-server.herokuapp.com/chatrecvm"
    payload = {
-      "prompt": "Infer the topic of the following conversation: " + transcript
+      "prompt": "Infer the topic of the following conversation (ignore numerical indicators): " + transcript
    }
    response = requests.post(url, json=payload)
    return response.json()
+
+def cat(data):
+   return data.to_string(index=False)
 
 def advice(data):
    results = pd.DataFrame()
    for convo in data['convo'].unique():   
       datai = data.loc[data['convo'] == convo].sort_values(by=['timestamp'])
-      results = pd.concat([results, pd.DataFrame({'convo-id': [convo], 'transcript': [str(datai)], 'inference': [inference(str(datai['transcript']))]})])
+      inf = inference(cat(datai['transcript']))
+      if 'Please wait 1 minute before sending another message.' not in inf:
+         print(inf)
+         results = pd.concat([results, pd.DataFrame({'convo-id': [convo], 'transcript': [cat(datai['transcript'])], 'inference': [inf]})])
    return results;
 
+from pandas.util import hash_pandas_object
+
+prevts = 0;
 while (True):
     url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids'
     url2 = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-logs'
@@ -86,10 +96,14 @@ while (True):
       print(c)
     
       ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(80);
+      if prevts != int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16):
+         prevts = int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16)
 
-      adv = advice(ts)
-      adv.to_csv('advice.csv', index=False)
-      adv.to_json('advice.json', index=False)
+         adv = advice(ts)
+
+         if not adv.empty:
+            adv.to_csv('advice.csv', index=False)
+            adv.to_json('advice.json', index=False)
     
       ts.to_csv('conversations.csv', index=False)
     except Exception as e:

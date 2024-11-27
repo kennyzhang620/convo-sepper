@@ -28,6 +28,18 @@
     <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
     
         <input type="number" id="id" name="id" style="display:block; margin: 20px 0;" value=<%= id %>>
+
+        <div id="map" style="width:512px; height:512px; border: 3px dotted black;">
+            <div class="map_points">
+                <div id="point" style="position: fixed;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: 10px;top: 10px;text-align: center;transform: rotate(0deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>1</div>
+                <div id="point" style="position: fixed;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: 10px;top: 10px;text-align: center;transform: rotate(0deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>1</div>
+            </div>
+            
+           </div>
+           <label for="Scale">Scale</label>
+           <input type="number" id="scale" value="50">
+
+
         <button onpointerdown="hold(0,1,0)" onpointerup="release(0,1,0)">Up</button>
         <div id="a" style="display:inline-block;">
             <button onpointerdown="hold(-1,0,0)" onpointerup="release(-1,0,0)">Left</button>
@@ -105,7 +117,7 @@
         </style>
         <button onpointerdown="recognition.start()">Record</button>
         <button onpointerdown="start()">Start</button>
-
+    <script src="/mapper.js"></script>
     <script>
 
     var normal = document.getElementById("normal");
@@ -317,7 +329,7 @@
         prevY = testY;
         prevZ = testZ;
 
-        send();
+        s
         ind++;
     }
 
