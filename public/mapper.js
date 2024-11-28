@@ -25,6 +25,9 @@ const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids";
 const map = getElementID("map_points");
 const scaler = document.getElementById('scale');
 
+var inactiveparticipants = new Set();
+var newInactiveParticipants = new Set();
+
 function loadPoints(e) {
 
     var dataArr = null;
@@ -38,15 +41,22 @@ function loadPoints(e) {
 
     if (!dataArr) return;
 
+    newInactiveParticipants.clear();
     clearElements(map);
     for (var i =0;i<dataArr.length;i++) {
         const point = dataArr[i];
 
      //   console.log(point)
-        if (point)
+        if (point) {
             appendElement(map, addPoint(point.px*scaler.value, point.py*scaler.value, point.theta, point.id))
+
+            if (point.paused) {
+                newInactiveParticipants.add(point.id);
+            }
+        }
     }
 
+    inactiveparticipants = new Set(newInactiveParticipants);
 }
 
 function map_loop() {

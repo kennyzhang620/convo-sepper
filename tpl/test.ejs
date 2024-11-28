@@ -300,7 +300,7 @@
             
             if (irnd > 10) {
 
-                if (normalAvg / 10 >= humanCutoff) {
+                if (normalAvg  >= humanCutoff) {
                     if (!Cstatus && document.getElementById('toggleSwitch').checked) {
                         recognition.start();
                         beginTS = Date.now();

@@ -94,7 +94,7 @@ def advice(data):
       ids = datai['id'].unique().tolist()
       inf = inference(cat(datai['transcript']))
       tip = tips(cat(datai['transcript']))
-      if 'Please wait 1 minute before sending another message.' not in inf:
+      if 'Please wait 1 minute before sending another message.' not in inf and 'Please wait 1 minute before sending another message.' not in tip:
          print(inf)
          results = pd.concat([results, pd.DataFrame({'convo_id': [convo], 'transcript': [cat(datai['transcript'])], 'inference': [inf], 'tips': [tip], 'ids': [ids]})])
    return results;
