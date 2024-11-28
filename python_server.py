@@ -90,11 +90,13 @@ def advice(data):
    results = pd.DataFrame()
    for convo in data['convo'].unique():   
       datai = data.loc[data['convo'] == convo].sort_values(by=['timestamp'])
+
+      ids = datai['id'].unique().tolist()
       inf = inference(cat(datai['transcript']))
       tip = tips(cat(datai['transcript']))
       if 'Please wait 1 minute before sending another message.' not in inf:
          print(inf)
-         results = pd.concat([results, pd.DataFrame({'convo_id': [convo], 'transcript': [cat(datai['transcript'])], 'inference': [inf], 'tips': [tip]})])
+         results = pd.concat([results, pd.DataFrame({'convo_id': [convo], 'transcript': [cat(datai['transcript'])], 'inference': [inf], 'tips': [tip], 'ids': [ids]})])
    return results;
 
 from pandas.util import hash_pandas_object
