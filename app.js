@@ -57,6 +57,8 @@ app.post('/chatrecvm', async (req, res) => {
 	res.json(resdata);
 });
 
+var convos_adv = [];
+
 app.post('/convo-ts-list', function(req,res) {
 
     if (req.body.convo_id != null) {
