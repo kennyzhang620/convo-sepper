@@ -24,6 +24,7 @@ var ud = 0;
 
 async function responseGenerator (prompt) {
 
+    console.log(ud);
     if (Date.now() - timer > 1000*60) {
         timer = Date.now();
         ud = 0;
