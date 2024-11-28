@@ -94,7 +94,7 @@ def advice(data):
       tip = tips(cat(datai['transcript']))
       if 'Please wait 1 minute before sending another message.' not in inf:
          print(inf)
-         results = pd.concat([results, pd.DataFrame({'convo-id': [convo], 'transcript': [cat(datai['transcript'])], 'inference': [inf], 'tips': [tip]})])
+         results = pd.concat([results, pd.DataFrame({'convo_id': [convo], 'transcript': [cat(datai['transcript'])], 'inference': [inf], 'tips': [tip]})])
    return results;
 
 from pandas.util import hash_pandas_object

@@ -120,18 +120,24 @@ app.post('/convo-ts', function(req, res) {
 
 app.post('/convo-ts-list', function(req,res) {
 
-    if (req.body.convo_id != null) {
-        if (req.body.convo_id == convos_adv.length) {
-            convos_adv.push(req.body);
-        }
-        else {
-            if (req.body.convo_id < 0 || req.body.convo_id >= convos_adv.length || req.body.convo_id >= limit) {
-                return res.json("Invalid convo ID");
+    if (req.body != null) {
+        if (req.body.length != null) {
+            for (var i = 0; i < req.body.length; i++) {
+                if (req.body[i].convo_id == convos_adv.length) {
+                    convos_adv.push(req.body[i]);
+                }
+                else {
+                    if (req.body[i].convo_id < 0 || req.body[i].convo_id >= convos_adv.length || req.body[i].convo_id >= limit) {
+                        return res.json("Invalid convo ID");
+                    }   
+                    convos_adv[req.body[i].convo_id] = req.body[i];
+                }
             }   
-            convos_adv[req.body.convo_id] = req.body;
         }
+
+        return res.json({status: "ok", convo_length: convos_adv.length});
     }
-    return res.json({status: "ok", convo_id: req.body.convo_id});
+    return res.json({status: "failed"});
 });
 
 app.get('/convo-ts-list', function(req,res) {
