@@ -74,7 +74,7 @@ def tips(transcript):
    return response.json()
 
 def send_advice(data):
-   url = "https://translate-server.herokuapp.com/convo-ts-list"
+   url = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-list"
    import json
 
    print(data)
