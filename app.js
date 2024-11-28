@@ -57,6 +57,11 @@ app.post('/chatrecvm', async (req, res) => {
 	res.json(resdata);
 });
 
+app.post('/convo-ts-list', async (req, res) => {
+    console.log(req.body);
+    res.json(req.body);
+});
+
 app.get('/chattest', async (req, res) => {
     res.json(await responseGenerator("hello"));
 })
