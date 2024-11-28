@@ -57,9 +57,24 @@ app.post('/chatrecvm', async (req, res) => {
 	res.json(resdata);
 });
 
-app.post('/convo-ts-list', async (req, res) => {
-    console.log(req.body);
-    res.json(req.body);
+app.post('/convo-ts-list', function(req,res) {
+
+    if (req.body.convo_id != null) {
+        if (req.body.convo_id == convos_adv.length) {
+            convos_adv.push(req.body);
+        }
+        else {
+            if (req.body.convo_id < 0 || req.body.convo_id >= convos_adv.length || req.body.convo_id >= limit) {
+                return res.json("Invalid convo ID");
+            }   
+            convos_adv[req.body.convo_id] = req.body;
+        }
+    }
+    return res.json({status: "ok", convo_id: req.body.convo_id});
+});
+
+app.get('/convo-ts-list', function(req,res) {
+    return res.json(convos_adv);
 });
 
 app.get('/chattest', async (req, res) => {
