@@ -59,6 +59,7 @@
         <input type="number" id="ranged">
         <label for="text" id="textlabel">Transcript</label>
         <input type="text" id="text" name="transcript">
+        <button style="width: 10px; height: 10px;" onpointerdown="button = 1;">Send</button>
         <label class="switch">
             <input type="checkbox" id="toggleSwitch">
             <span class="slider round"></span>
@@ -174,6 +175,8 @@
     }
 
     var analyserActive = false;
+    var button = 0;
+    
     let ctx;
     let analyser;
     let source;
@@ -345,7 +348,11 @@
             return;
         }
 
-        transcriptWords = document.getElementById('text').value;
+        if (button == 1) {  
+            transcriptWords = document.getElementById('text').value;
+            document.getElementById('text').value = "";
+            button = 0;
+        }
         
     }
     function start() {
