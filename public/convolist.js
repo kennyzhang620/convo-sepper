@@ -1,3 +1,5 @@
+const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-list"
+
 function clearCells() {
 	var inner = document.getElementsByClassName("convo_container");
 
@@ -83,7 +85,7 @@ function loadConvo(e) {
 }
 
 function convo_loop() {
-    sendPacket(server, 'GET', '', true, loadConvo,  null, 3000)
+    sendPacket(convoserver, 'GET', '', true, loadConvo,  null, 3000)
 }
 
 setInterval(convo_loop, 500);
