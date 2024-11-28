@@ -74,13 +74,7 @@ function loadConvo(e) {
     if (!dataArr) return;
 
     clearCells();
-    for (var i =0;i<dataArr.length;i++) {
-        const point = dataArr[i];
-
-     //   console.log(point)
-        if (point)
-            generateCell(point, 10)
-    }
+    generateCell(dataArr, 10)
 
 }
 
