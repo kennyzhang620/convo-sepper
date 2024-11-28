@@ -40,10 +40,12 @@ function generateCell(res, max_size) {
 			//console.log("res1: ", res[i].Project)
 			var filler = `<div id="filler" style="width: 100px; height: 100px;"></div>`;
 
-			var html = `<div class="img_header">
+			var html = `<div class="img_header" style='border: 1px solid black; border-radius: 10px;'>
 							<div class="text_content">
                                 <div id="title_header" style="padding:6px; width: 90%;">${res[i].inference}</div>
+                                <h3>Transcript</h3>
                                 ${generateConvoList(res[i].transcript.trim().split("\n"), max_size)}
+                                <h3>Tips</h3>
                                 ${generateConvoList(res[i].tips.trim().split("\n"), max_size)}
                             </div>
                         </div>`;
