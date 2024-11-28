@@ -20,14 +20,14 @@ const openai = new OpenAI({apiKey: process.env.CHAT_API_KEY});
 var timer = Date.now();
 const limit = 3;
 
-var ud = 0;
+var ud = 1;
 
 async function responseGenerator (prompt) {
 
     console.log(ud);
     if (Date.now() - timer > 1000*60) {
         timer = Date.now();
-        ud = 0;
+        ud = 1;
     }
 
     if (ud > limit) {
