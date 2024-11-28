@@ -18,53 +18,7 @@
                 width: 100px;
                 height: 100px;
             }
-        </style>
-    </head>
-</head>
-<script src="/recognizer.js"></script>
-<script src="/math.js"></script>
-<body>
-    <label for="channel">Channel ID (10-100):</label>
-    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
-    
-        <input type="number" id="id" name="id" style="display:block; margin: 20px 0;" value=<%= id %>>
 
-        <div id="map" style="width:512px; height:512px; border: 3px dotted black;">
-            <div class="map_points">
-                <div id="point" style="position: fixed;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: 10px;top: 10px;text-align: center;transform: rotate(0deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>1</div>
-                <div id="point" style="position: fixed;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: 10px;top: 10px;text-align: center;transform: rotate(0deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>1</div>
-            </div>
-            
-           </div>
-           <label for="Scale">Scale</label>
-           <input type="number" id="scale" value="50">
-
-
-        <button onpointerdown="hold(0,1,0)" onpointerup="release(0,1,0)">Up</button>
-        <div id="a" style="display:inline-block;">
-            <button onpointerdown="hold(-1,0,0)" onpointerup="release(-1,0,0)">Left</button>
-            <button onpointerdown="hold(1,0,0)" onpointerup="release(1,0,0)">Right</button>
-        </div>
-        <button onpointerdown="hold(0,-1,0)" onpointerup="release(0,-1,0)">Down</button>
-        <div id="angle" style="display:block; margin: 20px 0;">0°</div>
-        <div style="display:block; margin: 20px 0;">
-            <input type="range" id="zslider" name="zslider" min="-360" max="360" value="0" 
-                   oninput="move(0,0,parseInt(this.value) - testZ)"
-                   style="width: 200px;">
-        </div>
-        <div style="display:block; margin: 20px 0;" id="xyz"></div>
-        <label for="normal">Normal:</label>
-        <input type="number" id="normal">
-        <label for="ranged">Ranged:</label>
-        <input type="number" id="ranged">
-        <label for="text" id="textlabel">Transcript</label>
-        <input type="text" id="text" name="transcript">
-        <button style="width: 10px; height: 10px;" onpointerdown="button = 1;">Send</button>
-        <label class="switch">
-            <input type="checkbox" id="toggleSwitch">
-            <span class="slider round"></span>
-        </label>
-        <style>
             .switch {
                 position: relative;
                 display: inline-block;
@@ -115,9 +69,83 @@
             .slider.round:before {
                 border-radius: 50%;
             }
+
+
+            #title_header {
+                font-size: 20px;
+                font-weight: 700;
+            }
         </style>
+    </head>
+</head>
+<script src="/recognizer.js"></script>
+<script src="/math.js"></script>
+<body>
+    <label for="channel">Channel ID (10-100):</label>
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    
+        <input type="number" id="id" name="id" style="display:block; margin: 20px 0;" value=<%= id %>>
+
+        <div id="map" style="width:512px; height:512px; border: 3px dotted black;">
+            <div class="map_points">
+                <div id="point" style="position: fixed;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: 10px;top: 10px;text-align: center;transform: rotate(0deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>1</div>
+                <div id="point" style="position: fixed;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: 10px;top: 10px;text-align: center;transform: rotate(0deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>1</div>
+            </div>
+            
+           </div>
+           <label for="Scale">Scale</label>
+           <input type="number" id="scale" value="50">
+
+
+        <button onpointerdown="hold(0,1,0)" onpointerup="release(0,1,0)">Up</button>
+        <div id="a" style="display:inline-block;">
+            <button onpointerdown="hold(-1,0,0)" onpointerup="release(-1,0,0)">Left</button>
+            <button onpointerdown="hold(1,0,0)" onpointerup="release(1,0,0)">Right</button>
+        </div>
+        <button onpointerdown="hold(0,-1,0)" onpointerup="release(0,-1,0)">Down</button>
+        <div id="angle" style="display:block; margin: 20px 0;">0°</div>
+        <div style="display:block; margin: 20px 0;">
+            <input type="range" id="zslider" name="zslider" min="-360" max="360" value="0" 
+                   oninput="move(0,0,parseInt(this.value) - testZ)"
+                   style="width: 200px;">
+        </div>
+        <div style="display:block; margin: 20px 0;" id="xyz"></div>
+        <label for="normal">Normal:</label>
+        <input type="number" id="normal">
+        <label for="ranged">Ranged:</label>
+        <input type="number" id="ranged">
+        <label for="text" id="textlabel">Transcript</label>
+        <input type="text" id="text" name="transcript">
+        <button style="width: 10px; height: 10px;" onpointerdown="button = 1;">Send</button>
+        <label class="switch">
+            <input type="checkbox" id="toggleSwitch">
+            <span class="slider round"></span>
+        </label>
         <button onpointerdown="recognition.start()">Record</button>
         <button onpointerdown="start()">Start</button>
+
+<div id="conversations">
+    <h2>Conversations</h2>
+
+    <div class="convo_container">
+        <div class="text_content">
+            <div id="title_header" style="padding:6px; width: 90%;">Pathways to education: an international study to understand the educational experiences of refugee
+        children with dis/abilities</div>
+            <div id="organization_bdy" style="padding:6px; width: 90%;">SSHRC (PDG) - 2021</div>
+            <div id="organization_bdy" style="padding:6px; width: 90%;">Robert Williamson (PI) - Jordan</div>
+            <div id="organization_bdy" style="padding:6px; width: 90%;">Daniel Leitch (U of Wisconsin-Platteville); Frederic Bemak (George Mason); Susan Barber (SFU); Minami Masahiro (SFU);  (Co-PI) - Jordan</div>
+        </div>          
+
+        <div class="text_content">
+            <div id="title_header" style="padding:6px; width: 90%;">Pathways to education: an international study to understand the educational experiences of refugee
+            children with dis/abilities</div>
+            <div id="organization_bdy" style="padding:6px; width: 90%;">SSHRC (PDG) - 2021</div>
+            <div id="organization_bdy" style="padding:6px; width: 90%;">Robert Williamson (PI) - Jordan</div>
+            <div id="organization_bdy" style="padding:6px; width: 90%;">Daniel Leitch (U of Wisconsin-Platteville); Frederic Bemak (George Mason); Susan Barber (SFU); Minami Masahiro (SFU);  (Co-PI) - Jordan</div>
+        </div>          
+    </div>  
+    
+</div>
     <script src="/mapper.js"></script>
     <script>
 

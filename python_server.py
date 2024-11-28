@@ -60,7 +60,7 @@ def transcripts(data, clusters):
 def inference(transcript):
    url = "https://translate-server.herokuapp.com/chatrecvm"
    payload = {
-      "prompt": "Infer the topic of the following conversation (ignore numerical indicators): " + transcript
+      "prompt": "Infer the topic of the following conversation in 16 words or less (ignore numerical indicators): " + transcript
    }
    response = requests.post(url, json=payload)
    return response.json()
