@@ -118,7 +118,8 @@ app.post('/convo-ts', function(req, res) {
 });
 
 app.post('/convo-ts-list', function(req,res) {
-    return res.json(convologs);
+    console.log(req.body);
+    return res.json(req.body);
 });
 
 app.get('/convo-ts-logs', function(req,res) {

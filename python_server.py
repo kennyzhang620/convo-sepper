@@ -73,6 +73,16 @@ def tips(transcript):
    response = requests.post(url, json=payload)
    return response.json()
 
+def send_advice(data):
+   url = "https://translate-server.herokuapp.com/chatrecvm"
+   import json
+
+   payload = json.loads(data)
+   print(data)
+   
+   response = requests.post(url, json=payload)
+   return response.json()
+
 def cat(data):
    return data.to_string(index=False)
 
@@ -112,7 +122,7 @@ while (True):
 
          if not adv.empty:
             adv.to_csv('advice.csv', index=False)
-            adv.to_json('advice.json', index=False)
+            send_advice(adv.to_json(index=False, orient='records', lines=True))
     
       ts.to_csv('conversations.csv', index=False)
     except Exception as e:

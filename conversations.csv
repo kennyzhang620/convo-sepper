@@ -1,3 +1,4 @@
 id,timestamp,transcript,convo,paused
-0,Wed Nov 27 2024 17:03:32 GMT-0800 (Pacific Standard Time),nnn,0,False
-0,Wed Nov 27 2024 17:04:36 GMT-0800 (Pacific Standard Time),hello,0,False
+1,Wed Nov 27 2024 17:29:31 GMT-0800 (Pacific Standard Time),,0,False
+1,Wed Nov 27 2024 17:29:42 GMT-0800 (Pacific Standard Time),hi how are you,0,False
+0,Wed Nov 27 2024 17:29:56 GMT-0800 (Pacific Standard Time),"im doing good, how bout you",0,True
