@@ -65,6 +65,14 @@ def inference(transcript):
    response = requests.post(url, json=payload)
    return response.json()
 
+def tips(transcript):
+   url = "https://translate-server.herokuapp.com/chatrecvm"
+   payload = {
+      "prompt": "Provide tips to help the user engage in this conversation: " + transcript
+   }
+   response = requests.post(url, json=payload)
+   return response.json()
+
 def cat(data):
    return data.to_string(index=False)
 
@@ -73,9 +81,10 @@ def advice(data):
    for convo in data['convo'].unique():   
       datai = data.loc[data['convo'] == convo].sort_values(by=['timestamp'])
       inf = inference(cat(datai['transcript']))
+      tip = tips(cat(datai['transcript']))
       if 'Please wait 1 minute before sending another message.' not in inf:
          print(inf)
-         results = pd.concat([results, pd.DataFrame({'convo-id': [convo], 'transcript': [cat(datai['transcript'])], 'inference': [inf]})])
+         results = pd.concat([results, pd.DataFrame({'convo-id': [convo], 'transcript': [cat(datai['transcript'])], 'inference': [inf], 'tips': [tip]})])
    return results;
 
 from pandas.util import hash_pandas_object
