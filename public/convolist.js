@@ -43,8 +43,8 @@ function generateCell(res, max_size) {
 			var html = `<div class="img_header">
 							<div class="text_content">
                                 <div id="title_header" style="padding:6px; width: 90%;">${res[i].inference}</div>
-                                ${generateConvoList(res[i].transcript, max_size)}
-                                ${generateConvoList(res[i].tips, max_size)}
+                                ${generateConvoList(res[i].transcript.trim(), max_size)}
+                                ${generateConvoList(res[i].tips.trim(), max_size)}
                             </div>
                         </div>`;
             // console.log(html);
