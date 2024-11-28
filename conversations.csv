@@ -1,4 +1,3 @@
 id,timestamp,transcript,convo,paused
-1,Thu Nov 28 2024 13:03:57 GMT-0800 (Pacific Standard Time),,0,False
-1,Thu Nov 28 2024 13:04:02 GMT-0800 (Pacific Standard Time),hello!,0,False
-0,Thu Nov 28 2024 13:04:09 GMT-0800 (Pacific Standard Time),hi there!,0,False
+0,Thu Nov 28 2024 14:04:15 GMT-0800 (Pacific Standard Time),hello,0,False
+1,Thu Nov 28 2024 14:04:25 GMT-0800 (Pacific Standard Time),hi,0,False
