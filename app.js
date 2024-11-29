@@ -18,7 +18,7 @@ require('dotenv').config()
 const openai = new OpenAI({apiKey: process.env.CHAT_API_KEY});
 
 var timer = Date.now();
-const limit = 3;
+const limit = 30;
 
 var ud = 1;
 
