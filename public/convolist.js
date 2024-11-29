@@ -93,4 +93,4 @@ function convo_loop() {
     sendPacket(convoserver, 'GET', '', true, loadConvo,  null, 3000)
 }
 
-setInterval(convo_loop, 500);
+setInterval(convo_loop, 100);
