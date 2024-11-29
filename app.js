@@ -159,6 +159,7 @@ app.get('/convo-ts-ids', function(req,res) {
 app.get('/convo-ts-logs-reset', function(req,res) {
     convologs = [];
     channels = []
+    convos_adv = []
     return res.send("Cleared.");
 });
 
