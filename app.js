@@ -122,7 +122,7 @@ app.post('/convo-ts', function(req, res) {
 
 });
 
-app.post('/convo-ts-list', function(req,res) {
+app.post('/convo-ts-list', async function(req,res) {
 
     if (req.body != null) {
         if (req.body.length != null) {
