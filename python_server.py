@@ -7,13 +7,10 @@ import pyaudio
 import math
 import json
 import os
-p = pyaudio.PyAudio()
-stream = p.open(format=pyaudio.paFloat32,
-                channels=1,
-                rate=22100,
-                frames_per_buffer=1024,
-                output=True,
-                )
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 base = 65535
 fformations = set()
