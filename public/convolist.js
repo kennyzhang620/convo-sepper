@@ -36,6 +36,16 @@ function checkPaused(ids) {
     return false;
 }
 
+function loadCell(id) {
+    var cell = document.getElementById(`ts${id}`);
+    
+    if (cell.style.display == "none")
+        cell.style = "display: block;";
+    else
+        cell.style = "display: none;";
+
+}
+
 function generateCell(res, max_size) {
 
 	var inner = document.getElementsByClassName("convo_container");
@@ -51,11 +61,13 @@ function generateCell(res, max_size) {
 
 			var html = `<div class="img_header" style='border: 1px solid black; border-radius: 10px; background-color: ${checkPaused(res[i].ids) ? "yellow" : "white"}'>
 							<div class="text_content">
-                            <div id="header"><div id="title_header" style="padding:6px; width: 90%;">${res[i].inference}</div><div id="back" style="background-color: black;width: 30px;height: 30px;display: flex;"></div></div>
+                            <div id="header"><div id="title_header" style="padding:6px; width: 90%;">${res[i].inference}</div><div id="back" style="background-color: black;width: 30px;height: 30px;display: flex; float: right; border-radius: 30px;" onclick='loadCell${i}'></div></div>
+                            <div id="ts${i}" style="display: none;">    
                                 <h3>Transcript</h3>
-                                ${generateConvoList(res[i].transcript.trim().split("\n"), max_size)}
-                                <h3>Tips</h3>
-                                ${generateConvoList(res[i].tips.trim().split("\n"), max_size)}
+                                    ${generateConvoList(res[i].transcript.trim().split("\n"), max_size)}
+                                    <h3>Tips</h3>
+                                    ${generateConvoList(res[i].tips.trim().split("\n"), max_size)}
+                                </div>
                             </div>
                         </div>`;
             // console.log(html);
