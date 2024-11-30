@@ -1,3 +1,39 @@
 id,timestamp,transcript,convo,paused
+<<<<<<< HEAD
+2,2024-11-30 14:55:18+00:00,"I think oranges are better than apples. They’re juicy, refreshing, and full of vitamin C.",0,False
+3,2024-11-30 14:55:21+00:00,"Apples are more versatile though. You can eat them fresh, bake them, or even turn them into cider.",0,False
+2,2024-11-30 14:55:24+00:00,"But oranges give you that instant burst of hydration. Plus, they’re great for boosting your immune system.",0,False
+3,2024-11-30 14:55:27+00:00,"Apples have fiber, which helps with digestion. An apple a day keeps the doctor away, right?",0,False
+2,2024-11-30 14:55:30+00:00,"True, but peeling an orange is half the fun! And the scent is so invigorating.",0,False
+3,2024-11-30 14:55:33+00:00,Apples are more convenient though—no peeling required. Just grab one and go.,0,False
+2,2024-11-30 14:55:36+00:00,Oranges have such a vibrant color and sweetness. They feel more like a treat.,0,False
+3,2024-11-30 14:55:39+00:00,"Apples come in so many varieties: sweet, tart, crisp. There’s an apple for every taste.",0,False
+2,2024-11-30 14:55:42+00:00,"Sure, but have you ever had fresh-squeezed orange juice? It’s unbeatable.",0,False
+3,2024-11-30 14:55:45+00:00,"Apple juice is just as delicious, and you can even make apple cider for something warm.",0,False
+2,2024-11-30 14:55:48+00:00,"Oranges are a great source of potassium too, which is essential for muscle function.",0,False
+3,2024-11-30 14:55:51+00:00,"Apples contain antioxidants like quercetin, which is good for heart health.",0,False
+2,2024-11-30 14:55:54+00:00,Oranges are better for fighting colds with all that vitamin C.,0,False
+3,2024-11-30 14:55:57+00:00,"But apples have pectin, which helps regulate blood sugar levels.",0,False
+3,2024-11-30 14:56:02+00:00,"Apples can do that too, especially with a crunch that’s so satisfying.",0,False
+2,2024-11-30 14:56:05+00:00,,0,False
+3,2024-11-30 14:56:08+00:00,"Apples, on the other hand, are perfect for fall and bring a sense of comfort.",0,False
+0,2024-11-30 14:55:18+00:00,"AI is transforming our world, but it brings serious ethical challenges too.",1,False
+1,2024-11-30 14:55:20+00:00,"Absolutely, privacy is a major concern. AI systems often collect vast amounts of personal data.",1,False
+0,2024-11-30 14:55:23+00:00,"Right, like how companies use AI to track user behavior, which can feel invasive.",1,False
+1,2024-11-30 14:55:26+00:00,"And there’s the issue of data security. AI can be a target for cyberattacks, risking sensitive information.",1,False
+0,2024-11-30 14:55:30+00:00,"Another big problem is bias in AI datasets. If the data is flawed, the AI’s decisions will be too.",1,False
+1,2024-11-30 14:55:33+00:00,"Exactly. AI can unintentionally reinforce societal biases, like in hiring algorithms or facial recognition.",1,False
+0,2024-11-30 14:55:36+00:00,Remember the case where facial recognition wrongly identified people of color as suspects?,1,False
+1,2024-11-30 14:55:39+00:00,"Yes, it highlights how AI can perpetuate discrimination if not carefully designed and monitored.",1,False
+0,2024-11-30 14:55:42+00:00,"Bias isn’t the only issue. Intellectual property rights are murky too, especially with AI-generated content.",1,False
+1,2024-11-30 14:55:45+00:00,"Like when AI creates art or music—who owns it? The developer, the user, or the AI itself?",1,False
+0,2024-11-30 14:55:48+00:00,Exactly. It’s an evolving legal area with no clear answers yet.,1,False
+1,2024-11-30 14:55:50+00:00,There’s also the ethical dilemma of job displacement. Automation is replacing human labor in many sectors.,1,False
+0,2024-11-30 14:55:53+00:00,"True, but it’s not just about losing jobs. It’s about creating new roles and reskilling the workforce too.",1,False
+1,2024-11-30 14:55:56+00:00,"Still, the transition can be painful for workers who lack access to new training opportunities.",1,False
+1,2024-11-30 14:56:02+00:00,Agreed. Then there’s the issue of human reliance on AI—what if we trust it too much?,1,False
+1,2024-11-30 14:56:08+00:00,"Yes, and the doctor trusted the AI over their own expertise, leading to a serious mistake.",1,False
+=======
 1,Sat Nov 30 2024 14:27:12 GMT-0800 (Pacific Standard Time),,0,False
 3,Sat Nov 30 2024 14:24:26 GMT-0800 (Pacific Standard Time),okay I think I got it to work,2,False
+>>>>>>> origin/f-formation
