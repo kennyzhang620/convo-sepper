@@ -1,6 +1,5 @@
 (function (window) {
     var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
-    var server = process.env.PRODUCTION_URL
     var client = new BinaryClient(`wss://${server}`);
     var id = document.getElementById("channel");
     var controls = document.getElementById("controls");

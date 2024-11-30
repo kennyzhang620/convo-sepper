@@ -178,7 +178,7 @@ prevts = 0;
 while (True):
     url1 = os.environ.get("PRODUCTION_URL") + "/convo-ts-ids"
     url2 = os.environ.get("PRODUCTION_URL") + "/convo-ts-logs"
-    r = requests.get(url, stream=False)
+    r = requests.get(url1, stream=False)
     r2 = requests.get(url2, stream=False)
 
     err = False;

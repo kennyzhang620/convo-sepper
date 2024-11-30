@@ -45,14 +45,14 @@ app.use(cookieParser());
 //app.engine('jade', require('jade').__express);
 app.use(express.static(__dirname + '/public'))
 
-// app.use(function (request, response, next) {
+app.use(function (request, response, next) {
 
-//     if (request.headers['x-forwarded-proto'] !== 'https') {
-//         return response.redirect("https://" + request.headers.host + request.url);
-//     }
+    if (request.headers['x-forwarded-proto'] !== 'https') {
+        return response.redirect("https://" + request.headers.host + request.url);
+    }
 
-//     next();
-// })
+    next();
+})
 
 app.get('/', function (req, res) {
     res.render('index', {id: channels.length});
