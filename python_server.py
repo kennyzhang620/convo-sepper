@@ -6,7 +6,7 @@ from io import StringIO
 import pyaudio
 import math
 import json
-
+import os
 p = pyaudio.PyAudio()
 stream = p.open(format=pyaudio.paFloat32,
                 channels=1,
@@ -140,8 +140,7 @@ def tips(transcript):
    return response.json()
 
 def send_advice(data):
-   # url = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-list"
-   url = "http://localhost:3000/convo-ts-list"
+   url = os.environ.get("PRODUCTION_URL") + "/convo-ts-list"
    import json
 
    print(data)
@@ -151,7 +150,7 @@ def send_advice(data):
    return response.json()
 
 def send_clusters(data):
-   url = "http://localhost:3000/convo-ts-clusters"
+   url = os.environ.get("PRODUCTION_URL") + "/convo-ts-clusters"
    import json
    # payload = json.loads(data)
    response = requests.post(url, json=data)
@@ -177,21 +176,16 @@ from pandas.util import hash_pandas_object
 
 prevts = 0;
 while (True):
-   #  url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids'
-   #  url2 = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-logs'
-    url = 'http://localhost:3000/convo-ts-ids'
-    url2 = 'http://localhost:3000/convo-ts-logs'
-    url3 = 'http://localhost:3000/convo-ts-clusters'
+    url1 = os.environ.get("PRODUCTION_URL") + "/convo-ts-ids"
+    url2 = os.environ.get("PRODUCTION_URL") + "/convo-ts-logs"
     r = requests.get(url, stream=False)
     r2 = requests.get(url2, stream=False)
-    r3 = requests.get(url3, stream=False)
 
     err = False;
 
     try:
       data = pd.read_json(StringIO(r.text));
       data2 = pd.read_json(StringIO(r2.text));
-      # data3 = pd.read_json(r3.text);
 
       c = cluster(data, 1);
       print(c)

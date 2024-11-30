@@ -3,9 +3,8 @@ const YOFFSET = 256;
 
 const f_formation_colors = ['red', 'blue', 'green', 'yellow', 'aliceblue'];
 
-//const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids";
-const server = "http://localhost:3000/convo-ts-ids";
-const clusterServer = "http://localhost:3000/convo-ts-clusters";
+const server = process.env.PRODUCTION_URL + "/convo-ts-ids";
+const clusterServer = process.env.PRODUCTION_URL + "/convo-ts-clusters";
 const map = getElementID("map_points");
 const scaler = document.getElementById('scale');
 
