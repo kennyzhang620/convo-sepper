@@ -51,7 +51,7 @@ function generateCell(res, max_size) {
 
 			var html = `<div class="img_header" style='border: 1px solid black; border-radius: 10px; background-color: ${checkPaused(res[i].ids) ? "yellow" : "white"}'>
 							<div class="text_content">
-                                <div id="title_header" style="padding:6px; width: 90%;">${res[i].inference}</div>
+                            <div id="header"><div id="title_header" style="padding:6px; width: 90%;">${res[i].inference}</div><div id="back" style="background-color: black;width: 30px;height: 30px;display: flex;"></div></div>
                                 <h3>Transcript</h3>
                                 ${generateConvoList(res[i].transcript.trim().split("\n"), max_size)}
                                 <h3>Tips</h3>
