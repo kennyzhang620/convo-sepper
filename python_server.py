@@ -195,10 +195,10 @@ while (True):
 
       c = cluster(data, 1);
       print(c)
-
       send_clusters(c)
 
       ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(80);
+
       if prevts != int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16):
          prevts = int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16)
 

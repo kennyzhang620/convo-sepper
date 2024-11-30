@@ -204,11 +204,17 @@ while (True):
    assert len(T2) == len(T3)
 
    for i in range(len(T2['conversation'])):
+      print(i)
       if T2['conversation'][i]['speaker'] == "A":
-         print(send_advice(make_data(0, 2.4, 1, 270, T2['conversation'][i]['message'], False)))
+         if i > 13 and i < 17:
+            print(send_advice(make_data(0, 2.4, 1, 270, "", True)))
             #print(send_advice(make_data(1, 2.0, 1, 90, "", False)))
-         print(send_advice(make_data(2, -2.4, -0.25, -270, T3['conversation'][i]['message'], False)))
-         #print(send_advice(make_data(3, -2.2, -0.1, -90, "", False)))
+            print(send_advice(make_data(2, -2.4, -0.25, -270, "", False)))
+         else:
+            print(send_advice(make_data(0, 2.4, 1, 270, T2['conversation'][i]['message'], False)))
+               #print(send_advice(make_data(1, 2.0, 1, 90, "", False)))
+            print(send_advice(make_data(2, -2.4, -0.25, -270, T3['conversation'][i]['message'], False)))
+            #print(send_advice(make_data(3, -2.2, -0.1, -90, "", False)))
       else:
          #  print(send_advice(make_data(0, 2.4, 1, 270, "", False)))
          print(send_advice(make_data(1, 2.0, 1, 90, T2['conversation'][i]['message'], False)))
@@ -216,6 +222,6 @@ while (True):
          print(send_advice(make_data(3, -2.2, -0.1, -90, T3['conversation'][i]['message'], False)))
 
       time.sleep(2)
-   time.sleep(1000)
+   time.sleep(30)
 
 

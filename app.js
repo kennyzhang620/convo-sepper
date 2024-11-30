@@ -145,7 +145,7 @@ app.post('/convo-ts-clusters', function(req, res) {
     return res.json({status: "ok", ts: req.body, timestamp: Date.now()})
 });
 
-app.post('/convo-ts-list', function(req,res) {
+app.post('/convo-ts-list', async function(req,res) {
 
     if (req.body != null) {
         if (req.body.length != null) {
@@ -185,8 +185,9 @@ app.get('/convo-ts-clusters', function(req,res) {
 
 app.get('/convo-ts-logs-reset', function(req,res) {
     convologs = [];
-    channels = [];
     clusters = [];
+    channels = []
+    convos_adv = []
     return res.send("Cleared.");
 });
 
