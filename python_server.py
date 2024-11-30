@@ -115,7 +115,7 @@ while (True):
       data2 = pd.read_json(StringIO(r2.text));
       c = cluster(data, 1);
 
-      ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(50);
+      ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(5git0);
       if prevts != int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16):
          prevts = int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16)
 
