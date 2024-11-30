@@ -6,6 +6,8 @@ const f_formation_colors = ['red', 'blue', 'green', 'yellow', 'aliceblue'];
 // TODO CHANGE THIS WHEN DEVELOPING LOCALLY
 const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-ids";
 const clusterServer = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-clusters";
+// const server = "http://localhost:3000" + "/convo-ts-ids";
+// const clusterServer = "http://localhost:3000" + "/convo-ts-clusters";
 const map = getElementID("map_points");
 const scaler = document.getElementById('scale');
 
