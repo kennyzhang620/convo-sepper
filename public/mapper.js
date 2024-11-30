@@ -1,15 +1,23 @@
 const XOFFSET = 256;
 const YOFFSET = 256;
 
+const f_formation_colors = ['red', 'blue', 'green', 'yellow', 'aliceblue'];
+
 //const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids";
 const server = "http://localhost:3000/convo-ts-ids";
 const clusterServer = "http://localhost:3000/convo-ts-clusters";
 const map = getElementID("map_points");
 const scaler = document.getElementById('scale');
 
+var allParticipants = new Set();
 var inactiveparticipants = new Set();
 var newInactiveParticipants = new Set();
 var fformations = new Set();
+
+function random_rgba() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+}
 
 function getElementID(strIn) {
     return document.getElementsByClassName(strIn)[0];
@@ -39,25 +47,11 @@ function loadFFormations(e) {
 
     if (!dataArr) return;
 
-    clearElements(fformations);
-
     // Draw F-formations
-    for (var i =0;i<dataArr.length;i++) {
+    for (var i = 0;i < dataArr.length;i++) {
         const fformation = dataArr[i];
-        console.log(fformation);
-        // const formationPoints = dataArr.filter(point => formation.includes(point.id));
-
-        for (ip in inactiveparticipants) {
-            const { centerX, centerY, radius } = calculateFFormationCenter(formationPoints);
-            appendElement(map, addFFormationCircle(centerX*scaler.value, centerY*scaler.value, radius*scaler.value, index));
-            
-            // Add to F-formation list
-            const listItem = document.createElement('div');
-            listItem.className = 'fformation-list-item';
-            listItem.textContent = `F-formation ${index + 1}: ${formation.join(', ')}`;
-            listItem.dataset.formationIndex = index;
-            listItem.addEventListener('click', selectFFormation);
-            fformationList.appendChild(listItem);
+        for (var f = 0;f<fformation.length ;f++) {
+            document.getElementById(`point-${fformation[f]}`).style.backgroundColor = f_formation_colors[i];
         }
     }
 }
