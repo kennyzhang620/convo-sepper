@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 from io import StringIO
 import pyaudio
+import math
+import json
 
 p = pyaudio.PyAudio()
 stream = p.open(format=pyaudio.paFloat32,
@@ -14,6 +16,37 @@ stream = p.open(format=pyaudio.paFloat32,
                 )
 
 base = 65535
+fformations = set()
+
+def calculate_angle_between_points(point1, point2):
+    """Calculate the angle between two points."""
+    return math.degrees(math.atan2(point2[1] - point1[1], point2[0] - point1[0]))
+
+def is_facing_each_other(points, max_angle_diff=45):
+    """
+    Check if participants are facing each other within a reasonable angle.
+    
+    :param points: List of (x, y, theta) tuples
+    :param max_angle_diff: Maximum acceptable angle difference
+    :return: Boolean indicating if participants are facing each other
+    """
+    if len(points) < 2:
+        return False
+    
+    # Calculate relative orientations
+    for i in range(len(points)):
+        for j in range(i+1, len(points)):
+            # Angle between points
+            angle_between = calculate_angle_between_points(points[i][:2], points[j][:2])
+            
+            # Check if participants are facing each other
+            angle_diff1 = abs(points[i][2] - (angle_between + 180) % 360)
+            angle_diff2 = abs(points[j][2] - angle_between)
+            
+            if angle_diff1 > max_angle_diff or angle_diff2 > max_angle_diff:
+                return False
+    
+    return True
 
 def error(exp, actual):
    if (exp == 0):
@@ -21,11 +54,43 @@ def error(exp, actual):
 
    return abs(exp - actual)
 
+def detect_fformations(data, max_distance=100, max_participants=4):
+    """
+    Detect F-formations in the data.
+    
+    :param data: DataFrame with participant positions
+    :param max_distance: Maximum distance between participants in an F-formation
+    :param max_participants: Maximum number of participants in an F-formation
+    :return: List of F-formations
+    """
+    fformations = []
+    
+    # Try different combinations of participants
+    for n in range(2, min(len(data), max_participants + 1)):
+        for combination in itertools.combinations(data.itertuples(), n):
+            # Extract x, y, theta for each participant
+            points = [(row.px, row.py, row.theta) for row in combination]
+            
+            # Check distance between all points
+            distances_ok = all(
+                math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2) <= max_distance 
+                for i, p1 in enumerate(points) 
+                for j, p2 in enumerate(points) if i != j
+            )
+            
+            # Check facing orientation
+            facing_ok = is_facing_each_other(points)
+            
+            if distances_ok and facing_ok:
+                fformations.append([row.id for row in combination])
+    
+    return fformations
+
 def cluster(df, err):
    pcxy = 0
    clusters = []
    ind = -1
-   for index, row in df.sort_values(by=['cxy']).iterrows():
+   for index, row in df.iterrows():
     #  print(pcxy, row['cxy'], error(pcxy,row['cxy']) )
       if ind == -1:
           clusters.append([row['id']])
@@ -56,13 +121,13 @@ def transcripts(data, clusters):
   
    return convos;
 
-
 def inference(transcript):
    url = "https://translate-server.herokuapp.com/chatrecvm"
    payload = {
       "prompt": "Infer the topic of the following conversation in 16 words or less (ignore numerical indicators): " + transcript
    }
-   response = requests.post(url, json=payload)
+   # response = requests.post(url, json=payload)
+   response = []
    return response.json()
 
 def tips(transcript):
@@ -70,17 +135,26 @@ def tips(transcript):
    payload = {
       "prompt": "Provide tips to help the user engage in this conversation: " + transcript
    }
-   response = requests.post(url, json=payload)
+   # response = requests.post(url, json=payload)
+   response = []
    return response.json()
 
 def send_advice(data):
-   url = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-list"
+   # url = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-list"
+   url = "http://localhost:3000/convo-ts-list"
    import json
 
    print(data)
    payload = json.loads(data)
    
    response = requests.post(url, json=payload)
+   return response.json()
+
+def send_clusters(data):
+   url = "http://localhost:3000/convo-ts-clusters"
+   import json
+   # payload = json.loads(data)
+   response = requests.post(url, json=data)
    return response.json()
 
 def cat(data):
@@ -103,19 +177,27 @@ from pandas.util import hash_pandas_object
 
 prevts = 0;
 while (True):
-    url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids'
-    url2 = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-logs'
+   #  url = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids'
+   #  url2 = 'https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-logs'
+    url = 'http://localhost:3000/convo-ts-ids'
+    url2 = 'http://localhost:3000/convo-ts-logs'
+    url3 = 'http://localhost:3000/convo-ts-clusters'
     r = requests.get(url, stream=False)
     r2 = requests.get(url2, stream=False)
-    err = False;
+    r3 = requests.get(url3, stream=False)
 
+    err = False;
 
     try:
       data = pd.read_json(StringIO(r.text));
       data2 = pd.read_json(StringIO(r2.text));
+      # data3 = pd.read_json(r3.text);
+
       c = cluster(data, 1);
       print(c)
-    
+
+      send_clusters(c)
+
       ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(80);
       if prevts != int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16):
          prevts = int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16)

@@ -1,5 +1,6 @@
 (function (window) {
     var server = "conv-count-poc-997c48b4c4cc.herokuapp.com"
+    //var server = "localhost:3000"
     var client = new BinaryClient(`wss://${server}`);
     var id = document.getElementById("channel");
     var controls = document.getElementById("controls");
@@ -240,7 +241,7 @@
                         rangedDistance = data[j];
                     else if (rangedDistance < data[j])
                         rangedDistance = data[j];
-                    console.log(frequency, data[j]);
+                    // console.log(frequency, data[j]);
                     nm2++;
                 }
             }
@@ -275,7 +276,7 @@
             else {
                 trackerMs++;
 
-                console.log(trackerMs);
+                // console.log(trackerMs);
 
                 if (trackerMs > 3500) {
                     paused = true;

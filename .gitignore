@@ -1,2 +1,7 @@
 node_modules
 *.wav
+*.DS_STORE
+*.vscode
+*.json
+*.csv
+/myenv

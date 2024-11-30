@@ -30,6 +30,7 @@ var outFile = '-demo.wav';
 var pipeM = null;
 var convos_adv = [];
 var channels = [];
+var clusters = [];
 
 var needle = -1;
 const limit = 500;
@@ -44,14 +45,14 @@ app.use(cookieParser());
 //app.engine('jade', require('jade').__express);
 app.use(express.static(__dirname + '/public'))
 
-app.use(function (request, response, next) {
+// app.use(function (request, response, next) {
 
-    if (request.headers['x-forwarded-proto'] !== 'https') {
-        return response.redirect("https://" + request.headers.host + request.url);
-    }
+//     if (request.headers['x-forwarded-proto'] !== 'https') {
+//         return response.redirect("https://" + request.headers.host + request.url);
+//     }
 
-    next();
-})
+//     next();
+// })
 
 app.get('/', function (req, res) {
     res.render('index', {id: channels.length});
@@ -117,9 +118,31 @@ app.post('/convo-ts', function(req, res) {
     }
 
     channels[req.body.id] = req.body;
-
     return res.json({status: "ok", ts: req.body.transcript, timestamp: Date.now()})
+});
 
+app.post('/convo-ts-clusters', function(req, res) {
+    console.log(req.body)
+    if (req == null || req.body == null)
+        return res.end();
+
+    if (clusters.length < req.body.id || req.body.id < 0) {
+        return res.end();
+    }
+
+    if (req.body.id > clusters.length || ind < 0) {
+        return res.json("Invalid cluster ID");
+    }
+
+    if (req.body.id == clusters.length) {
+        cluster.push(null)
+        console.log("TEST")
+    }
+
+    // clusters[req.body.id] = req.body;
+    clusters = req.body;
+
+    return res.json({status: "ok", ts: req.body, timestamp: Date.now()})
 });
 
 app.post('/convo-ts-list', function(req,res) {
@@ -156,9 +179,14 @@ app.get('/convo-ts-ids', function(req,res) {
     return res.json(channels);
 });
 
+app.get('/convo-ts-clusters', function(req,res) {
+    return res.json(clusters);
+});
+
 app.get('/convo-ts-logs-reset', function(req,res) {
     convologs = [];
-    channels = []
+    channels = [];
+    clusters = [];
     return res.send("Cleared.");
 });
 
