@@ -190,7 +190,7 @@
 
         try {
             const data = JSON.parse(e);
-            console.log(data);
+            // console.log(data);
 
         
             if (transcriptWords.length > 0 && data.ts == transcriptWords) {
@@ -356,9 +356,9 @@
                 sendPacket('/convo-ts', "POST", data, true, result, null);
             }
 
-        prevX = testX;
-        prevY = testY;
-        prevZ = testZ;
+            prevX = testX;
+            prevY = testY;
+            prevZ = testZ;
 
         send();
         ind++;

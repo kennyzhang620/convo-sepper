@@ -1,4 +1,5 @@
 id,timestamp,transcript,convo,paused
+<<<<<<< HEAD
 2,2024-11-30 14:55:18+00:00,"I think oranges are better than apples. They’re juicy, refreshing, and full of vitamin C.",0,False
 3,2024-11-30 14:55:21+00:00,"Apples are more versatile though. You can eat them fresh, bake them, or even turn them into cider.",0,False
 2,2024-11-30 14:55:24+00:00,"But oranges give you that instant burst of hydration. Plus, they’re great for boosting your immune system.",0,False
@@ -32,3 +33,7 @@ id,timestamp,transcript,convo,paused
 1,2024-11-30 14:55:56+00:00,"Still, the transition can be painful for workers who lack access to new training opportunities.",1,False
 1,2024-11-30 14:56:02+00:00,Agreed. Then there’s the issue of human reliance on AI—what if we trust it too much?,1,False
 1,2024-11-30 14:56:08+00:00,"Yes, and the doctor trusted the AI over their own expertise, leading to a serious mistake.",1,False
+=======
+1,Sat Nov 30 2024 14:27:12 GMT-0800 (Pacific Standard Time),,0,False
+3,Sat Nov 30 2024 14:24:26 GMT-0800 (Pacific Standard Time),okay I think I got it to work,2,False
+>>>>>>> origin/f-formation

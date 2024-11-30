@@ -30,6 +30,7 @@ var outFile = '-demo.wav';
 var pipeM = null;
 var convos_adv = [];
 var channels = [];
+var clusters = [];
 
 var needle = -1;
 const limit = 500;
@@ -117,9 +118,31 @@ app.post('/convo-ts', function(req, res) {
     }
 
     channels[req.body.id] = req.body;
-
     return res.json({status: "ok", ts: req.body.transcript, timestamp: Date.now()})
+});
 
+app.post('/convo-ts-clusters', function(req, res) {
+    console.log(req.body)
+    if (req == null || req.body == null)
+        return res.end();
+
+    if (clusters.length < req.body.id || req.body.id < 0) {
+        return res.end();
+    }
+
+    if (req.body.id > clusters.length || ind < 0) {
+        return res.json("Invalid cluster ID");
+    }
+
+    if (req.body.id == clusters.length) {
+        cluster.push(null)
+        console.log("TEST")
+    }
+
+    // clusters[req.body.id] = req.body;
+    clusters = req.body;
+
+    return res.json({status: "ok", ts: req.body, timestamp: Date.now()})
 });
 
 app.post('/convo-ts-list', async function(req,res) {
@@ -156,8 +179,13 @@ app.get('/convo-ts-ids', function(req,res) {
     return res.json(channels);
 });
 
+app.get('/convo-ts-clusters', function(req,res) {
+    return res.json(clusters);
+});
+
 app.get('/convo-ts-logs-reset', function(req,res) {
     convologs = [];
+    clusters = [];
     channels = []
     convos_adv = []
     return res.send("Cleared.");

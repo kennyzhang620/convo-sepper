@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-        <title>AudioScanner!</title>
-    </head>
-</head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <title>Crowd Scanner</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .f-formation {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 80%;
+        }
+
+        .f-formation .title {
+            font-weight: bold;
+        }
+
+        .f-formation .details {
+            margin: 5px 0;
+        }
+
+        #f-formation-list {
+            margin: 20px 0;
+            width: 100%;
+        }
+    </style>
+</head>
 <body>
-    <label for="channel">Channel ID (10-100):</label>
+    <label for="channel">Channel ID:</label>
     <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
     <div id="controller">
@@ -49,6 +73,13 @@
         </div>
     </div>
 
+    <!-- F-Formation Management -->
+    <h3>Detected F-Formations</h3>
+    <div id="f-formations-list" style="position: absolute; right: 0; top: 0; width: 200px;">
+        <div id="f-formations-container">
+            <!-- Dynamically populated list -->
+        </div>
+    </div>
     <script src="/js/socket.io-stream.js"></script>
     <script src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

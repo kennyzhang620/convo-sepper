@@ -1,5 +1,3 @@
-console.log("Test1");
-
     function downloadObjectAsJson(exportObj, exportName) {
         // https://stackoverflow.com/questions/19721439/download-json-object-as-a-file-from-browser
         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));

@@ -240,7 +240,7 @@
                         rangedDistance = data[j];
                     else if (rangedDistance < data[j])
                         rangedDistance = data[j];
-                    console.log(frequency, data[j]);
+                    // console.log(frequency, data[j]);
                     nm2++;
                 }
             }
@@ -275,7 +275,7 @@
             else {
                 trackerMs++;
 
-                console.log(trackerMs);
+                // console.log(trackerMs);
 
                 if (trackerMs > 3500) {
                     paused = true;
