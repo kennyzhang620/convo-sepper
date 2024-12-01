@@ -123,8 +123,7 @@ def inference(transcript):
    payload = {
       "prompt": "Infer the topic of the following conversation in 16 words or less (ignore numerical indicators): " + transcript
    }
-   # response = requests.post(url, json=payload)
-   response = []
+   response = requests.post(url, json=payload)
    return response.json()
 
 def tips(transcript):
@@ -132,8 +131,7 @@ def tips(transcript):
    payload = {
       "prompt": "Provide tips to help the user engage in this conversation: " + transcript
    }
-   # response = requests.post(url, json=payload)
-   response = []
+   response = requests.post(url, json=payload)
    return response.json()
 
 def send_advice(data):
