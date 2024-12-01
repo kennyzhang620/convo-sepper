@@ -61,7 +61,7 @@ function generateCell(res, max_size) {
 			//console.log("res1: ", res[i].Project)
 			var filler = `<div id="filler" style="width: 100px; height: 100px;"></div>`;
 
-			var html = `<div class="img_header" style='border: 1px solid black; border-radius: 10px; background-color: ${checkPaused(res[i].ids) ? "yellow" : "white"}'>
+			var html = `<div class="img_header" style='border: 1px solid black; border-radius: 10px; background-color: ${checkPaused(res[i].ids) ? "white" : document.getElementById(`point-${fformation[f]}`).style.backgroundColor}'>
 							<div class="text_content">
                             <div id="header"><div id="title_header" style="padding:6px; width: 90%;">${res[i].inference}</div><div id="back" style="background-color: black;width: 30px;height: 30px;display: flex; float: right; border-radius: 30px; position:relative; bottom: 8vw;" onclick='loadCell(${i})'></div></div>
                             <div id="ts${i}" style="display: none;">    
