@@ -38,6 +38,8 @@ function calculateFFormationCenter(points) {
     return { centerX, centerY, radius };
 }
 
+var fform_colors = new Map();
+
 function loadFFormations(e) {
     var dataArr = null;
     try {
@@ -53,7 +55,8 @@ function loadFFormations(e) {
     for (var i = 0;i < dataArr.length;i++) {
         const fformation = dataArr[i];
         for (var f = 0;f<fformation.length ;f++) {
-            document.getElementById(`point-${fformation[f]}`).style.backgroundColor = f_formation_colors[i];
+        //    document.getElementById(`point-${fformation[f]}`).style.backgroundColor = f_formation_colors[i];
+            fform_colors.set(fformation[f],  f_formation_colors[i]);
         }
     }
 }
@@ -73,7 +76,7 @@ function selectFFormation(event) {
 }
 
 function addPoint(x,y, theta, id) {
-    return `<div id="point-${id}" style="position: absolute;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: ${XOFFSET+x}px;top: ${YOFFSET+y}px;text-align: center;transform: rotate(${theta}deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>${id}</div>`
+    return `<div id="point-${id}" style="background-color: ${fform_colors.get(id)};position: absolute;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: ${XOFFSET+x}px;top: ${YOFFSET+y}px;text-align: center;transform: rotate(${theta}deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>${id}</div>`
 }
 
 function appendElement(classL, htmlL) {
