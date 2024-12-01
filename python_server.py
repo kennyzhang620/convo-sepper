@@ -137,7 +137,7 @@ def tips(transcript):
    return response.json()
 
 def send_advice(data):
-   url = os.environ.get("PRODUCTION_URL") + "/convo-ts-list"
+   url = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-list"
    import json
 
    print(data)
@@ -147,7 +147,7 @@ def send_advice(data):
    return response.json()
 
 def send_clusters(data):
-   url = os.environ.get("PRODUCTION_URL") + "/convo-ts-clusters"
+   url = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-clusters"
    import json
    # payload = json.loads(data)
    response = requests.post(url, json=data)
@@ -173,8 +173,8 @@ from pandas.util import hash_pandas_object
 
 prevts = 0;
 while (True):
-    url1 = os.environ.get("PRODUCTION_URL") + "/convo-ts-ids"
-    url2 = os.environ.get("PRODUCTION_URL") + "/convo-ts-logs"
+    url1 = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids"
+    url2 = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-logs"
     r = requests.get(url1, stream=False)
     r2 = requests.get(url2, stream=False)
 
@@ -188,7 +188,7 @@ while (True):
       print(c)
       send_clusters(c)
 
-      ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(80);
+      ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(50);
 
       if prevts != int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16):
          prevts = int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16)

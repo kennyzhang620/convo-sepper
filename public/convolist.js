@@ -1,5 +1,6 @@
 // CHANGE THIS WHEN DEVELOPING LOCALLY
 const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-list"
+// const convoserver = "http://localhost:3000" + "/convo-ts-list"
 
 function clearCells() {
 	var inner = document.getElementsByClassName("convo_container");
