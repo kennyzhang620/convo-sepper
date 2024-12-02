@@ -123,16 +123,13 @@
             testPZ += testVZ;
 
         if (testPX + testPZ > zeroThres || testPX + testPZ < -zeroThres) {
-            CurrPX += refVtr[0] * Math.cos(radians(compass)) + refVtr[1] * Math.sin(radians(compass));
-            CurrPY += refVtr[0] * Math.sin(radians(compass)) + refVtr[1] * Math.cos(radians(compass));
+            CurrPX += (refVtr[0] * Math.cos(radians(compass)) + refVtr[1] * Math.sin(radians(compass))) * scaleVal;
+            CurrPY += (refVtr[0] * Math.sin(radians(compass)) + refVtr[1] * Math.cos(radians(compass))) * scaleVal;
 
             testPX = 0; testPZ = 0;
         }
 
-        var CurrPX1 = CurrPX *scaleVal;
-        var CurrPY1 = CurrPY *scaleVal;
-
-        pvx.value = CurrPX1; pvz.value = CurrPY1;
+        pvx.value = CurrPX; pvz.value = CurrPY;
 
         timeElapsed += 1
     }
