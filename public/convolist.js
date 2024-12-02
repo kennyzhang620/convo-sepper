@@ -63,8 +63,8 @@ function generateCell(res, max_size) {
 
 			var html = `<div class="img_header" style='border: 1px solid black; border-radius: 10px; background-color: ${checkPaused(res[i].ids) ? "white" : document.getElementById(`point-${i}`).style.backgroundColor}'>
 							<div class="text_content">
-                            <div id="header"><div id="title_header" style="padding:6px; width: 90%;">${res[i].inference}</div><div id="back" style="background-color: black;width: 30px;height: 30px;display: flex; float: right; border-radius: 30px; position:relative; bottom: 40px;" onclick='loadCell(${i})'></div></div>
-                            <div id="ts${i}" style="display: none;">    
+                            <div id="header"><div id="title_header-${res[i].convo_id}" style="padding:6px; width: 90%;">${res[i].inference}</div><div id="back" style="background-color: black;width: 30px;height: 30px;display: flex; float: right; border-radius: 30px; position:relative; bottom: 40px;" onclick='loadCell(${res[i].convo_id})'></div></div>
+                            <div id="ts${res[i].convo_id}" style="display: none;">    
                                 <h3>Transcript</h3>
                                     ${generateConvoList(res[i].transcript.trim().split("\n"), max_size)}
                                     <h3>Tips</h3>
@@ -85,6 +85,33 @@ function generateCell(res, max_size) {
 
 }
 
+function adjustCellId(id, inf, trans, tips, max_size) {
+    var convo = document.getElementById(`ts${id}`)
+    var title = document.getElementById(`title_header-${id}`)
+
+    title.innerHTML = inf;
+
+    const contents = ` <h3>Transcript</h3>
+                                    ${generateConvoList(trans.trim().split("\n"), max_size)}
+                                    <h3>Tips</h3>
+                                    ${generateConvoList(tips.trim().split("\n"), max_size)}`
+
+    convo.innerHTML = contents;
+
+}
+
+function reviseCell(res, max_size) {
+
+	for (var i = 0; i < res.length; i++) {
+		if (inner != null && res != null && i < max_size) {
+            adjustCellId(res[i].convo_id, res[i].inference, res[i].transcript, res[i].tips, max_size)
+		}
+	}
+
+}
+
+var prevLen = 0;
+
 function loadConvo(e) {
 
     var dataArr = null;
@@ -98,9 +125,16 @@ function loadConvo(e) {
 
     if (!dataArr) return;
 
-    clearCells();
-    generateCell(dataArr, 10)
+    if (prevLen != dataArr.length) {
+        clearCells();
+        generateCell(dataArr, 10)
 
+        prevLen = dataArr.length;
+
+        return;
+    }
+
+    reviseCell(dataArr, 10);
 }
 
 function convo_loop() {

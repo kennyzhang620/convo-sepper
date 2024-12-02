@@ -1,78 +1,78 @@
 id,timestamp,transcript,convo,paused
-1,2024-12-01T12:51:59Z,There’s also the ethical dilemma of job displacement. Automation is replacing human labor in many sectors.,0,False
-0,2024-12-01T12:52:02Z,"True, but it’s not just about losing jobs. It’s about creating new roles and reskilling the workforce too.",0,False
-1,2024-12-01T12:52:04Z,"Still, the transition can be painful for workers who lack access to new training opportunities.",0,False
-1,2024-12-01T12:52:10Z,Agreed. Then there’s the issue of human reliance on AI—what if we trust it too much?,0,False
-1,2024-12-01T12:52:16Z,"Yes, and the doctor trusted the AI over their own expertise, leading to a serious mistake.",0,False
-0,2024-12-01T12:52:19Z,"It shows that AI should support human decision-making, not replace it entirely.",0,False
-1,2024-12-01T12:52:22Z,That’s why transparency in AI decision-making is crucial. People need to understand how decisions are made.,0,False
-0,2024-12-01T12:52:25Z,"Agreed, but many AI systems are black boxes, even to their developers.",0,False
-1,2024-12-01T12:52:27Z,"Explainability is a tough challenge, but it’s essential for building trust in AI.",0,False
-0,2024-12-01T12:52:30Z,Then there’s the existential debate: Could AI ever surpass human control?,0,False
-1,2024-12-01T12:52:33Z,"The ‘AI singularity’ is a popular topic in sci-fi, but some experts take it seriously as a potential future risk.",0,False
-0,2024-12-01T12:52:36Z,"Even if that’s far off, there are immediate concerns about how AI could be weaponized.",0,False
-1,2024-12-01T12:52:39Z,"Yes, autonomous weapons and cyber warfare are real threats that need strict regulation.",0,False
-0,2024-12-01T12:52:41Z,"The international community is starting to discuss AI governance, but it’s slow progress.",0,False
-1,2024-12-01T12:52:44Z,"Coordination is tough, especially when countries have competing interests in AI development.",0,False
-0,2024-12-01T12:52:47Z,"True, but without collaboration, the risks will be much harder to control.",0,False
-1,2024-12-01T12:52:50Z,We also have to consider the environmental impact. AI requires enormous computational resources.,0,False
-0,2024-12-01T12:52:53Z,"Training large AI models consumes vast amounts of energy, contributing to carbon emissions.",0,False
-1,2024-12-01T12:52:56Z,There’s growing interest in developing more energy-efficient algorithms to tackle this issue.,0,False
-0,2024-12-01T12:52:59Z,That’s promising. Sustainable AI should be a priority as the technology advances.,0,False
-1,2024-12-01T12:53:02Z,One more issue: misinformation. AI can create deepfakes and spread fake news.,0,False
-0,2024-12-01T12:53:05Z,Deepfakes are especially concerning because they can erode trust in media and even democracy.,0,False
-1,2024-12-01T12:53:07Z,"AI companies are working on detection tools, but it’s a constant arms race.",0,False
-0,2024-12-01T12:53:10Z,"So, what’s the solution? Regulation, ethics, public awareness—all of the above?",0,False
-1,2024-12-01T12:53:13Z,Probably all of the above. It will take a multi-stakeholder effort to ensure AI is used responsibly.,0,False
-0,2024-12-01T12:53:16Z,It’s exciting but also a bit daunting. The future of AI holds both promise and peril.,0,False
-1,2024-12-01T12:53:19Z,"Indeed, and it’s up to us to guide it toward a path that benefits humanity as a whole.",0,False
-0,2024-12-01T12:54:03Z,"AI is transforming our world, but it brings serious ethical challenges too.",0,False
-1,2024-12-01T12:54:07Z,"Absolutely, privacy is a major concern. AI systems often collect vast amounts of personal data.",0,False
-0,2024-12-01T12:54:09Z,"Right, like how companies use AI to track user behavior, which can feel invasive.",0,False
-1,2024-12-01T12:54:12Z,"And there’s the issue of data security. AI can be a target for cyberattacks, risking sensitive information.",0,False
-0,2024-12-01T12:54:15Z,"Another big problem is bias in AI datasets. If the data is flawed, the AI’s decisions will be too.",0,False
-1,2024-12-01T12:54:18Z,"Exactly. AI can unintentionally reinforce societal biases, like in hiring algorithms or facial recognition.",0,False
-0,2024-12-01T12:54:21Z,Remember the case where facial recognition wrongly identified people of color as suspects?,0,False
-1,2024-12-01T12:54:24Z,"Yes, it highlights how AI can perpetuate discrimination if not carefully designed and monitored.",0,False
-0,2024-12-01T12:54:26Z,"Bias isn’t the only issue. Intellectual property rights are murky too, especially with AI-generated content.",0,False
-1,2024-12-01T12:54:29Z,"Like when AI creates art or music—who owns it? The developer, the user, or the AI itself?",0,False
-0,2024-12-01T12:54:32Z,Exactly. It’s an evolving legal area with no clear answers yet.,0,False
-3,2024-12-01T12:51:59Z,"Apples contain antioxidants like quercetin, which is good for heart health.",1,False
-2,2024-12-01T12:52:02Z,Oranges are better for fighting colds with all that vitamin C.,1,False
-3,2024-12-01T12:52:05Z,"But apples have pectin, which helps regulate blood sugar levels.",1,False
-3,2024-12-01T12:52:11Z,"Apples can do that too, especially with a crunch that’s so satisfying.",1,False
-3,2024-12-01T12:52:16Z,"Apples, on the other hand, are perfect for fall and bring a sense of comfort.",1,False
-2,2024-12-01T12:52:19Z,Orange zest can enhance desserts and dishes. It’s so versatile in cooking.,1,False
-3,2024-12-01T12:52:22Z,But think of apple pie—there’s nothing more classic or comforting.,1,False
-2,2024-12-01T12:52:25Z,"Oranges are packed with hydration, making them perfect for hot days.",1,False
-3,2024-12-01T12:52:28Z,Apples last longer in storage. You can keep them fresh for weeks.,1,False
-2,2024-12-01T12:52:31Z,"Oranges have that natural division into segments, making them easy to share.",1,False
-3,2024-12-01T12:52:34Z,But apples have a long history in mythology and literature—think of the forbidden fruit.,1,False
-2,2024-12-01T12:52:36Z,Oranges are often used as a symbol of sunshine and energy.,1,False
-3,2024-12-01T12:52:39Z,"Apples symbolize knowledge and temptation, adding a layer of cultural depth.",1,False
-2,2024-12-01T12:52:42Z,Oranges can be turned into marmalade. Sweet and slightly bitter—it’s unique.,1,False
-3,2024-12-01T12:52:45Z,"Applesauce is versatile too, and it can even be used as a healthy baking substitute.",1,False
-2,2024-12-01T12:52:48Z,Oranges have a higher concentration of vitamin C than most apples.,1,False
-3,2024-12-01T12:52:51Z,But apples have a broader range of phytonutrients beneficial for overall health.,1,False
-2,2024-12-01T12:52:54Z,Peeling an orange feels rewarding and therapeutic.,1,False
-3,2024-12-01T12:52:56Z,Biting into a crisp apple is equally satisfying with that crunch.,1,False
-2,2024-12-01T12:52:59Z,Oranges remind me of summer and warm weather.,1,False
-3,2024-12-01T12:53:02Z,Apples bring to mind cool autumn days and cozy moments.,1,False
-2,2024-12-01T12:53:05Z,You can also use orange peel as a natural air freshener.,1,False
-3,2024-12-01T12:53:08Z,"Apples can scent a room too, especially when baked with cinnamon.",1,False
-2,2024-12-01T12:53:11Z,Oranges are used in both sweet and savory dishes worldwide.,1,False
-3,2024-12-01T12:53:14Z,So are apples! Think of pork with apples or apple salads.,1,False
-2,2024-12-01T12:53:17Z,"Oranges contain folate, which is important for cell health.",1,False
-3,2024-12-01T12:53:20Z,"Apples have vitamin C too, just not as much as oranges.",1,False
-2,2024-12-01T12:54:04Z,"I think oranges are better than apples. They’re juicy, refreshing, and full of vitamin C.",1,False
-3,2024-12-01T12:54:07Z,"Apples are more versatile though. You can eat them fresh, bake them, or even turn them into cider.",1,False
-2,2024-12-01T12:54:10Z,"But oranges give you that instant burst of hydration. Plus, they’re great for boosting your immune system.",1,False
-3,2024-12-01T12:54:13Z,"Apples have fiber, which helps with digestion. An apple a day keeps the doctor away, right?",1,False
-2,2024-12-01T12:54:15Z,"True, but peeling an orange is half the fun! And the scent is so invigorating.",1,False
-3,2024-12-01T12:54:18Z,Apples are more convenient though—no peeling required. Just grab one and go.,1,False
-2,2024-12-01T12:54:21Z,Oranges have such a vibrant color and sweetness. They feel more like a treat.,1,False
-3,2024-12-01T12:54:24Z,"Apples come in so many varieties: sweet, tart, crisp. There’s an apple for every taste.",1,False
-2,2024-12-01T12:54:27Z,"Sure, but have you ever had fresh-squeezed orange juice? It’s unbeatable.",1,False
-3,2024-12-01T12:54:30Z,"Apple juice is just as delicious, and you can even make apple cider for something warm.",1,False
-2,2024-12-01T12:54:33Z,"Oranges are a great source of potassium too, which is essential for muscle function.",1,False
-5,Sun Dec 01 2024 14:45:00 GMT-0800 (Pacific Standard Time),,2,False
+0,2024-12-01 16:00:21+00:00,"AI is transforming our world, but it brings serious ethical challenges too.",0,False
+1,2024-12-01 16:00:23+00:00,"Absolutely, privacy is a major concern. AI systems often collect vast amounts of personal data.",0,False
+0,2024-12-01 16:00:26+00:00,"Right, like how companies use AI to track user behavior, which can feel invasive.",0,False
+1,2024-12-01 16:00:29+00:00,"And there’s the issue of data security. AI can be a target for cyberattacks, risking sensitive information.",0,False
+0,2024-12-01 16:00:31+00:00,"Another big problem is bias in AI datasets. If the data is flawed, the AI’s decisions will be too.",0,False
+1,2024-12-01 16:00:34+00:00,"Exactly. AI can unintentionally reinforce societal biases, like in hiring algorithms or facial recognition.",0,False
+0,2024-12-01 16:00:37+00:00,Remember the case where facial recognition wrongly identified people of color as suspects?,0,False
+1,2024-12-01 16:00:39+00:00,"Yes, it highlights how AI can perpetuate discrimination if not carefully designed and monitored.",0,False
+0,2024-12-01 16:00:42+00:00,"Bias isn’t the only issue. Intellectual property rights are murky too, especially with AI-generated content.",0,False
+1,2024-12-01 16:00:44+00:00,"Like when AI creates art or music—who owns it? The developer, the user, or the AI itself?",0,False
+0,2024-12-01 16:00:47+00:00,Exactly. It’s an evolving legal area with no clear answers yet.,0,False
+1,2024-12-01 16:00:50+00:00,There’s also the ethical dilemma of job displacement. Automation is replacing human labor in many sectors.,0,False
+0,2024-12-01 16:00:52+00:00,"True, but it’s not just about losing jobs. It’s about creating new roles and reskilling the workforce too.",0,False
+1,2024-12-01 16:00:55+00:00,"Still, the transition can be painful for workers who lack access to new training opportunities.",0,False
+1,2024-12-01 16:01:00+00:00,Agreed. Then there’s the issue of human reliance on AI—what if we trust it too much?,0,False
+1,2024-12-01 16:01:06+00:00,"Yes, and the doctor trusted the AI over their own expertise, leading to a serious mistake.",0,False
+0,2024-12-01 16:01:08+00:00,"It shows that AI should support human decision-making, not replace it entirely.",0,False
+1,2024-12-01 16:01:11+00:00,That’s why transparency in AI decision-making is crucial. People need to understand how decisions are made.,0,False
+0,2024-12-01 16:01:14+00:00,"Agreed, but many AI systems are black boxes, even to their developers.",0,False
+1,2024-12-01 16:01:16+00:00,"Explainability is a tough challenge, but it’s essential for building trust in AI.",0,False
+0,2024-12-01 16:01:19+00:00,Then there’s the existential debate: Could AI ever surpass human control?,0,False
+1,2024-12-01 16:01:22+00:00,"The ‘AI singularity’ is a popular topic in sci-fi, but some experts take it seriously as a potential future risk.",0,False
+0,2024-12-01 16:01:24+00:00,"Even if that’s far off, there are immediate concerns about how AI could be weaponized.",0,False
+1,2024-12-01 16:01:27+00:00,"Yes, autonomous weapons and cyber warfare are real threats that need strict regulation.",0,False
+0,2024-12-01 16:01:29+00:00,"The international community is starting to discuss AI governance, but it’s slow progress.",0,False
+1,2024-12-01 16:01:32+00:00,"Coordination is tough, especially when countries have competing interests in AI development.",0,False
+0,2024-12-01 16:01:35+00:00,"True, but without collaboration, the risks will be much harder to control.",0,False
+1,2024-12-01 16:01:37+00:00,We also have to consider the environmental impact. AI requires enormous computational resources.,0,False
+0,2024-12-01 16:01:40+00:00,"Training large AI models consumes vast amounts of energy, contributing to carbon emissions.",0,False
+1,2024-12-01 16:01:43+00:00,There’s growing interest in developing more energy-efficient algorithms to tackle this issue.,0,False
+0,2024-12-01 16:01:45+00:00,That’s promising. Sustainable AI should be a priority as the technology advances.,0,False
+1,2024-12-01 16:01:48+00:00,One more issue: misinformation. AI can create deepfakes and spread fake news.,0,False
+0,2024-12-01 16:01:51+00:00,Deepfakes are especially concerning because they can erode trust in media and even democracy.,0,False
+1,2024-12-01 16:01:53+00:00,"AI companies are working on detection tools, but it’s a constant arms race.",0,False
+0,2024-12-01 16:01:56+00:00,"So, what’s the solution? Regulation, ethics, public awareness—all of the above?",0,False
+1,2024-12-01 16:01:59+00:00,Probably all of the above. It will take a multi-stakeholder effort to ensure AI is used responsibly.,0,False
+0,2024-12-01 16:02:01+00:00,It’s exciting but also a bit daunting. The future of AI holds both promise and peril.,0,False
+1,2024-12-01 16:02:04+00:00,"Indeed, and it’s up to us to guide it toward a path that benefits humanity as a whole.",0,False
+2,2024-12-01 16:00:21+00:00,"I think oranges are better than apples. They’re juicy, refreshing, and full of vitamin C.",1,False
+3,2024-12-01 16:00:24+00:00,"Apples are more versatile though. You can eat them fresh, bake them, or even turn them into cider.",1,False
+2,2024-12-01 16:00:26+00:00,"But oranges give you that instant burst of hydration. Plus, they’re great for boosting your immune system.",1,False
+3,2024-12-01 16:00:29+00:00,"Apples have fiber, which helps with digestion. An apple a day keeps the doctor away, right?",1,False
+2,2024-12-01 16:00:32+00:00,"True, but peeling an orange is half the fun! And the scent is so invigorating.",1,False
+3,2024-12-01 16:00:34+00:00,Apples are more convenient though—no peeling required. Just grab one and go.,1,False
+2,2024-12-01 16:00:37+00:00,Oranges have such a vibrant color and sweetness. They feel more like a treat.,1,False
+3,2024-12-01 16:00:39+00:00,"Apples come in so many varieties: sweet, tart, crisp. There’s an apple for every taste.",1,False
+2,2024-12-01 16:00:42+00:00,"Sure, but have you ever had fresh-squeezed orange juice? It’s unbeatable.",1,False
+3,2024-12-01 16:00:45+00:00,"Apple juice is just as delicious, and you can even make apple cider for something warm.",1,False
+2,2024-12-01 16:00:47+00:00,"Oranges are a great source of potassium too, which is essential for muscle function.",1,False
+3,2024-12-01 16:00:50+00:00,"Apples contain antioxidants like quercetin, which is good for heart health.",1,False
+2,2024-12-01 16:00:53+00:00,Oranges are better for fighting colds with all that vitamin C.,1,False
+3,2024-12-01 16:00:55+00:00,"But apples have pectin, which helps regulate blood sugar levels.",1,False
+3,2024-12-01 16:01:01+00:00,"Apples can do that too, especially with a crunch that’s so satisfying.",1,False
+2,2024-12-01 16:01:03+00:00,,1,False
+3,2024-12-01 16:01:06+00:00,"Apples, on the other hand, are perfect for fall and bring a sense of comfort.",1,False
+2,2024-12-01 16:01:09+00:00,Orange zest can enhance desserts and dishes. It’s so versatile in cooking.,1,False
+3,2024-12-01 16:01:11+00:00,But think of apple pie—there’s nothing more classic or comforting.,1,False
+2,2024-12-01 16:01:14+00:00,"Oranges are packed with hydration, making them perfect for hot days.",1,False
+3,2024-12-01 16:01:17+00:00,Apples last longer in storage. You can keep them fresh for weeks.,1,False
+2,2024-12-01 16:01:19+00:00,"Oranges have that natural division into segments, making them easy to share.",1,False
+3,2024-12-01 16:01:22+00:00,But apples have a long history in mythology and literature—think of the forbidden fruit.,1,False
+2,2024-12-01 16:01:25+00:00,Oranges are often used as a symbol of sunshine and energy.,1,False
+3,2024-12-01 16:01:27+00:00,"Apples symbolize knowledge and temptation, adding a layer of cultural depth.",1,False
+2,2024-12-01 16:01:30+00:00,Oranges can be turned into marmalade. Sweet and slightly bitter—it’s unique.,1,False
+3,2024-12-01 16:01:32+00:00,"Applesauce is versatile too, and it can even be used as a healthy baking substitute.",1,False
+2,2024-12-01 16:01:35+00:00,Oranges have a higher concentration of vitamin C than most apples.,1,False
+3,2024-12-01 16:01:38+00:00,But apples have a broader range of phytonutrients beneficial for overall health.,1,False
+2,2024-12-01 16:01:40+00:00,Peeling an orange feels rewarding and therapeutic.,1,False
+3,2024-12-01 16:01:43+00:00,Biting into a crisp apple is equally satisfying with that crunch.,1,False
+2,2024-12-01 16:01:45+00:00,Oranges remind me of summer and warm weather.,1,False
+3,2024-12-01 16:01:48+00:00,Apples bring to mind cool autumn days and cozy moments.,1,False
+2,2024-12-01 16:01:51+00:00,You can also use orange peel as a natural air freshener.,1,False
+3,2024-12-01 16:01:54+00:00,"Apples can scent a room too, especially when baked with cinnamon.",1,False
+2,2024-12-01 16:01:56+00:00,Oranges are used in both sweet and savory dishes worldwide.,1,False
+3,2024-12-01 16:01:59+00:00,So are apples! Think of pork with apples or apple salads.,1,False
+2,2024-12-01 16:02:02+00:00,"Oranges contain folate, which is important for cell health.",1,False
+3,2024-12-01 16:02:04+00:00,"Apples have vitamin C too, just not as much as oranges.",1,False
