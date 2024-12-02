@@ -337,7 +337,7 @@
     }
 
     function captureData() {
-        const data = {"id": id.value, "px": CurrPX, "py": CurrPY, "theta": compass, "cxy": encodeXY(CurrPX, CurrPY), "timestamp": beginTS.toString(), "transcript": transcriptWords, "paused": paused}
+        const data = {"id": parseInt(id.value) || 0, "px": CurrPX, "py": CurrPY, "theta": compass, "cxy": encodeXY(CurrPX, CurrPY), "timestamp": beginTS.toString(), "transcript": transcriptWords, "paused": paused}
 
         txt.value = data.transcript;
 

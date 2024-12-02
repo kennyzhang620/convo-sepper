@@ -114,7 +114,7 @@ function loadPoints(e) {
             appendElement(map, addPoint(point.px*scaler.value, point.py*scaler.value, point.theta, point.id))
 
             if (point.paused) {
-                newInactiveParticipants.add(point.id);
+                newInactiveParticipants.add(point.id); 
             }
         }
     }
