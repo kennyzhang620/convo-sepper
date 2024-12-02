@@ -59,6 +59,7 @@ function loadFFormations(e) {
             fform_colors.set(fformation[f],  f_formation_colors[i]);
         }
     }
+    sendPacket(server, 'GET', '', true, loadPoints,  null, 3000);
 }
 
 function selectFFormation(event) {
@@ -124,7 +125,6 @@ function loadPoints(e) {
 
 function map_loop() {
     sendPacket(clusterServer, 'GET', '', true, loadFFormations,  null, 3000);
-    sendPacket(server, 'GET', '', true, loadPoints,  null, 3000);
 }
 
 setInterval(map_loop, 500);
