@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+        <title>AudioScanner!</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                width: 100px;
+                height: 100px;
+            }
+
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .4s;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+            }
+
+            input:checked + .slider {
+                background-color: #2196F3;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(26px);
+            }
+
+            .slider.round {
+                border-radius: 34px;
+            }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+
+            #title_header {
+                font-size: 20px;
+                font-weight: 700;
+            }
+        </style>
+    </head>
+</head>
+<script src="/recognizer.js"></script>
+<script src="/math.js"></script>
+<body>
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    
+
+        <div id="map" style="width:512px; height:512px; border: 3px dotted black;">
+            <div class="map_points" style="position: relative;">
+                
+            </div>
+            
+           </div>
+           <label for="Scale">Scale</label>
+           <input type="number" id="scale" value="50">
+
+        <label for="channel">Channel ID (10-100):</label>
+        <input type="number" id="id" name="id" style="display:block; margin: 20px 0;" value=<%= id %>>
+
+
+        <button onpointerdown="hold(0,1,0)" onpointerup="release(0,1,0)">Up</button>
+        <div id="a" style="display:inline-block;">
+            <button onpointerdown="hold(-1,0,0)" onpointerup="release(-1,0,0)">Left</button>
+            <button onpointerdown="hold(1,0,0)" onpointerup="release(1,0,0)">Right</button>
+        </div>
+        <button onpointerdown="hold(0,-1,0)" onpointerup="release(0,-1,0)">Down</button>
+        <div id="angle" style="display:block; margin: 20px 0;">0°</div>
+        <div style="display:block; margin: 20px 0;">
+            <input type="range" id="zslider" name="zslider" min="-360" max="360" value="0" 
+                   oninput="move(0,0,parseInt(this.value) - testZ)"
+                   style="width: 200px;">
+        </div>
+        <div style="display:block; margin: 20px 0;" id="xyz"></div>
+        <label for="normal">Normal:</label>
+        <input type="number" id="normal">
+        <label for="ranged">Ranged:</label>
+        <input type="number" id="ranged">
+        <label for="text" id="textlabel">Transcript</label>
+        <input type="text" id="text" name="transcript">
+        <button style="width: 10px; height: 10px;" onpointerdown="button = 1;">Send</button>
+        <label class="switch">
+            <input type="checkbox" id="toggleSwitch">
+            <span class="slider round"></span>
+        </label>
+        <button onpointerdown="recognition.start()">Record</button>
+        <button onpointerdown="start()">Start</button>
+
+        <div id="conversations">
+            <h2>Conversations</h2>
+        
+            <div class="convo_container">      
+            </div>  
+            
+        </div>
+
+    <script src="/math.js"></script>
+    <script src="/mapper.js"></script>
+    <script src="/convolist.js"></script>
+    <script src="/compass.js"></script>
+    <script src="/recognizer.js"></script>
+    <script>
+
+    var normal = document.getElementById("normal");
+    var ranged = document.getElementById("ranged"); 
+
+    var testX = 0;
+    var testY = 0;
+    var testZ = 0;
+
+    var prevX = 0;
+    var prevY = 0;
+    var prevZ = 0;
+    const bufferT = 100;
+
+    var handles = [0,0,0,0,0];
+
+    const maxWidth = 5;
+    const scale = 1/50;
+
+    function encodeXY(x,y) {
+        return y*maxWidth + x;
+    }
+
+    function move(x,y,z) {
+        testX += x;
+        testY += y;
+        testZ += z;
+
+        document.getElementById('angle').innerHTML = testZ+ "°";
+    }
+
+    function hold(x,y,z) {
+        handles[0] = setInterval(move, 100, x, y, z);
+    }
+
+    function release(x,y,z) {
+        clearInterval(handles[0]);
+    }
+
+    function result(e) {
+
+        try {
+            const data = JSON.parse(e);
+            // console.log(data);
+
+        
+            if (transcriptWords.length > 0 && data.ts == transcriptWords) {
+                transcriptWords = "";
+                document.getElementById('text').value = "";
+            }
+        } catch (e) {
+            console.log("Error: ", e);
+        }
+    }
+
+    var analyserActive = false;
+    var button = 0;
+    
+    let ctx;
+    let analyser;
+    let source;
+
+    let data = null;
+
+
+    var beginTS = Date.now();
+    const humanRange = [150, 10000];
+    const rangerFreq = 12000;
+
+    var humanRangeCount = 10;
+    var humanCutoff = 130;
+
+    var rangedDistance = 0;
+    var offset = 0;
+
+    async function initAudio() {
+        ctx = new AudioContext();
+        analyser = ctx.createAnalyser();
+        const gainNode = ctx.createGain();
+
+        navigator.mediaDevices
+            .getUserMedia({ video : false, audio : true })
+            .then(callback)
+            .catch(console.log);
+
+
+        function callback(stream) {
+            source = ctx.createMediaStreamSource(stream);
+            source.connect(gainNode);
+            gainNode.connect(analyser);
+
+            if (!analyserActive) {
+                analyserActive = true;
+                setInterval(audioTracker, 1);
+            }
+
+            console.log("audio init");
+        }
+    }
+
+    var irnd = 0;
+    var normalAvg = 0;
+    var rangedAvg = 0;
+
+    var trackerMs = 0;
+
+    var paused = false;
+    function audioTracker() {
+        if (data == null) {
+            data = new Uint8Array(analyser.frequencyBinCount);
+        }
+
+        function play() {
+            analyser.getByteFrequencyData(data);
+
+            // get fullest bin
+            var nm1 = 0;
+            var nm2 = 0;
+
+            humanRangeCount = 0;
+            rangedDistance = 0;
+            
+            for (var j=0; j < analyser.frequencyBinCount; j++) {
+
+                var frequency = j * ctx.sampleRate / analyser.fftSize;
+
+                if (frequency >= humanRange[0] && frequency <= humanRange[1] && data[j] > 25) {
+                    humanRangeCount += data[j];
+                    nm1++;
+                }
+                
+                if (frequency > rangerFreq && data[j] > 0) {
+                    if (nm2 == 0)
+                        rangedDistance = data[j];
+                    else if (rangedDistance < data[j])
+                        rangedDistance = data[j];
+                   // console.log(frequency, data[j]);
+                    nm2++;
+                }
+            }
+            
+            if (nm1 > 0) {
+                humanRangeCount /= nm1;
+            }
+
+            normalAvg += humanRangeCount;
+            ranged.value = rangedDistance;
+
+            irnd++;
+
+            
+            if (irnd > 10) {
+
+                if (normalAvg  >= humanCutoff) {
+                    if (!Cstatus && document.getElementById('toggleSwitch').checked) {
+                        recognition.start();
+                        beginTS = Date.now();
+                    }
+
+                                    
+                    trackerMs = 0;
+                }
+
+                normal.value = normalAvg / 10;
+
+                normalAvg = 0;
+                irnd = 0;
+            }   
+            else {
+                trackerMs++;
+
+              //   console.log(trackerMs);
+
+                if (trackerMs > 3500) {
+                    paused = true;
+                }   
+                else {
+                    paused = false;
+                }
+            }
+        }
+
+        play();
+    }
+
+    var ind = 0;
+
+    function update() {
+
+        const sx = testX - prevX;
+        const sy = testY - prevY;
+        const sz = testZ - prevZ;
+
+        var status = false;
+
+        status = (sx != 0 || sy != 0 || sz != 0);
+
+        if (Cstatus)
+            document.getElementById('text').value = transcriptWords;
+
+            const id = document.getElementById('id');
+            const data = {"id": id.value, "px": testX*scale, "py": testY*scale, "theta": testZ, "cxy": encodeXY(testX*scale, testY*scale), "timestamp": Date().toString(), "transcript": transcriptWords, "paused": paused};
+
+            document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
+
+            if ((transcriptWords.length > 0 || status)) {
+                sendPacket('/convo-ts', "POST", data, true, result, null);
+            }
+
+            prevX = testX;
+            prevY = testY;
+            prevZ = testZ;
+
+        send();
+        ind++;
+    }
+
+    function send() {
+        if (document.getElementById('toggleSwitch').checked) {
+            if (Cstatus) {
+                document.getElementById('text').value = transcriptWords;
+                document.getElementById('textlabel').innerHTML = "Transcript - Recording";
+            }
+            else {
+                document.getElementById('textlabel').innerHTML = "Transcript";
+            }
+
+            return;
+        }
+
+        if (button == 1) {  
+            transcriptWords = document.getElementById('text').value;
+            document.getElementById('text').value = "";
+            button = 0;
+        }
+        
+    }
+    function start() {
+        handles[1] = setInterval(update, 100);
+
+        initAudio();
+    }
+
+    </script>
+</body>
+
+</html>

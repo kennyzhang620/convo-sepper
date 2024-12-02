@@ -62,6 +62,10 @@ app.get('/main', function (req, res) {
     res.render('main_app', {id: channels.length});
 });
 
+app.get('/demo', function (req, res) {
+    res.render('demo', {id: channels.length});
+});
+
 app.get('/test', function (req, res) {
     res.render('test', {id: channels.length});
 });
