@@ -276,7 +276,7 @@
                         beginTS = Date.now();
                     }
 
-                                    
+                    locked = true;            
                     trackerMs = 0;
                 }
 
@@ -288,6 +288,7 @@
             else {
                 trackerMs++;
 
+                locked = false;
                 // console.log(trackerMs);
 
                 if (trackerMs > 250) {
