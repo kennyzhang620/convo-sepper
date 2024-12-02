@@ -45,7 +45,7 @@
     const maxAccel = 1.4;
 
     const refVtr = [0,1];
-    const scaleVal = 1 / 20;
+    const scaleVal = 1 / 10;
     const zeroThres = 0.01;
 
     var analyserActive = false;
@@ -123,7 +123,10 @@
             testPZ += testVZ;
 
         if (testPX + testPZ > zeroThres) {
+            CurrPX += refVtr[0] * Math.cos(radians(compass)) + refVtr[1] * Math.sin(radians(compass));
+            CurrPY += refVtr[0] * Math.sin(radians(compass)) + refVtr[1] * Math.cos(radians(compass));
 
+            testPX = 0; testPZ = 0;
         }
 
         CurrPX = testPX *scaleVal;
