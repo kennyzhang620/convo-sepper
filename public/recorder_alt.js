@@ -43,6 +43,7 @@
     const rotDelta = 0.25;
     const boundariesM = 5;
     const maxAccel = 1.4;
+    const maxDistance = 6;
 
     const refVtr = [0,1];
     const scaleVal = 1 / 10;
@@ -123,8 +124,14 @@
             testPZ += testVZ;
 
         if (testPX + testPZ > zeroThres || testPX + testPZ < -zeroThres) {
-            CurrPX += (refVtr[0] * Math.cos(radians(compass)) + refVtr[1] * Math.sin(radians(compass))) * scaleVal;
-            CurrPY += (refVtr[0] * Math.sin(radians(compass)) + refVtr[1] * Math.cos(radians(compass))) * scaleVal;
+
+            const newX = (refVtr[0] * Math.cos(radians(compass)) + refVtr[1] * Math.sin(radians(compass))) * scaleVal;
+            const newY = (refVtr[0] * Math.sin(radians(compass)) + refVtr[1] * Math.cos(radians(compass))) * scaleVal;
+            if (CurrPX + newX < maxDistance && CurrPX + newX > -maxDistance )
+                CurrPX += newX;
+
+            if (CurrPY + newY < maxDistance && CurrPY + newY > -maxDistance)
+                CurrPY += newY;
 
             testPX = 0; testPZ = 0;
         }
