@@ -88,18 +88,17 @@
         <label for="channel">Channel ID (10-100):</label>
         <input type="number" id="id" name="id"n value=<%= id %>>
 
-
-        <button onpointerdown="hold(0,1,0)" onpointerup="release(0,1,0)">Up</button>
-        <div id="a" style="display:inline-block;">
+        <div id="a" style="display:inline-block; position: sticky;">
+            <button onpointerdown="hold(0,1,0)" onpointerup="release(0,1,0)">Up</button>
             <button onpointerdown="hold(-1,0,0)" onpointerup="release(-1,0,0)">Left</button>
             <button onpointerdown="hold(1,0,0)" onpointerup="release(1,0,0)">Right</button>
-        </div>
-        <button onpointerdown="hold(0,-1,0)" onpointerup="release(0,-1,0)">Down</button>
-        <div id="angle" style="display:block; margin: 20px 0;">0°</div>
-        <div style="display:block; margin: 20px 0;">
-            <input type="range" id="zslider" name="zslider" min="-360" max="360" value="0" 
-                   oninput="move(0,0,parseInt(this.value) - testZ)"
-                   style="width: 200px;">
+            <button onpointerdown="hold(0,-1,0)" onpointerup="release(0,-1,0)">Down</button>
+            <div id="angle" style="display:block; margin: 20px 0;">0°</div>
+            <div style="display:block; margin: 20px 0;">
+                <input type="range" id="zslider" name="zslider" min="-360" max="360" value="0" 
+                       oninput="move(0,0,parseInt(this.value) - testZ)"
+                       style="width: 200px;">
+            </div>
         </div>
         <div style="display:block; margin: 20px 0;" id="xyz"></div>
         <label for="normal">Normal:</label>
