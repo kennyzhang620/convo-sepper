@@ -275,7 +275,7 @@
 
                 // console.log(trackerMs);
 
-                if (trackerMs > 3500) {
+                if (trackerMs > 250) {
                     paused = true;
                 }   
                 else {
