@@ -122,7 +122,7 @@
         if (testPZ + testVZ < maxWidth && testPZ + testVZ > -maxWidth)
             testPZ += testVZ;
 
-        if (testPX + testPZ > zeroThres) {
+        if (testPX + testPZ > zeroThres || testPX + testPZ < -zeroThres) {
             CurrPX += refVtr[0] * Math.cos(radians(compass)) + refVtr[1] * Math.sin(radians(compass));
             CurrPY += refVtr[0] * Math.sin(radians(compass)) + refVtr[1] * Math.cos(radians(compass));
 
