@@ -348,7 +348,7 @@
             document.getElementById('text').value = transcriptWords;
 
             const id = document.getElementById('id');
-            const data = {"id": id.value, "px": testX*scale, "py": testY*scale, "theta": testZ, "cxy": encodeXY(testX*scale, testY*scale), "timestamp": Date().toString(), "transcript": transcriptWords, "paused": paused};
+            const data = {"id": parseInt(id.value) || 0, "px": testX*scale, "py": testY*scale, "theta": testZ, "cxy": encodeXY(testX*scale, testY*scale), "timestamp": Date().toString(), "transcript": transcriptWords, "paused": paused};
 
             document.getElementById('xyz').innerHTML = data.px + ", " + data.py + ", " + data.theta;
 
