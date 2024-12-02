@@ -103,7 +103,7 @@ function adjustCellId(id, inf, trans, tips, max_size) {
 function reviseCell(res, max_size) {
 
 	for (var i = 0; i < res.length; i++) {
-		if (inner != null && res != null && i < max_size) {
+		if (res != null && i < max_size) {
             adjustCellId(res[i].convo_id, res[i].inference, res[i].transcript, res[i].tips, max_size)
 		}
 	}
