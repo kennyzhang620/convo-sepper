@@ -46,7 +46,7 @@
 
     const refVtr = [0,1];
     const scaleVal = 1 / 10;
-    const zeroThres = 2;
+    const zeroThres = 1;
 
     var analyserActive = false;
     let ctx;
