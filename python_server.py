@@ -1,12 +1,8 @@
 import hashlib
 import requests
-import numpy as np
 import pandas as pd
 from io import StringIO
-import pyaudio
 import math
-import json
-import os
 
 from dotenv import load_dotenv
 
@@ -128,8 +124,8 @@ def inference(transcript):
 
 def tips(transcript):
    url = "https://translate-server.herokuapp.com/chatrecvm"
-   payload = {
-      "prompt": "Provide tips to help the user engage in this conversation: " + transcript
+   {
+      "prompt": "You are an advanced conversational analysis assistant. Analyze the provided conversation transcript and format your output as a list of the following  conversational entry tips to the user, do not include any other text but the 4 tips.  Ensure tips are contextually relevant, grounded in the nuances of the transcript. Ensure tips are short and easily readable within a few seconds. The techniques you will use: \n1. Schisming by Schism-Inducing Turn (SIT): \nIdentify moments in the transcript where introducing a new topic would improve the flow of the conversation. \nSuggest timing for such turns to minimize overlap and maximize attention. \nProvide examples of direct verbal address (e.g., using names or pronouns) and question-answer structures to effectively draw in specific participants. \nRecommend appropriate non-verbal strategies (e.g., gaze, gesture) if co-presence is implied in the context. \n2. Schisming by Toss-Out: \nHighlight opportunities to introduce a topic-relevant remark that fits organically within the conversation's flow. \nEnsure the suggestion aligns with the current topic and conversation structure without targeting specific individuals. \nOffer phrasing that keeps the conversation cohesive while subtly encouraging engagement. \n3. Schisming by Aside: \nPoint out opportunities for quiet, subdued, topic-relevant comments that can add depth without interrupting the primary thread of conversation. \nExplain how to time these asides to overlap gently with the ongoing conversation, avoiding explicit turn-relevant points (TRPs). \nInclude examples of when and how to lower vocal emphasis to match the technique. \n4. Schisming by Retro-Sequence: \nIdentify turns in the transcript that were retroactively treated as initiating a new conversational path. \nAnalyze what prompted this retro-sequencing (e.g., laughter at an unintended humorous remark). \nSuggest ways to embrace or redirect these retro-sequences to enrich conversational dynamics." + transcript
    }
    response = requests.post(url, json=payload)
    return response.json()
