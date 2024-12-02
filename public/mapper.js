@@ -123,8 +123,8 @@ function loadPoints(e) {
 }
 
 function map_loop() {
-    sendPacket(server, 'GET', '', true, loadPoints,  null, 3000);
     sendPacket(clusterServer, 'GET', '', true, loadFFormations,  null, 3000);
+    sendPacket(server, 'GET', '', true, loadPoints,  null, 3000);
 }
 
 setInterval(map_loop, 500);
