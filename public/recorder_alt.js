@@ -129,10 +129,10 @@
             testPX = 0; testPZ = 0;
         }
 
-        CurrPX = testPX *scaleVal;
-        CurrPY = testPZ *scaleVal;
+        var CurrPX1 = CurrPX *scaleVal;
+        var CurrPY1 = CurrPY *scaleVal;
 
-        pvx.value = CurrPX; pvz.value = CurrPY;
+        pvx.value = CurrPX1; pvz.value = CurrPY1;
 
         timeElapsed += 1
     }
