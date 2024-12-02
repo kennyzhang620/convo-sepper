@@ -132,7 +132,7 @@
         CurrPX = testPX *scaleVal;
         CurrPY = testPZ *scaleVal;
 
-        pvx.value = testPX; pvz.value = testPZ;
+        pvx.value = CurrPX; pvz.value = CurrPY;
 
         timeElapsed += 1
     }
