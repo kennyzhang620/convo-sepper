@@ -56,6 +56,8 @@
 
     let data = null;
 
+    var locked = false;
+
 
     var beginTS = Date.now();
     const humanRange = [150, 10000];
@@ -73,6 +75,8 @@
 
     function elapsedTimeU() {
         ms.value = timeElapsed;
+
+        if (locked) return;
 
         if (timeElapsed % sampleR != 0 || timeElapsed == 0) {
             axc += accelVectors[0]; ayc += accelVectors[1]; azc += accelVectors[2];
@@ -159,6 +163,10 @@
             chSet = true;
         }
         
+    }
+
+    window.setLock = function() {
+        locked = !locked;
     }
 
     function handleMotionEvent(event) {
