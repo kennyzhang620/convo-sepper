@@ -181,7 +181,7 @@ while (True):
       print(c)
       send_clusters(c)
 
-      ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(250);
+      ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(25);
 
       if prevts != int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16):
          prevts = int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16)
@@ -189,10 +189,10 @@ while (True):
          adv = advice(ts)
 
          if not adv.empty:
-            adv.to_csv('advice.csv', index=False)
+        #    adv.to_csv('advice.csv', index=False)
             send_advice(adv.to_json(orient='records'))
     
-      ts.to_csv('conversations.csv', index=False)
+     # ts.to_csv('conversations.csv', index=False)
     except Exception as e:
       print("Error: ", e)
 

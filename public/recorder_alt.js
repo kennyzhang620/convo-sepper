@@ -14,7 +14,9 @@
     var pvz = document.getElementById("pz");
 
     var normal = document.getElementById("normal");
-    var ranged = document.getElementById("ranged"); 
+    var ranged = document.getElementById("ranged");
+
+    var indicator = document.getElementById('indicator');
 
     const bufferT = 1000;
     var recording = false;
@@ -293,9 +295,11 @@
 
                 if (trackerMs > 250) {
                     paused = true;
+                    indicator.style.display = "block";
                 }   
                 else {
                     paused = false;
+                    indicator.style.display = "none";
                 }
             }
         }
