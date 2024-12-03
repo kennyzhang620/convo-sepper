@@ -183,7 +183,7 @@ while (True):
 
       ts = transcripts(data2, c)[['id', 'timestamp', 'transcript', 'convo', 'paused']].tail(50);
 
-      if prevts != int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16):
+      if ts['transcript'].size > 1 and prevts != int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16):
          prevts = int(hashlib.sha256(hash_pandas_object(ts).values).hexdigest(), 16)
 
          adv = advice(ts)
