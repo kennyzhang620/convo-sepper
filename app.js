@@ -114,6 +114,11 @@ app.post('/convo-ts', function(req, res) {
         channels.push(null)
     }
 
+    channels[req.body.id] = req.body;
+
+    if (req.body.transcript.length <= 0)
+        return res.json({ status: "ok", ts: req.body.transcript, timestamp: Date.now() })
+
     if (convologs.length < limit) {
         convologs.push(req.body);
     }
@@ -121,7 +126,6 @@ app.post('/convo-ts', function(req, res) {
         convologs[ind++ % limit] = req.body;
     }
 
-    channels[req.body.id] = req.body;
     return res.json({status: "ok", ts: req.body.transcript, timestamp: Date.now()})
 });
 
