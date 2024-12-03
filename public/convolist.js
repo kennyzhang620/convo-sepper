@@ -91,6 +91,7 @@ function adjustCellId(id, inf, trans, tips, max_size, ids) {
     var back = document.getElementById(`back-${id}`)
 
     title.innerHTML = inf;
+    title.style.backgroundColor = checkPaused(ids) ? "yellow" : "white"
 
     back.style = `background-color: ${checkPaused(ids) ? "white" : fform_colors.get(ids[0])};width: 30px;height: 30px;display: flex; float: right; border: 1px solid black; border-radius: 30px; position:relative; bottom: 40px;`
 
