@@ -63,7 +63,7 @@ function generateCell(res, max_size) {
 
 			var html = `<div class="img_header" style='border: 1px solid black; border-radius: 10px; background-color: white'>
 							<div class="text_content">
-                            <div id="header"><div id="title_header-${res[i].convo_id}" style="padding:6px; width: 90%;">${res[i].inference}</div><div id="back-${res[i].convo_id}" style="background-color: ${checkPaused(res[i].ids) ? "white" : fform_colors.get(res[i].ids[0])};width: 30px;height: 30px;display: flex; float: right; border-radius: 30px; position:relative; bottom: 40px;" onclick='loadCell(${res[i].convo_id})'></div></div>
+                            <div id="header"><div id="title_header-${res[i].convo_id}" style="padding:6px; width: 90%;">${res[i].inference}</div><div id="back-${res[i].convo_id}" style="background-color: ${checkPaused(res[i].ids) ? "white" : fform_colors.get(res[i].ids[0])};width: 30px;height: 30px;display: flex; float: right; border: 1px solid black; border-radius: 30px; position:relative; bottom: 40px;" onclick='loadCell(${res[i].convo_id})'></div></div>
                             <div id="ts${res[i].convo_id}" style="display: none;">    
                                 <h3>Transcript</h3>
                                     ${generateConvoList(res[i].transcript.trim().split("\n"), max_size)}
@@ -92,7 +92,7 @@ function adjustCellId(id, inf, trans, tips, max_size, ids) {
 
     title.innerHTML = inf;
 
-    back.style = `background-color: ${checkPaused(ids) ? "white" : fform_colors.get(ids[0])};width: 30px;height: 30px;display: flex; float: right; border-radius: 30px; position:relative; bottom: 40px;`
+    back.style = `background-color: ${checkPaused(ids) ? "white" : fform_colors.get(ids[0])};width: 30px;height: 30px;display: flex; float: right; border: 1px solid black; border-radius: 30px; position:relative; bottom: 40px;`
 
     const contents = ` <h3>Transcript</h3>
                                     ${generateConvoList(trans.trim().split("\n"), max_size)}
