@@ -15,7 +15,7 @@ def send_advice(data):
    response = requests.post(url, json=data)
    return response.json()
 
-maxWidth = 5;
+maxWidth = 1;
 scale = 1/50;
 
 def encodeXY(x,y):

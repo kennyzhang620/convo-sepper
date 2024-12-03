@@ -40,7 +40,7 @@
     var CurrPX = 0; 
     var CurrPY = 0;
 
-    const maxWidth = 5;
+    const maxWidth = 1;
     const rollOff = 0.8;
     const rotDelta = 0.25;
     const boundariesM = 5;
