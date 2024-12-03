@@ -295,11 +295,11 @@
 
                 if (trackerMs > 250) {
                     paused = true;
-                    indicator.style.display = "block";
+                    indicator.style.display = "none";
                 }   
                 else {
                     paused = false;
-                    indicator.style.display = "none";
+                    indicator.style.display = "block";
                 }
             }
         }
