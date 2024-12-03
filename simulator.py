@@ -198,7 +198,7 @@ while (True):
    print(send_advice(make_data(2, -2.4, -0.25, -270, "", False)))
    print(send_advice(make_data(3, -2.2, -0.1, -90, "", False)))
 
-   print(send_advice(make_data(4, 0, 0, 0, "", False)))
+  # print(send_advice(make_data(4, 0, 0, 0, "", False)))
    time.sleep(0.1)
 
    assert len(T2) == len(T3)

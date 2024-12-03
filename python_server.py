@@ -167,14 +167,13 @@ from pandas.util import hash_pandas_object
 
 prevts = 0;
 while (True):
-    url1 = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids"
-    url2 = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-logs"
-    r = requests.get(url1, stream=False)
-    r2 = requests.get(url2, stream=False)
-
-    err = False;
-
     try:
+      url1 = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-ids"
+      url2 = "https://conv-count-poc-997c48b4c4cc.herokuapp.com/convo-ts-logs"
+      r = requests.get(url1, stream=False)
+      r2 = requests.get(url2, stream=False)
+
+      err = False;
       data = pd.read_json(StringIO(r.text));
       data2 = pd.read_json(StringIO(r2.text));
 
