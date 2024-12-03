@@ -152,6 +152,7 @@ def cat(data):
 
 def advice(data):
    results = pd.DataFrame()
+   ind = 0
    for convo in data['convo'].unique():   
       datai = data.loc[data['convo'] == convo].sort_values(by=['timestamp'])
 
@@ -160,8 +161,9 @@ def advice(data):
       tip = tips(cat(datai['transcript']))
       if 'Please wait 1 minute before sending another message.' not in inf and 'Please wait 1 minute before sending another message.' not in tip:
          print(inf)
-         results = pd.concat([results, pd.DataFrame({'convo_id': [convo], 'transcript': [cat(datai['transcript'])], 'inference': [inf], 'tips': [tip], 'ids': [ids]})])
-   return results;
+         results = pd.concat([results, pd.DataFrame({'convo_id': [ind], 'transcript': [cat(datai['transcript'])], 'inference': [inf], 'tips': [tip], 'ids': [ids]})])
+      ind += 1
+   return results
 
 from pandas.util import hash_pandas_object
 
@@ -192,7 +194,7 @@ while (True):
         #    adv.to_csv('advice.csv', index=False)
             send_advice(adv.to_json(orient='records'))
     
-     # ts.to_csv('conversations.csv', index=False)
+      ts.to_csv('conversations.csv', index=False)
     except Exception as e:
       print("Error: ", e)
 
