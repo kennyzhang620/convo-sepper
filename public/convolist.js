@@ -85,14 +85,14 @@ function generateCell(res, max_size) {
 
 }
 
-function adjustCellId(id, inf, trans, tips, max_size) {
+function adjustCellId(id, inf, trans, tips, max_size, ids) {
     var convo = document.getElementById(`ts${id}`)
     var title = document.getElementById(`title_header-${id}`)
     var back = document.getElementById(`back-${id}`)
 
     title.innerHTML = inf;
 
-    back.style = `background-color: ${checkPaused(res[i].ids) ? "white" : fform_colors.get(res[i].ids[0])};width: 30px;height: 30px;display: flex; float: right; border-radius: 30px; position:relative; bottom: 40px;`
+    back.style = `background-color: ${checkPaused(ids) ? "white" : fform_colors.get(ids[0])};width: 30px;height: 30px;display: flex; float: right; border-radius: 30px; position:relative; bottom: 40px;`
 
     const contents = ` <h3>Transcript</h3>
                                     ${generateConvoList(trans.trim().split("\n"), max_size)}
@@ -107,7 +107,7 @@ function reviseCell(res, max_size) {
 
 	for (var i = 0; i < res.length; i++) {
 		if (res != null && i < max_size) {
-            adjustCellId(res[i].convo_id, res[i].inference, res[i].transcript, res[i].tips, max_size)
+            adjustCellId(res[i].convo_id, res[i].inference, res[i].transcript, res[i].tips, max_size, res[i].ids)
 		}
 	}
 
