@@ -1,12 +1,30 @@
 id,timestamp,transcript,convo,paused
-0,2024-12-03 08:22:53+00:00,"AI is transforming our world, but it brings serious ethical challenges too.",0,False
-1,2024-12-03 08:23:01+00:00,"Absolutely, privacy is a major concern. AI systems often collect vast amounts of personal data.",0,False
-0,2024-12-03 08:23:08+00:00,"Right, like how companies use AI to track user behavior, which can feel invasive.",0,False
-1,2024-12-03 08:23:16+00:00,"And there’s the issue of data security. AI can be a target for cyberattacks, risking sensitive information.",0,False
-0,2024-12-03 08:23:24+00:00,"Another big problem is bias in AI datasets. If the data is flawed, the AI’s decisions will be too.",0,False
-1,2024-12-03 08:23:31+00:00,"Exactly. AI can unintentionally reinforce societal biases, like in hiring algorithms or facial recognition.",0,False
-2,2024-12-03 08:22:53+00:00,"I think oranges are better than apples. They’re juicy, refreshing, and full of vitamin C.",1,False
-3,2024-12-03 08:23:01+00:00,"Apples are more versatile though. You can eat them fresh, bake them, or even turn them into cider.",1,False
-2,2024-12-03 08:23:08+00:00,"But oranges give you that instant burst of hydration. Plus, they’re great for boosting your immune system.",1,False
-3,2024-12-03 08:23:16+00:00,"Apples have fiber, which helps with digestion. An apple a day keeps the doctor away, right?",1,False
-2,2024-12-03 08:23:24+00:00,"True, but peeling an orange is half the fun! And the scent is so invigorating.",1,False
+0,2024-12-03T08:31:17Z,"AI is transforming our world, but it brings serious ethical challenges too.",0,False
+1,2024-12-03T08:31:24Z,"Absolutely, privacy is a major concern. AI systems often collect vast amounts of personal data.",0,False
+0,2024-12-03T08:31:32Z,"Right, like how companies use AI to track user behavior, which can feel invasive.",0,False
+1,2024-12-03T08:31:39Z,"And there’s the issue of data security. AI can be a target for cyberattacks, risking sensitive information.",0,False
+0,2024-12-03T08:31:47Z,"Another big problem is bias in AI datasets. If the data is flawed, the AI’s decisions will be too.",0,False
+1,2024-12-03T08:31:55Z,"Exactly. AI can unintentionally reinforce societal biases, like in hiring algorithms or facial recognition.",0,False
+0,2024-12-03T08:32:02Z,Remember the case where facial recognition wrongly identified people of color as suspects?,0,False
+1,2024-12-03T08:32:10Z,"Yes, it highlights how AI can perpetuate discrimination if not carefully designed and monitored.",0,False
+0,2024-12-03T08:32:18Z,"Bias isn’t the only issue. Intellectual property rights are murky too, especially with AI-generated content.",0,False
+1,2024-12-03T08:32:25Z,"Like when AI creates art or music—who owns it? The developer, the user, or the AI itself?",0,False
+0,2024-12-03T08:32:33Z,Exactly. It’s an evolving legal area with no clear answers yet.,0,False
+1,2024-12-03T08:32:41Z,There’s also the ethical dilemma of job displacement. Automation is replacing human labor in many sectors.,0,False
+0,2024-12-03T08:32:48Z,"True, but it’s not just about losing jobs. It’s about creating new roles and reskilling the workforce too.",0,False
+1,2024-12-03T08:32:56Z,"Still, the transition can be painful for workers who lack access to new training opportunities.",0,False
+2,2024-12-03T08:31:17Z,"I think oranges are better than apples. They’re juicy, refreshing, and full of vitamin C.",1,False
+3,2024-12-03T08:31:25Z,"Apples are more versatile though. You can eat them fresh, bake them, or even turn them into cider.",1,False
+2,2024-12-03T08:31:32Z,"But oranges give you that instant burst of hydration. Plus, they’re great for boosting your immune system.",1,False
+3,2024-12-03T08:31:40Z,"Apples have fiber, which helps with digestion. An apple a day keeps the doctor away, right?",1,False
+2,2024-12-03T08:31:47Z,"True, but peeling an orange is half the fun! And the scent is so invigorating.",1,False
+3,2024-12-03T08:31:55Z,Apples are more convenient though—no peeling required. Just grab one and go.,1,False
+2,2024-12-03T08:32:03Z,Oranges have such a vibrant color and sweetness. They feel more like a treat.,1,False
+3,2024-12-03T08:32:10Z,"Apples come in so many varieties: sweet, tart, crisp. There’s an apple for every taste.",1,False
+2,2024-12-03T08:32:18Z,"Sure, but have you ever had fresh-squeezed orange juice? It’s unbeatable.",1,False
+3,2024-12-03T08:32:26Z,"Apple juice is just as delicious, and you can even make apple cider for something warm.",1,False
+2,2024-12-03T08:32:33Z,"Oranges are a great source of potassium too, which is essential for muscle function.",1,False
+3,2024-12-03T08:32:41Z,"Apples contain antioxidants like quercetin, which is good for heart health.",1,False
+2,2024-12-03T08:32:49Z,Oranges are better for fighting colds with all that vitamin C.,1,False
+3,2024-12-03T08:32:57Z,"But apples have pectin, which helps regulate blood sugar levels.",1,False
+4,1733243520197,123,2,True
