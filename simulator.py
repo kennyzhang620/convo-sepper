@@ -221,7 +221,7 @@ while (True):
          # print(send_advice(make_data(2, -2.4, -0.25, -270, "", False)))
          print(send_advice(make_data(3, -2.2, -0.1, -90, T3['conversation'][i]['message'], False)))
 
-      time.sleep(2)
+      time.sleep(7)
    time.sleep(3000)
 
 
