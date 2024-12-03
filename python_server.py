@@ -179,7 +179,7 @@ while (True):
       data = pd.read_json(StringIO(r.text));
       data2 = pd.read_json(StringIO(r2.text));
 
-      c = cluster(data, 1.8);
+      c = cluster(data, 1.2);
       print(c)
       send_clusters(c)
 
