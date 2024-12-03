@@ -133,7 +133,6 @@ psycopg2-binary==2.9.9
 ptyprocess==0.7.0
 pure-eval==0.2.2
 py4j==0.10.9.7
-PyAudio==0.2.14
 pycosat==0.6.6
 pycparser==2.21
 pydub==0.25.1
