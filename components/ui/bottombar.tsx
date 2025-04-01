@@ -1,33 +1,26 @@
 import Image from 'next/image'
-import FoE from "../../public/GUI/FoE-logo.png"
-import { CSSProperties } from 'react';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-
-interface BottomBarProps {
-  alt: string;
-  className?: string;
-  href?: string;
-  imageUrl: string | StaticImport;
-  width?: number;
-  height?: number;
-  style?: CSSProperties;
-  showLogo?: boolean
+import logo from '../../public/ConvoBuddy.png'
+import convo_icon from '../../public/ConvosIcons.png'
+import trans_sc from '../../public/Transcript.png'
+interface TopbarProps {
+  title?: string;
 }
 
-export function Bottombar(props: BottomBarProps) {
+export function Bottombar({ title }: TopbarProps) {
     return (
-      <div>
-      <Image 
-      src={props.imageUrl} 
-      alt={props.alt}
-      width={500}
-      height={300}
-      className='vrcomp'
-      style={props.style ? props.style : {transform:'scale(1)', width:"100%"}}
-    />
-    <div id="extender" style={{width: "100%", backgroundColor:"#f4a69e", height:"25vh"}}>
-     { props.showLogo ? <Image src={FoE} alt={"Faculty of Education - SFU"} style={{width:"30%"}}></Image> : <></> }
-
-    </div>
-    </div>);
+        <div className="w-full vrcomp p-4" style={{display: "flex"}}>
+          <Image 
+            src={convo_icon} 
+            alt="Bar at top of AR view" 
+            style={{ width: '15%'}}
+            priority
+          />
+          <Image 
+            src={trans_sc} 
+            alt="Bar at top of AR view" 
+            style={{ width: '15%'}}
+            priority
+          />
+        </div>
+    );
 }

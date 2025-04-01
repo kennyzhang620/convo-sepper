@@ -16,6 +16,7 @@
     "ar.js": "^2.2.2",
     "core-js": "^3.38.1",
     "corejs": "^1.0.0",
+    "hex-to-css-filter": "^6.0.0",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "next": "14.2.13",
