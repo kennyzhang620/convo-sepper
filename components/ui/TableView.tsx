@@ -20,7 +20,7 @@ export function TableView({backgroundColour, width, height, ConvoData}: TableVie
   return (
     <div style={{backgroundColor: backgroundColour, width: width ? width : "100vw", height: height ? height: "25vh", overflow: "scroll"}}>
       {
-        ConvoData.map(conv => <ConvoButton label={conv.label} ConvoD={conv}></ConvoButton>)
+        ConvoData.map(conv => <ConvoButton label={conv.inference} ConvoD={conv}></ConvoButton>)
       }
     </div>
   );

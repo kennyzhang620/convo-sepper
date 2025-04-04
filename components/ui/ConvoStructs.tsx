@@ -6,11 +6,11 @@ import { Inter } from "next/font/google";
 import React from "react";
 
 export interface ConvoData {
-  label: string,
-  id: number,
+  convo_id: number,
   transcript: string,
+  inference: string,
   tips: string
-  paused: boolean
+  ids: boolean
 }
 
 export interface ConvoPoints {
