@@ -1,4 +1,4 @@
-function sendPacket(url: string, type:string, data_main: Object, asyncV = false, callback?: (data: string) => void, failure?: (error: string) => void, TIMEOUT=3000) {
+export function sendPacket(url: string, type:string, data_main: Object, asyncV = false, callback?: (data: string) => void, failure?: (error: string) => void, TIMEOUT=3000) {
   var txtFile = new XMLHttpRequest();
   txtFile.open(type, url, asyncV);
 

@@ -8,6 +8,7 @@ import { Topbar } from "./topbar";
 import { Bottombar } from "./bottombar";
 import convo_icon from '../../public/ConvosIcons.png'
 import transcr from '../../public/Transcript.png'
+import { sendPacket } from "./_helpers";
 
 interface ConvoProps {
   label: string;
@@ -34,13 +35,14 @@ export function ConvoView(cvp: ConvoProps) {
   var [tdata, setTranscriptData] = useState([])
 
 const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-list"
+var prevLen = 0;
 
       const [count, setCount] = useState(0);
       useEffect(() => {
 
 
 
-        function loadConvo(e) {
+        function loadConvo(e:string) {
 
           var dataArr = null;
          // console.log(e)
@@ -54,19 +56,17 @@ const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/conv
           if (!dataArr) return;
       
           if (prevLen != dataArr.length) {
-              clearCells();
-              generateCell(dataArr, 10)
+              setTranscriptData(dataArr);
       
               prevLen = dataArr.length;
       
               return;
+
           }
-      
-          reviseCell(dataArr, 10);
-      }
+     }
       
       function convo_loop() {
-          sendPacket(convoserver, 'GET', '', true, loadConvo,  null, 3000)
+          sendPacket(convoserver, 'GET', '', true, loadConvo, undefined, 3000)
       }
       
       setInterval(convo_loop, 100);
@@ -76,6 +76,7 @@ const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/conv
           const counter = count + 1;
           setCount(counter);
         }, 1000);
+
         return () => clearTimeout(timer);
       }, [count]);
 
