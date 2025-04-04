@@ -9,6 +9,7 @@ import { Bottombar } from "./bottombar";
 import convo_icon from '../../public/ConvosIcons.png'
 import transcr from '../../public/Transcript.png'
 import { sendPacket } from "./_helpers";
+import { ConvoData } from "./ConvoStructs";
 
 interface ConvoProps {
   label: string;
@@ -32,7 +33,7 @@ export function ConvoView(cvp: ConvoProps) {
       */
 
   var [test, setPoint] = useState([]);
-  var [tdata, setTranscriptData] = useState([])
+  var [tdata, setTranscriptData] = useState<ConvoData[]>([])
 
 const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-list"
 var prevLen = 0;
@@ -44,7 +45,7 @@ var prevLen = 0;
 
         function loadConvo(e:string) {
 
-          let dataArr: string | null = null;
+          let dataArr: ConvoData[] | null = null;
           try {
               dataArr = JSON.parse(e);
           }
