@@ -23,13 +23,14 @@ const interF = Inter({subsets:['latin']})
 export function MapNode(NodeProperties: NodeProps) {
   var [showTrans, showOnClick] = React.useState(false);
 
-const XOFFSET = 256;
+const XOFFSET = 168;
 const YOFFSET = 256;
 
 const scaleV = NodeProperties.scale ? NodeProperties.scale : 1
 
   'return `<div id="point-${id}" style="background-color: ${fform_colors.get(id)};position: absolute;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: ${XOFFSET+x}px;top: ${YOFFSET-y}px;text-align: center;transform: rotate(${theta}deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>${id}</div>`'
   return (
-      <Image src={BUBBLY} alt={"bubbly"} style={{filter: hexToCSSFilter(NodeProperties.colour).filter, position:"absolute", left: `${XOFFSET+NodeProperties.x*scaleV}px`, top: `${YOFFSET-NodeProperties.y*scaleV}px`, rotate: `${NodeProperties.heading ? NodeProperties.heading : 0}deg`}}></Image>
+      <div style={{position:"absolute", opacity: 0.6, left: `${XOFFSET+NodeProperties.x*scaleV}px`, top: `${YOFFSET-NodeProperties.y*scaleV}px`, rotate: `${NodeProperties.heading ? NodeProperties.heading - 90 : -90}deg`}}><Image style={{filter: hexToCSSFilter(NodeProperties.colour).filter}} src={BUBBLY} alt={"bubbly"}></Image><div id="identifier" style={{position: 'absolute', transform: 'translate(18px, -26px)'
+}}>{NodeProperties.NodeId}</div></div>
   );
 } 

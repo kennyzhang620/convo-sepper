@@ -38,7 +38,7 @@ export function ConvoView(cvp: ConvoProps) {
 const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-list"
 const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-ids";
 const clusterServer = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-clusters";
-var fform_colors = new Map();
+var [fform_colors, setColours] = useState(new Map())
 
 var prevLen = 0;
 
@@ -111,6 +111,8 @@ var prevLen = 0;
                 fform_colors.set(fformation[f],  colours[i]);
             }
         }
+
+        console.log(fform_colors)
         sendPacket(server, 'GET', '', true, loadPoints,  undefined, 3000);
       }
       
