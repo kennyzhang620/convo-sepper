@@ -1,6 +1,6 @@
 'use client'
 
-import { ConvoView } from "@/components/ui/ConvoView";
+import { ConvoView } from "../components/ui/ConvoView";
 
 export default function Home() {
 
