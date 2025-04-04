@@ -25,12 +25,16 @@ export function Topbar({ title, p1, p2, logo, colour }: TopbarProps) {
           <h1 className="text-xl">
             {title}
           </h1> : <div></div> }
+          {
+          logo ? 
           <Image 
             src={logo} 
             alt="Bar at top of AR view" 
             style={{ width: '146px', padding: '0.5rem'}}
             priority
-          /></div>
+          /> : <div></div>
+          }
+          </div>
           <p>{p1}</p>
           <p>{p2}</p>
         </div>
