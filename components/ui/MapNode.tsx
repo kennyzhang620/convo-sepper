@@ -15,6 +15,7 @@ interface NodeProps {
   heading: number,
   NodeId: number,
   colour: string,
+  scale?: number
 }
 
 const interF = Inter({subsets:['latin']})
@@ -25,8 +26,10 @@ export function MapNode(NodeProperties: NodeProps) {
 const XOFFSET = 256;
 const YOFFSET = 256;
 
+const scaleV = NodeProperties.scale ? NodeProperties.scale : 1
+
   'return `<div id="point-${id}" style="background-color: ${fform_colors.get(id)};position: absolute;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: ${XOFFSET+x}px;top: ${YOFFSET-y}px;text-align: center;transform: rotate(${theta}deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>${id}</div>`'
   return (
-      <Image src={BUBBLY} alt={"bubbly"} style={{filter: hexToCSSFilter(NodeProperties.colour).filter, position:"absolute", left: `${XOFFSET+NodeProperties.x}px`, top: `${YOFFSET-NodeProperties.y}px`, rotate: `${NodeProperties.heading ? NodeProperties.heading : 0}deg`}}></Image>
+      <Image src={BUBBLY} alt={"bubbly"} style={{filter: hexToCSSFilter(NodeProperties.colour).filter, position:"absolute", left: `${XOFFSET+NodeProperties.x*scaleV}px`, top: `${YOFFSET-NodeProperties.y*scaleV}px`, rotate: `${NodeProperties.heading ? NodeProperties.heading : 0}deg`}}></Image>
   );
 } 
