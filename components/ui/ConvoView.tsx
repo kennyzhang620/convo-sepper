@@ -69,9 +69,8 @@ var prevLen = 0;
           sendPacket(convoserver, 'GET', '', true, loadConvo, undefined, 3000)
       }
       
-      setInterval(convo_loop, 100);
-
-
+      convo_loop();
+      
         const timer = setTimeout(() => {
           const counter = count + 1;
           setCount(counter);
