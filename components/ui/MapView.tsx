@@ -14,14 +14,24 @@ interface TableViewProps {
   backgroundColour: string;
   onClick?: () => void;
   ConvoPts: ConvoPoints[];
-  scale?: number
+  scale?: number;
+  externColour?: Map<number, string>;
 }
 
-export function MapView({backgroundColour, width, height, ConvoPts, scale}: TableViewProps) {
+export function MapView({backgroundColour, width, height, ConvoPts, scale, externColour}: TableViewProps) {
   
   return (
     <div style={{backgroundColor: backgroundColour, width: width ? width : "100vw", height: height ? height: "50vh", position:"relative"}}>
-      {ConvoPts.map(pts => <MapNode NodeId={pts.id} heading={pts.theta} x={pts.px} y={pts.py} colour={colours[pts.id % colours.length]} scale={scale}></MapNode>)}
+      {ConvoPts.map(pts => 
+        <MapNode 
+          NodeId={pts.id} 
+          heading={pts.theta} 
+          x={pts.px} 
+          y={pts.py} 
+          colour={externColour ? externColour.get(pts.id % colours.length) || colours[pts.id % colours.length] : colours[pts.id % colours.length]}
+          scale={scale}>
+        </MapNode>
+      )}
     </div>
   );
 } 

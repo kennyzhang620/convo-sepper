@@ -9,7 +9,7 @@ import { Bottombar } from "./bottombar";
 import convo_icon from '../../public/ConvosIcons.png'
 import transcr from '../../public/Transcript.png'
 import { sendPacket } from "./_helpers";
-import { ConvoData, ConvoPoints } from "./ConvoStructs";
+import { colours, ConvoData, ConvoPoints } from "./ConvoStructs";
 
 interface ConvoProps {
   label: string;
@@ -37,6 +37,7 @@ export function ConvoView(cvp: ConvoProps) {
 
 const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-list"
 const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-ids";
+var fform_colors = new Map();
 
 var prevLen = 0;
 
@@ -90,10 +91,31 @@ var prevLen = 0;
 
       }
  }
+      function loadFFormations(e:string) {
+        var dataArr: number[][] | null = null;
+        try {
+            dataArr = JSON.parse(e);
+        }
+        catch (e) {
+            console.error(e);
+        }
+
+        if (!dataArr) return;
+
+        // Draw F-formations
+        for (var i = 0;i < dataArr.length;i++) {
+            const fformation = dataArr[i];
+            for (var f = 0;f<fformation.length ;f++) {
+            //    document.getElementById(`point-${fformation[f]}`).style.backgroundColor = f_formation_colors[i];
+                fform_colors.set(fformation[f],  colours[i]);
+            }
+        }
+        sendPacket(server, 'GET', '', true, loadPoints,  undefined, 3000);
+      }
       
       function convo_loop() {
           sendPacket(convoserver, 'GET', '', true, loadConvo, undefined, 3000)
-          sendPacket(server, 'GET', '', true, loadPoints, undefined, 3000)
+          sendPacket(server, 'GET', '', true, loadFFormations, undefined, 3000)
       }
       
       convo_loop();
@@ -109,8 +131,8 @@ var prevLen = 0;
   return (
     <div>
         { appMode != 2 ? <div><Topbar title={topbar_txt[appMode].title} p1={topbar_txt[appMode].p1} p2={topbar_txt[appMode].p2} logo={topbar_txt[appMode].logo} colour={topbar_txt[appMode].color} ></Topbar></div> : <div></div> }
-        { appMode == 0 ? <div><MapView label="a" backgroundColour="#EFEFEF" ConvoPts={test} height={'43vh'} scale={50}></MapView></div> : <div></div> }
-        { appMode <= 1 ? <div><TableView label="a" backgroundColour={appMode == 0 ? "#58CC02" : "#FFFFFF"}     ConvoData={tdata} height={ appMode == 1 ? "62vh" : "25vh"}></TableView></div> : <div></div> }
+        { appMode == 0 ? <div><MapView label="a" backgroundColour="#EFEFEF" ConvoPts={test} height={'43vh'} scale={50} externColour={fform_colors}></MapView></div> : <div></div> }
+        { appMode <= 1 ? <div><TableView label="a" backgroundColour={appMode == 0 ? "#58CC02" : "#FFFFFF"} ConvoData={tdata} height={ appMode == 1 ? "62vh" : "25vh"}></TableView></div> : <div></div> }
         <Bottombar onClick1={() => setMode(0)} onClick2={() => setMode(1)} onClick3={() => setMode(2)}></Bottombar>
    </div>
   );
