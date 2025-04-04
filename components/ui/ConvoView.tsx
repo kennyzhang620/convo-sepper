@@ -8,7 +8,6 @@ import { Topbar } from "./topbar";
 import { Bottombar } from "./bottombar";
 import convo_icon from '../../public/ConvosIcons.png'
 import transcr from '../../public/Transcript.png'
-import { recorder_loop } from "./recorder";
 
 interface ConvoProps {
   label: string;
@@ -84,7 +83,7 @@ const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/conv
     <div>
         { appMode != 2 ? <div><Topbar title={topbar_txt[appMode].title} p1={topbar_txt[appMode].p1} p2={topbar_txt[appMode].p2} logo={topbar_txt[appMode].logo} colour={topbar_txt[appMode].color} ></Topbar></div> : <div></div> }
         { appMode == 0 ? <div><MapView label="a" backgroundColour="#EFEFEF" ConvoPts={test} height={'43vh'}></MapView></div> : <div></div> }
-        { appMode <= 1 ? <div><TableView label="a" backgroundColour={appMode == 0 ? "#58CC02" : "#FFFFF"}     ConvoData={tdata} height={ appMode == 1 ? "62vh" : "25vh"}></TableView></div> : <div></div> }
+        { appMode <= 1 ? <div><TableView label="a" backgroundColour={appMode == 0 ? "#58CC02" : "#FFFFFF"}     ConvoData={tdata} height={ appMode == 1 ? "62vh" : "25vh"}></TableView></div> : <div></div> }
         <Bottombar onClick1={() => setMode(0)} onClick2={() => setMode(1)} onClick3={() => setMode(2)}></Bottombar>
    </div>
   );
