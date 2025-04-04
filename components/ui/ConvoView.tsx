@@ -44,8 +44,7 @@ var prevLen = 0;
 
         function loadConvo(e:string) {
 
-          var dataArr = null;
-         // console.log(e)
+          let dataArr: string | null = null;
           try {
               dataArr = JSON.parse(e);
           }
