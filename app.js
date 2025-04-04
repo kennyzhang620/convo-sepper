@@ -37,6 +37,12 @@ const limit = 500;
 
 var app = express();
 
+const cors = require('cors') //cross-origin resource sharing
+
+app.use(cors({
+    origin: '*' // change to webapp later
+}));
+
 app.set('views', __dirname + '/tpl');
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
