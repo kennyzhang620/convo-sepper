@@ -15,11 +15,11 @@ export interface ConvoData {
 
 export interface ConvoPoints {
   id: number,
-  transcript: string,
   px: number,
   py: number,
   theta: number, 
   cxy: number,
+  transcript: string,
   timestamp: number,
   paused: boolean
 }

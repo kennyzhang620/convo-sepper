@@ -9,7 +9,7 @@ import { Bottombar } from "./bottombar";
 import convo_icon from '../../public/ConvosIcons.png'
 import transcr from '../../public/Transcript.png'
 import { sendPacket } from "./_helpers";
-import { ConvoData } from "./ConvoStructs";
+import { ConvoData, ConvoPoints } from "./ConvoStructs";
 
 interface ConvoProps {
   label: string;
@@ -32,10 +32,12 @@ export function ConvoView(cvp: ConvoProps) {
       id: 2, transcript: 'cock', tips: 'abcd', paused: false}]
       */
 
-  var [test, setPoint] = useState([]);
+  var [test, setPoint] = useState<ConvoPoints[]>([]);
   var [tdata, setTranscriptData] = useState<ConvoData[]>([])
 
 const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-list"
+const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-ids";
+
 var prevLen = 0;
 
       const [count, setCount] = useState(0);
@@ -64,9 +66,34 @@ var prevLen = 0;
 
           }
      }
+
+
+
+     function loadPoints(e:string) {
+
+      let dataArr: ConvoPoints[] | null = null;
+      try {
+          dataArr = JSON.parse(e);
+      }
+      catch (e) {
+          console.error(e);
+      }
+  
+      if (!dataArr) return;
+  
+      if (prevLen != dataArr.length) {
+          setPoint(dataArr);
+  
+          prevLen = dataArr.length;
+  
+          return;
+
+      }
+ }
       
       function convo_loop() {
           sendPacket(convoserver, 'GET', '', true, loadConvo, undefined, 3000)
+          sendPacket(server, 'GET', '', true, loadPoints, undefined, 3000)
       }
       
       convo_loop();
