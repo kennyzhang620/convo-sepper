@@ -8,8 +8,8 @@ import { ConvoPoints, colours } from "./ConvoStructs";
 interface TableViewProps {
   label: string;
   className?: string;
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
   style?: CSSProperties;
   backgroundColour: string;
   onClick?: () => void;

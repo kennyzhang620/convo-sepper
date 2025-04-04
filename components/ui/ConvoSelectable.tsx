@@ -25,7 +25,7 @@ export function ConvoButton({className, href, width, paused, style, ConvoD, onCl
   return (
       <button className={className} onClick={onClick ? onClick : () => showOnClick(!showTrans)} style={style ? style : {padding:"1em"}}>
         <div style={{backgroundColor: paused ? "#FF9000": "#EEEDED", color: "#4D4D4D", display:"flex", filter: "drop-shadow(0 0 0.20rem black)"}}>
-          <h1 className={"text-base"} style={{padding:"1rem", width:width, textAlign: "left"}}>Artificial intelligence and writing gggggggggggggggggggfffgggggggggggvvgvggfgfg</h1>
+          <h1 className={"text-base"} style={{padding:"1rem", width:width, textAlign: "left"}}>{ConvoD.label}</h1>
           <div style={{backgroundColor:colours[ConvoD.id % colours.length], width: "40px"}}></div>
         </div>
         {showTrans ?

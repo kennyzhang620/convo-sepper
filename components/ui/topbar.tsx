@@ -1,32 +1,38 @@
 import Image from 'next/image'
-import logo from '../../public/ConvoBuddy.png'
-import convo_icon from '../../public/ConvosIcons.png'
+import logo_m from '../../public/ConvoBuddy.png'
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { colours } from './ConvoStructs';
+
 interface TopbarProps {
   title?: string;
+  p1?: string;
+  p2?: string;
+  logo: string | StaticImport;
+  colour: string;
 }
 
-export function Topbar({ title }: TopbarProps) {
+export function Topbar({ title, p1, p2, logo, colour }: TopbarProps) {
     return (
-        <div className="w-full vrcomp p-4" style={{backgroundColor: "yellow"}}>
+        <div className="w-full vrcomp p-4" style={{backgroundColor: colour}}>
           <Image 
-            src={logo} 
+            src={logo_m} 
             alt="Bar at top of AR view" 
-            style={{ width: '25%'}}
+            style={{ width: '84px'}}
             priority
           />
-          <div id="wrap" style={{display: "flex"}}>          
+          <div id="wrap" style={{display: "flex", justifyContent: 'space-between'}}>          
             {title ? 
-          <h1 className="text-2xl">
+          <h1 className="text-xl">
             {title}
           </h1> : <div></div> }
           <Image 
-            src={convo_icon} 
+            src={logo} 
             alt="Bar at top of AR view" 
-            style={{ width: '35%'}}
+            style={{ width: '146px', padding: '0.5rem'}}
             priority
           /></div>
-          <p>Find conversations that you want to join!</p>
-          <p>If you need help, the transcripts are a great place to start!</p>
+          <p>{p1}</p>
+          <p>{p2}</p>
         </div>
     );
 }
