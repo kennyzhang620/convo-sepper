@@ -168,7 +168,7 @@ export function ConvoView(cvp: ConvoProps) {
             <Topbar title={topbar_txt[appMode].title} p1={topbar_txt[appMode].p1} p2={topbar_txt[appMode].p2} logo={topbar_txt[appMode].logo} colour={topbar_txt[appMode].color} ></Topbar>
             {appMode == 2 ? <div><Image alt="profile" src={ProfileImg}></Image>
                 <div className="p-4" style={{ height: "51vh" }}><h1 className="text-xl">Profile and Settings</h1><h2 className="text-lg">Calibration</h2><Button className="text-base" label="Recentre Device"></Button><h2 className="text-lg">Compass Realignment</h2><Button className="text-base" label="Set Current Direction as North"></Button></div></div> : <div></div>}
-            {appMode == 0 ? <div><MapView label="a" backgroundColour="#EFEFEF" ConvoPts={test} height={'43vh'} scale={50} externColour={fform_colors} onClick1={() => setPerms(true)}></MapView></div> : <div></div>}
+            {appMode == 0 ? <div><MapView label="a" backgroundColour="#EFEFEF" ConvoPts={test} height={'43vh'} scale={50} externColour={fform_colors} onClick1={() => !perms1 ? setPerms(true) : {}}></MapView></div> : <div></div>}
             {appMode <= 1 ? <div><TableView label="a" backgroundColour={appMode == 0 ? "#58CC02" : "#FFFFFF"} ConvoData={tdata} height={appMode == 1 ? "62vh" : "25vh"}></TableView></div> : <div></div>}
             <Bottombar onClick1={() => setMode(0)} onClick2={() => setMode(1)} onClick3={() => setMode(2)}></Bottombar>
             {
