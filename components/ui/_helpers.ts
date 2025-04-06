@@ -38,11 +38,11 @@ export function sendPacket(url: string, type:string, data_main: Object, asyncV =
   txtFile.send(JSON.stringify(data_main));
 }
 
-function sampleAccel() {
+export function sampleAccel() {
 }
 
 // Sample only data +/- > thres
-function threshold(flv:number, thres:number, max=9.8) {
+export function threshold(flv:number, thres:number, max=9.8) {
   if (flv > thres && flv < max)
       return flv
 
@@ -52,14 +52,14 @@ function threshold(flv:number, thres:number, max=9.8) {
   return 0;
 }
 
-function abs(val: number){
+export function abs(val: number){
   if (val < 0) return -val;
 
   return val;
 }
 
 // Add negated acceleration to counteract accuracy loss as result of thresholding
-function bias(val: number, offset: number, thres: number, maxv: number) {
+export function bias(val: number, offset: number, thres: number, maxv: number) {
   if (abs(thres - val) <= thres) {
       return 0
   }
@@ -73,7 +73,7 @@ function bias(val: number, offset: number, thres: number, maxv: number) {
   return 0;
 }
 
-function cutoff(val: number, maxval: number) {
+export function cutoff(val: number, maxval: number) {
   if (val > maxval)
       return maxval;
 
@@ -83,13 +83,7 @@ function cutoff(val: number, maxval: number) {
   return val;
 }
 
-var timeElapsed = 0;
-
-var axc = 0, ayc = 0, azc = 0;
-var diff = 0;
-var avgZ = 0;
-
-function rotationZ(angle: number, vector: [number, number, number]): [number, number, number] {
+export function rotationZ(angle: number, vector: [number, number, number]): [number, number, number] {
   const x = Math.cos(angle) * vector[0] - Math.sin(angle) * vector[1] + 0;
   const y = Math.sin(angle) * vector[0] + Math.cos(angle) * vector[1] + 0;
   const z = vector[2];
@@ -97,7 +91,7 @@ function rotationZ(angle: number, vector: [number, number, number]): [number, nu
   return [x, y, z];
 }
 
-function rotationY(angle: number, vector: [number, number, number]): [number, number, number] {
+export function rotationY(angle: number, vector: [number, number, number]): [number, number, number] {
   const x = Math.cos(angle) * vector[0] + 0 + Math.sin(angle) * vector[2]
   const y = vector[1];
   const z = -Math.sin(angle) * vector[0] + 0 + Math.cos(angle) * vector[2];
@@ -105,7 +99,7 @@ function rotationY(angle: number, vector: [number, number, number]): [number, nu
   return [x, y, z];
 }
 
-function rotationX(angle: number, vector: [number, number, number]): [number, number, number] {
+export function rotationX(angle: number, vector: [number, number, number]): [number, number, number] {
   const x = vector[1];
   const y = Math.cos(angle) * vector[1] - Math.sin(angle) * vector[2];
   const z = Math.sin(angle) * vector[1] + Math.cos(angle) * vector[2];
@@ -113,6 +107,6 @@ function rotationX(angle: number, vector: [number, number, number]): [number, nu
   return [x, y, z];
 }
 
-function radians(deg: number) {
+export function radians(deg: number) {
   return ((deg * Math.PI) / 180);
 }

@@ -12,7 +12,9 @@ import { sendPacket } from "./_helpers";
 import { colours, ConvoData, ConvoPoints } from "./ConvoStructs";
 import ProfileImg from '../../public/ProfilePicture.png'
 import { Button } from "./button";
-import ReactSlider from 'react-slider'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import CompassCapture from './_compass';
+import Recorder from "./recorder";
 
 interface ConvoProps {
     label: string;
@@ -23,6 +25,9 @@ interface ConvoProps {
     backgroundColour: string;
     onClick?: () => void;
 }
+
+var CompassCap: CompassCapture | null = null;
+var Record: Recorder | null = null;
 
 export function ConvoView(cvp: ConvoProps) {
 
@@ -47,7 +52,15 @@ export function ConvoView(cvp: ConvoProps) {
 
     var prevLen = 0;
 
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+
     const [count, setCount] = useState(0);
+
     useEffect(() => {
 
         function loadConvo(e: string) {
@@ -89,6 +102,9 @@ export function ConvoView(cvp: ConvoProps) {
 
                 prevLen = dataArr.length;
 
+                if (!CompassCap) CompassCap = new CompassCapture();
+                if (!Record) Record = new Recorder(prevLen);
+
                 return;
 
             }
@@ -121,6 +137,17 @@ export function ConvoView(cvp: ConvoProps) {
         function convo_loop() {
             sendPacket(convoserver, 'GET', '', true, loadConvo, undefined, 3000)
             sendPacket(clusterServer, 'GET', '', true, loadFFormations, undefined, 3000)
+
+            if (!listening) SpeechRecognition.startListening();
+            console.log(transcript, CompassCap, Record);
+
+            if (CompassCap && Record) {
+                Record.recorder_loop(CompassCap.compass, CompassCap.gamma, CompassCap.beta);
+
+                if (transcript && transcript.length > 0) {
+                    Record.queue_ts(transcript);
+                }
+            }
         }
 
         convo_loop();
