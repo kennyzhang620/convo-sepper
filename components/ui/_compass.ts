@@ -78,15 +78,7 @@ class CompassCapture {
             window.addEventListener("deviceorientationabsolute", this.handler_compass, true);
         }
         else {
-            DeviceOrientationEvent.requestPermission()
-                .then((response) => {
-                    if (response === "granted") {
-                        window.addEventListener("deviceorientation", this.handler_compass, true);
-                    } else {
-                        alert("has to be allowed!");
-                    }
-                })
-                .catch(() => alert("not supported"));
+            window.addEventListener("deviceorientation", this.handler_compass, true);
         }
     }
 

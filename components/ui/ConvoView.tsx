@@ -15,6 +15,7 @@ import { Button } from "./button";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import CompassCapture from './_compass';
 import Recorder from "./recorder";
+import {Perms} from "./perms"
 
 interface ConvoProps {
     label: string;
@@ -168,6 +169,7 @@ export function ConvoView(cvp: ConvoProps) {
             {appMode == 0 ? <div><MapView label="a" backgroundColour="#EFEFEF" ConvoPts={test} height={'43vh'} scale={50} externColour={fform_colors}></MapView></div> : <div></div>}
             {appMode <= 1 ? <div><TableView label="a" backgroundColour={appMode == 0 ? "#58CC02" : "#FFFFFF"} ConvoData={tdata} height={appMode == 1 ? "62vh" : "25vh"}></TableView></div> : <div></div>}
             <Bottombar onClick1={() => setMode(0)} onClick2={() => setMode(1)} onClick3={() => setMode(2)}></Bottombar>
+            <Perms></Perms>
         </div>
     );
 }
