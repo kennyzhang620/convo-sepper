@@ -12,16 +12,16 @@ interface TableViewProps {
   height?: number | string;
   style?: CSSProperties;
   backgroundColour: string;
-  onClick?: () => void;
+  onClick1?: () => void;
   ConvoPts: ConvoPoints[];
   scale?: number;
   externColour?: Map<number, string>;
 }
 
-export function MapView({backgroundColour, width, height, ConvoPts, scale, externColour}: TableViewProps) {
+export function MapView({ backgroundColour, width, height, ConvoPts, scale, externColour, onClick1 }: TableViewProps) {
   
-  return (
-    <div style={{backgroundColor: backgroundColour, width: width ? width : "100vw", height: height ? height: "50vh", position:"relative"}}>
+    return (
+        <div style={{ backgroundColor: backgroundColour, width: width ? width : "100vw", height: height ? height : "50vh", position: "relative" }} onClick={onClick1}>
       {ConvoPts.map(pts => 
         <MapNode 
           NodeId={pts.id} 
