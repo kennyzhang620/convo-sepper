@@ -4,17 +4,7 @@ export function Perms() {
 
 
   const htmlD: string =`
- <script>
-                DeviceOrientationEvent.requestPermission()
-                .then((response) => {
-                    if (response === "granted") {
-                        alert("wtf")
-                    } else {
-                        alert("has to be allowed!");
-                    }
-                })
-                .catch(() => alert("not supported"));
-</script>
+              <script src='./perms.js'> </script>
 `;
 
   return (

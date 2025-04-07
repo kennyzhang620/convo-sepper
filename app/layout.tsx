@@ -38,7 +38,6 @@ export default function RootLayout({
         className={`${LOne.className} antialiased`}
       >
               {children}
-              <script src='./perms.js'> </script>
           </body>
     </html>
   );
