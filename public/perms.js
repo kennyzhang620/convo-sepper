@@ -3,7 +3,7 @@ const isIOS =
     /iPad|iPhone|iPod/.test(navigator.userAgent) &&
     !window.MSStream;
 
-if (IsIOS) {
+if (isIOS) {
 
     let A = setInterval(perms, 100);
 
