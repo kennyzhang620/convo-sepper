@@ -48,7 +48,7 @@ class Recorder {
     maxDistance = 6;
     refVtr = [0,1];
 
-    scaleVal = 1 / 3;
+    scaleVal = 1 / 1;
     humanRange = [150, 10000];
     rangerFreq = 12000;
 
