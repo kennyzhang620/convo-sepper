@@ -156,7 +156,7 @@ export function ConvoView(cvp: ConvoProps) {
         const timer = setTimeout(() => {
             const counter = count + 1;
             setCount(counter);
-        }, 100);
+        }, 50);
 
         return () => clearTimeout(timer);
     }, [count]);
