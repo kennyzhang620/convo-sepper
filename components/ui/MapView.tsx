@@ -21,7 +21,7 @@ interface TableViewProps {
 export function MapView({ backgroundColour, width, height, ConvoPts, scale, externColour, onClick1 }: TableViewProps) {
   
     return (
-        <div style={{ backgroundColor: backgroundColour, width: width ? width : "100vw", height: height ? height : "50vh", position: "relative" }} onClick={onClick1}>
+        <div id="convomap" style={{ backgroundColor: backgroundColour, width: width ? width : "100vw", height: height ? height : "50vh", position: "relative" }} onClick={onClick1}>
       {ConvoPts.map(pts => 
         <MapNode 
           NodeId={pts.id} 
