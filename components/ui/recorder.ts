@@ -348,6 +348,12 @@ class Recorder {
         //}
     }
 
+    recentre = () => {
+        this.CurrPX = 0;
+        this.CurrPY = 0;
+        alert("Recentred to origin")
+    }
+
     constructor(id: number) {
         this.currID = id;
         this.init();

@@ -12,6 +12,8 @@ class CompassCapture {
     beta = 0;
     alpha = 0;
 
+    offset = [0,0,0,0];
+
     isIOS =
         navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
         navigator.userAgent.match(/AppleWebKit/);
@@ -19,10 +21,10 @@ class CompassCapture {
     pointDegree = 0;
 
     handler_compass = (e: any) => {
-        this.compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
-        this.alpha = e.alpha;
-        this.gamma = e.gamma;
-        this.beta = e.beta;
+        this.compass = (e.webkitCompassHeading || Math.abs(e.alpha - 360)) - this.offset[0];
+        this.alpha = e.alpha - this.offset[1];
+        this.gamma = e.gamma - this.offset[2];
+        this.beta = e.beta - this.offset[3];
 
         // �15 degree
         if (
@@ -66,6 +68,22 @@ class CompassCapture {
             this.pointDegree = this.pointDegree + 360;
         }
     }
+
+    Recalibrate = () => {
+        this.offset[0] = this.compass;
+        this.offset[1] = this.alpha;
+        this.offset[2] = this.gamma;
+        this.offset[3] = this.beta;
+        alert("Current direction is set as North")
+    }
+
+    Rezero = () => {
+        this.offset[0] = 0;
+        this.offset[1] = 0;
+        this.offset[2] = 0;
+        this.offset[3] = 0;
+    }
+
 
     constructor() {
 
