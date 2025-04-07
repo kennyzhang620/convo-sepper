@@ -98,13 +98,13 @@ export function ConvoView(cvp: ConvoProps) {
 
             if (!dataArr) return;
 
+            if (!CompassCap) CompassCap = new CompassCapture();
+            if (!Record) Record = new Recorder(prevLen);
+
             if (prevLen != dataArr.length) {
                 setPoint(dataArr);
 
                 prevLen = dataArr.length;
-
-                if (!CompassCap) CompassCap = new CompassCapture();
-                if (!Record) Record = new Recorder(prevLen);
 
                 return;
 
