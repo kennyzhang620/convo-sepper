@@ -46,7 +46,7 @@ class Recorder {
     boundariesM = 5;
     maxAccel = 1.4;
 
-    scaleVal = 1 / 20;
+    scaleVal = 1 / 5;
     humanRange = [150, 10000];
     rangerFreq = 12000;
 
