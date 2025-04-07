@@ -45,8 +45,10 @@ class Recorder {
     rotDelta = 0.25;
     boundariesM = 5;
     maxAccel = 1.4;
+    maxDistance = 6;
+    refVtr = [0,1];
 
-    scaleVal = 1 / 8;
+    scaleVal = 1 / 10;
     humanRange = [150, 10000];
     rangerFreq = 12000;
 
@@ -64,6 +66,7 @@ class Recorder {
 
     rangedDistance = 0;
     offset = 0;
+    zeroThres = 1;
 
     irnd = 0;
     normalAvg = 0;
@@ -85,61 +88,66 @@ class Recorder {
     elapsedTimeU = (compass: number, gamma: number, beta: number) => {
 
      //   console.log(this.timeElapsed)
-        if (this.timeElapsed % this.sampleR != 0 || this.timeElapsed == 0) {
-            this.axc += this.accelVectors[0]; this.ayc += this.accelVectors[1]; this.azc += this.accelVectors[2];
+     if (this.timeElapsed % this.sampleR != 0 || this.timeElapsed == 0) {
+        this.axc += this.accelVectors[0]; this.ayc += this.accelVectors[1]; this.azc += this.accelVectors[2];
 
-            if (this.timeElapsed % 2 == 1) {
-                this.diff -= Math.sin(0.5 * radians(compass));
-                this.avgZ += abs(this.diff);
-            }
-            else {
-                this.diff = Math.sin(0.5 * radians(compass));
-            }
-
-            this.timeElapsed += 1
-            return;
+        if (this.timeElapsed % 2 == 1) {
+            this.diff -= Math.sin(0.5 * radians(compass));
+            this.avgZ += abs(this.diff);
         }
-
-        this.avgZ /= 5;
-
-        if (this.avgZ >= this.rotDelta) {
-            this.axc = 0, this.ayc = 0, this.azc = 0;
+        else {
+            this.diff = Math.sin(0.5 * radians(compass));
         }
-
-        this.avgZ = 0; this.diff = 0;
-        this.axc /= this.sampleR; this.ayc /= this.sampleR; this.azc /= this.sampleR;
-
-        const corrXYZ = rotationX(radians(-beta), rotationY(radians(-gamma), [this.axc, this.ayc, this.azc]))
-
-        const ax = Math.sin(radians(compass)) * threshold(corrXYZ[2], this.rollOff, this.maxAccel)
-        const ay = threshold(corrXYZ[1], this.rollOff, this.maxAccel)
-        const az = Math.cos(radians(compass)) * -threshold(corrXYZ[0], this.rollOff, this.maxAccel)
-
-        this.axc = 0, this.ayc = 0, this.azc = 0;
-
-        this.testTheta = compass;
-        this.testBeta = beta;
-        this.testGamma = gamma;
-
-        this.testX = ax;
-        this.testY = ay;
-        this.testZ = az;
-
-        this.testVX = bias(this.testVX, 0.5, 0.5, 2) + ax;
-        this.testVY = bias(this.testVY, 0.5, 0.5, 2) + ay;
-        this.testVZ = bias(this.testVZ, 0.5, 0.5, 2) + az;
-
-        if (this.testPX + this.testVX < this.maxWidth && this.testPX + this.testVX > -this.maxWidth)
-            this.testPX += this.testVX;
-        if (this.testPY + this.testVY < this.maxWidth && this.testPY + this.testVY > -this.maxWidth)
-            this.testPY += this.testVY;
-        if (this.testPZ + this.testVZ < this.maxWidth && this.testPZ + this.testVZ > -this.maxWidth)
-            this.testPZ += this.testVZ;
-
-        this.CurrPX = this.testPX * this.scaleVal;
-        this.CurrPY = this.testPZ * this.scaleVal;
 
         this.timeElapsed += 1
+        return;
+    }
+    
+    this.avgZ /= 5;
+
+    if (this.avgZ >= this.rotDelta) {
+        this.axc = 0, this.ayc = 0, this.azc = 0;
+    }
+
+    this.avgZ = 0; this.diff = 0;
+    this.axc /= this.sampleR; this.ayc /= this.sampleR; this.azc /= this.sampleR;
+
+    var corrXYZ = rotationX(radians(-beta), rotationY(radians(-gamma), [this.axc, this.ayc, this.azc]))
+
+    var ax = Math.sin(radians(compass))*threshold(corrXYZ[2], this.rollOff, this.maxAccel)
+    var az = Math.cos(radians(compass))*-threshold(corrXYZ[0], this.rollOff, this.maxAccel)
+
+    this.axc = 0, this.ayc = 0, this.azc = 0;
+
+    this.testTheta = compass;
+    this.testBeta = beta;
+    this.testGamma = gamma;
+
+    this.testX = ax;
+    this.testZ = az;
+
+    this.testVX = bias(this.testVX,0.5, 0.5, 2) + ax;
+    this.testVZ = bias(this.testVZ,0.5, 0.5, 2) + az;
+
+    if (this.testPX + this.testVX < this.maxWidth && this.testPX + this.testVX > -this.maxWidth)
+        this.testPX += this.testVX;
+    if (this.testPZ + this.testVZ < this.maxWidth && this.testPZ + this.testVZ > -this.maxWidth)
+        this.testPZ += this.testVZ;
+
+    if (this.testPX + this.testPZ > this.zeroThres || this.testPX + this.testPZ < -this.zeroThres) {
+
+        const newX = (this.refVtr[0] * Math.cos(radians(compass)) + this.refVtr[1] * Math.sin(radians(compass))) * this.scaleVal;
+        const newY = (this.refVtr[0] * Math.sin(radians(compass)) + this.refVtr[1] * Math.cos(radians(compass))) * this.scaleVal;
+        if (this.CurrPX + newX < this.maxDistance && this.CurrPX + newX > -this.maxDistance )
+            this.CurrPX += newX;
+
+        if (this.CurrPY + newY < this.maxDistance && this.CurrPY + newY > -this.maxDistance)
+            this.CurrPY += newY;
+
+        this.testPX = 0; this.testPZ = 0;
+    }
+
+    this.timeElapsed += 1
     }
 
     // 25 samples in 25 ms

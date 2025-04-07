@@ -1,4 +1,4 @@
-// File: H:\SHARED_VPN\convo-sepper\app\layout.tsx
+// File: /Users/ktzhang/convo-sepper/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
