@@ -210,10 +210,10 @@ class Recorder {
         this.gainNode = this.ctx.createGain();
         this.gainNode.gain.value = 4;
 
-        navigator.mediaDevices
-            .getUserMedia({ video: false, audio: true })
-            .then(this.callback)
-            .catch(console.log);
+       // navigator.mediaDevices
+            //.getUserMedia({ video: false, audio: true })
+           // .then(this.callback)
+          //  .catch(console.log);
 
 
     }
