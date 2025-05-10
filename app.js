@@ -37,6 +37,12 @@ const limit = 500;
 
 var app = express();
 
+const cors = require('cors') //cross-origin resource sharing
+
+app.use(cors({
+    origin: '*' // change to webapp later
+}));
+
 app.set('views', __dirname + '/tpl');
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
@@ -60,6 +66,10 @@ app.get('/', function (req, res) {
 
 app.get('/main', function (req, res) {
     res.render('main_app', {id: channels.length});
+});
+
+app.get('/demo', function (req, res) {
+    res.render('demo', {id: channels.length});
 });
 
 app.get('/test', function (req, res) {
@@ -110,6 +120,11 @@ app.post('/convo-ts', function(req, res) {
         channels.push(null)
     }
 
+    channels[req.body.id] = req.body;
+
+    if (req.body.transcript.length <= 0)
+        return res.json({ status: "ok", ts: req.body.transcript, timestamp: Date.now() })
+
     if (convologs.length < limit) {
         convologs.push(req.body);
     }
@@ -117,7 +132,6 @@ app.post('/convo-ts', function(req, res) {
         convologs[ind++ % limit] = req.body;
     }
 
-    channels[req.body.id] = req.body;
     return res.json({status: "ok", ts: req.body.transcript, timestamp: Date.now()})
 });
 

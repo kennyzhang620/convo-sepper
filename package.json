@@ -8,6 +8,7 @@
   "dependencies": {
     "binaryjs": "latest",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "ejs": "^2.5.9",
     "express": "latest",
     "jade": "latest",

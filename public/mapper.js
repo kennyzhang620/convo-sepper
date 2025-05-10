@@ -6,6 +6,8 @@ const f_formation_colors = ['red', 'blue', 'green', 'yellow', 'aliceblue'];
 // TODO CHANGE THIS WHEN DEVELOPING LOCALLY
 const server = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-ids";
 const clusterServer = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-clusters";
+// const server = "http://localhost:3000" + "/convo-ts-ids";
+// const clusterServer = "http://localhost:3000" + "/convo-ts-clusters";
 const map = getElementID("map_points");
 const scaler = document.getElementById('scale');
 
@@ -36,6 +38,8 @@ function calculateFFormationCenter(points) {
     return { centerX, centerY, radius };
 }
 
+var fform_colors = new Map();
+
 function loadFFormations(e) {
     var dataArr = null;
     try {
@@ -51,9 +55,11 @@ function loadFFormations(e) {
     for (var i = 0;i < dataArr.length;i++) {
         const fformation = dataArr[i];
         for (var f = 0;f<fformation.length ;f++) {
-            document.getElementById(`point-${fformation[f]}`).style.backgroundColor = f_formation_colors[i];
+        //    document.getElementById(`point-${fformation[f]}`).style.backgroundColor = f_formation_colors[i];
+            fform_colors.set(fformation[f],  f_formation_colors[i]);
         }
     }
+    sendPacket(server, 'GET', '', true, loadPoints,  null, 3000);
 }
 
 function selectFFormation(event) {
@@ -71,7 +77,7 @@ function selectFFormation(event) {
 }
 
 function addPoint(x,y, theta, id) {
-    return `<div id="point-${id}" style="position: absolute;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: ${XOFFSET+x}px;top: ${YOFFSET+y}px;text-align: center;transform: rotate(${theta}deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>${id}</div>`
+    return `<div id="point-${id}" style="background-color: ${fform_colors.get(id)};position: absolute;border-radius: 100px; border: 3px black solid;width: 25px;height: 25px;left: ${XOFFSET+x}px;top: ${YOFFSET-y}px;text-align: center;transform: rotate(${theta}deg);"><div id="arr" style="background-color: blue;width: 9px;height: 6px;left: 8px;position: relative;"></div>${id}</div>`
 }
 
 function appendElement(classL, htmlL) {
@@ -109,7 +115,7 @@ function loadPoints(e) {
             appendElement(map, addPoint(point.px*scaler.value, point.py*scaler.value, point.theta, point.id))
 
             if (point.paused) {
-                newInactiveParticipants.add(point.id);
+                newInactiveParticipants.add(point.id); 
             }
         }
     }
@@ -118,7 +124,6 @@ function loadPoints(e) {
 }
 
 function map_loop() {
-    sendPacket(server, 'GET', '', true, loadPoints,  null, 3000);
     sendPacket(clusterServer, 'GET', '', true, loadFFormations,  null, 3000);
 }
 

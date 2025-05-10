@@ -1,5 +1,6 @@
 // CHANGE THIS WHEN DEVELOPING LOCALLY
 const convoserver = "https://conv-count-poc-997c48b4c4cc.herokuapp.com" + "/convo-ts-list"
+// const convoserver = "http://localhost:3000" + "/convo-ts-list"
 
 function clearCells() {
 	var inner = document.getElementsByClassName("convo_container");
@@ -37,6 +38,16 @@ function checkPaused(ids) {
     return false;
 }
 
+function loadCell(id) {
+    var cell = document.getElementById(`ts${id}`);
+    
+    if (cell.style.display == "none")
+        cell.style = "display: block;";
+    else
+        cell.style = "display: none;";
+
+}
+
 function generateCell(res, max_size) {
 
 	var inner = document.getElementsByClassName("convo_container");
@@ -50,13 +61,15 @@ function generateCell(res, max_size) {
 			//console.log("res1: ", res[i].Project)
 			var filler = `<div id="filler" style="width: 100px; height: 100px;"></div>`;
 
-			var html = `<div class="img_header" style='border: 1px solid black; border-radius: 10px; background-color: ${checkPaused(res[i].ids) ? "yellow" : "white"}'>
+			var html = `<div class="img_header" style='border: 1px solid black; border-radius: 10px; background-color: white'>
 							<div class="text_content">
-                                <div id="title_header" style="padding:6px; width: 90%;">${res[i].inference}</div>
+                            <div id="header"><div id="title_header-${res[i].convo_id}" style="background-color: ${checkPaused(res[i].ids) ? "yellow" : "white"} padding:6px; width: 90%;">${res[i].inference}</div><div id="back-${res[i].convo_id}" style="background-color: ${checkPaused(res[i].ids) ? "white" : fform_colors.get(res[i].ids[0])};width: 30px;height: 30px;display: flex; float: right; border: 1px solid black; border-radius: 30px; position:relative; bottom: 40px;" onclick='loadCell(${res[i].convo_id})'></div></div>
+                            <div id="ts${res[i].convo_id}" style="display: none;">    
                                 <h3>Transcript</h3>
-                                ${generateConvoList(res[i].transcript.trim().split("\n"), max_size)}
-                                <h3>Tips</h3>
-                                ${generateConvoList(res[i].tips.trim().split("\n"), max_size)}
+                                    ${generateConvoList(res[i].transcript.trim().split("\n"), max_size)}
+                                    <h3>Tips</h3>
+                                    ${generateConvoList(res[i].tips.trim().split("\n"), max_size)}
+                                </div>
                             </div>
                         </div>`;
             // console.log(html);
@@ -72,6 +85,37 @@ function generateCell(res, max_size) {
 
 }
 
+function adjustCellId(id, inf, trans, tips, max_size, ids) {
+    var convo = document.getElementById(`ts${id}`)
+    var title = document.getElementById(`title_header-${id}`)
+    var back = document.getElementById(`back-${id}`)
+
+    title.innerHTML = inf;
+    title.style.backgroundColor = checkPaused(ids) ? "yellow" : "white"
+
+    back.style = `background-color: ${checkPaused(ids) ? "white" : fform_colors.get(ids[0])};width: 30px;height: 30px;display: flex; float: right; border: 1px solid black; border-radius: 30px; position:relative; bottom: 40px;`
+
+    const contents = ` <h3>Transcript</h3>
+                                    ${generateConvoList(trans.trim().split("\n"), max_size)}
+                                    <h3>Tips</h3>
+                                    ${generateConvoList(tips.trim().split("\n"), max_size)}`
+
+    convo.innerHTML = contents;
+
+}
+
+function reviseCell(res, max_size) {
+
+	for (var i = 0; i < res.length; i++) {
+		if (res != null && i < max_size) {
+            adjustCellId(res[i].convo_id, res[i].inference, res[i].transcript, res[i].tips, max_size, res[i].ids)
+		}
+	}
+
+}
+
+var prevLen = 0;
+
 function loadConvo(e) {
 
     var dataArr = null;
@@ -85,9 +129,16 @@ function loadConvo(e) {
 
     if (!dataArr) return;
 
-    clearCells();
-    generateCell(dataArr, 10)
+    if (prevLen != dataArr.length) {
+        clearCells();
+        generateCell(dataArr, 10)
 
+        prevLen = dataArr.length;
+
+        return;
+    }
+
+    reviseCell(dataArr, 10);
 }
 
 function convo_loop() {
