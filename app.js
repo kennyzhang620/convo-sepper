@@ -48,10 +48,43 @@ async function responseGenerator (prompt) {
     return completion.choices[0].message.content;
 }
 
+async function responseGeneratorBulk (prompts) {
+
+    console.log(ud);
+    if (Date.now() - timer > 1000*60) {
+        timer = Date.now();
+        ud = 1;
+    }
+
+    if (ud > limit) {
+        return "Please wait 1 minute before sending another message.";
+    }
+
+    const completion = await openai.chat.completions.create({
+		model: "gpt-4o-mini",
+		messages: prompts,
+		max_tokens: 1000,
+	}).catch(err => {
+        console.log(err);
+		return err;
+    });
+
+    return completion.choices[0].message.content;
+}
+
 app.post('/chatrecvm', async (req, res) => {
 	let txt = req.body.prompt
 
     response = await responseGenerator(txt);
+    resdata = response;
+	
+	res.json(resdata);
+});
+
+app.post('/chatlists', async (req, res) => {
+	let txt = req.body.prompts
+
+    response = await responseGeneratorBulk(txt);
     resdata = response;
 	
 	res.json(resdata);
