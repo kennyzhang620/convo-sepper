@@ -115,6 +115,54 @@ app.post('/chatlists', authenticateBearerToken, async (req, res) => {
 
 var convos_adv = [];
 
+app.post('/tts', authenticateBearerToken, async (req, res) => {
+    // Expects: { text: "...", voice_id: "...", (optional) model_id: "...", (optional) options: {...} }
+    const elevenlabsApiKey = process.env.ELEVENLABS_API_KEY || "YOUR_ELEVENLABS_API_KEY";
+    const { text, voice_id, model_id, options } = req.body;
+
+    if (!text || !voice_id) {
+        return res.status(400).json({ error: "Missing required fields: text, voice_id" });
+    }
+
+    const fetch = global.fetch || (await import('node-fetch')).default;
+    
+    let url = `https://api.elevenlabs.io/v1/text-to-speech/${voice_id}`;
+    let headers = {
+        "xi-api-key": elevenlabsApiKey,
+        "Content-Type": "application/json"
+    };
+    let payload = {
+        text,
+        ...(model_id && { model_id }),
+        ...(options && { ...options })
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            const errBody = await response.text();
+            return res.status(response.status).json({ error: "ElevenLabs API error", detail: errBody });
+        }
+
+        // Elevenlabs returns audio/mpeg stream in response (protobuf streaming or audio/mp3 in some cases)
+        res.set({
+            'Content-Type': 'audio/mpeg',
+            'Transfer-Encoding': 'chunked'
+        });
+
+        response.body.pipe(res); // Pipe audio stream directly to response
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to fetch TTS audio", detail: err.toString() });
+    }
+});
+
+
 app.post('/convo-ts-list', authenticateBearerToken, function(req,res) {
 
     if (req.body.convo_id != null) {
