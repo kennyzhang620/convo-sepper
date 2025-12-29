@@ -17,6 +17,29 @@ require('dotenv').config()
 
 const openai = new OpenAI({apiKey: process.env.CHAT_API_KEY});
 
+// Bearer token middleware for POST requests
+const authenticateBearerToken = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ error: 'Unauthorized: Bearer token required' });
+    }
+    
+    const token = authHeader.substring(7); // Remove 'Bearer ' prefix
+    const expectedToken = process.env.BEARER_TOKEN;
+    
+    if (!expectedToken) {
+        console.error('BEARER_TOKEN environment variable is not set');
+        return res.status(500).json({ error: 'Server configuration error' });
+    }
+    
+    if (token !== expectedToken) {
+        return res.status(403).json({ error: 'Forbidden: Invalid bearer token' });
+    }
+    
+    next();
+};
+
 var timer = Date.now();
 const limit = 30;
 
@@ -72,7 +95,7 @@ async function responseGeneratorBulk (prompts) {
     return completion.choices[0].message.content;
 }
 
-app.post('/chatrecvm', async (req, res) => {
+app.post('/chatrecvm', authenticateBearerToken, async (req, res) => {
 	let txt = req.body.prompt
 
     response = await responseGenerator(txt);
@@ -81,7 +104,7 @@ app.post('/chatrecvm', async (req, res) => {
 	res.json(resdata);
 });
 
-app.post('/chatlists', async (req, res) => {
+app.post('/chatlists', authenticateBearerToken, async (req, res) => {
 	let txt = req.body.prompts
 
     response = await responseGeneratorBulk(txt);
@@ -92,7 +115,7 @@ app.post('/chatlists', async (req, res) => {
 
 var convos_adv = [];
 
-app.post('/convo-ts-list', function(req,res) {
+app.post('/convo-ts-list', authenticateBearerToken, function(req,res) {
 
     if (req.body.convo_id != null) {
         if (req.body.convo_id == convos_adv.length) {
