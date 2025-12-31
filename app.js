@@ -120,6 +120,36 @@ app.post('/tts', authenticateBearerToken, async (req, res) => {
     const elevenlabsApiKey = process.env.ELEVENLABS_API_KEY || "YOUR_ELEVENLABS_API_KEY";
     const { text, voice_id, model_id, options } = req.body;
 
+    // Example fetch call from main js app to /tts endpoint:
+    /*
+    fetch('/tts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer YOUR_BEARER_TOKEN'
+        },
+        body: JSON.stringify({
+            text: "Hello world!",
+            voice_id: "YOUR_VOICE_ID",
+            // model_id: "optional_model_id",
+            // options: { stability: 0.5, similarity_boost: 0.8 }
+        })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        // Response is an audio stream (audio/mpeg)
+        return response.blob();
+    })
+    .then(audioBlob => {
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        audio.play();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    */
+
     if (!text || !voice_id) {
         return res.status(400).json({ error: "Missing required fields: text, voice_id" });
     }
