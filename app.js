@@ -185,7 +185,9 @@ app.post('/tts', authenticateBearerToken, async (req, res) => {
             'Transfer-Encoding': 'chunked'
         });
 
-        response.body.pipe(res); // Pipe audio stream directly to response
+        // Convert Web Stream → Node Stream
+        const nodeStream = Readable.fromWeb(response.body);
+        nodeStream.pipe(res);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Failed to fetch TTS audio", detail: err.toString() });
